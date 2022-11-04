@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "src": "authorize/",
+      "dest": "api/authorize.js",
+      "methods": ["GET", "POST"]
+    }
+  ]
+}
