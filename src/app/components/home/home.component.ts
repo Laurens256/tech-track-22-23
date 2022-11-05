@@ -6,72 +6,67 @@ import { environment } from 'src/environments/environment';
 import { SpotifyAuthService } from 'src/app/services/spotifyAuth/index';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  token: string = '';
+	token: string | null = null;
 
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private spotifyAuthSvc: SpotifyAuthService
-  ) { }
+	constructor(
+		private http: HttpClient,
+		private route: ActivatedRoute,
+		private spotifyAuthSvc: SpotifyAuthService
+	) { }
 
-  // ngOnInit(): void {
-  //   this.http.get<{ access_token: '' }>(`${environment.apiUrl}`, {
-  //     params: {
-  //       code: this.route.snapshot.queryParams["code"]
-  //     }
-  //   }).subscribe(
-  //     (response: { access_token: '' }) => {
-  //       // console.log(response.access_token);
-  //       this.token = response.access_token;
+	ngOnInit(): void {
+		this.token = localStorage.getItem('access_token');
+		// console.log(this.token);
 
-  //       const httpHeaders = {
-  //         headers: new HttpHeaders({
-  //           'Authorization': `Bearer ${this.token}`,
-  //           'Accept': 'application/json'
-  //         })
-  //       }
+		//check of token is opgeslagen
+		if (this.token != null && this.token !== 'null' && this.token !== 'undefined') {
+			const httpHeaders = {
+				headers: new HttpHeaders({
+					'Authorization': `Bearer ${this.token}`,
+					'Accept': 'application/json'
+				})
+			}
+			this.getUserProfile(httpHeaders);
+			return;
+		}
 
-  //       this.getUserProfile(httpHeaders)
-  //     },
-  //     (error) => {
-  //       console.error('error caught in component')
-  //     },
-  //   )
-  // }
+		this.http.get<{ access_token: '' }>(`${environment.apiUrl}`, {
+			params: {
+				code: this.route.snapshot.queryParams["code"]
+			}
+		}).subscribe(response => {
+			this.token = response.access_token;
+			localStorage.setItem('access_token', this.token);
 
-  ngOnInit(): void {
-    this.http.get<{ access_token: '' }>(`${environment.apiUrl}`, {
-      params: {
-        code: this.route.snapshot.queryParams["code"]
-      }
-    }).subscribe(response => {
-      this.token = response.access_token;
-      const httpHeaders = {
-        headers: new HttpHeaders({
-          'Authorization': `Bearer ${this.token}`,
-          'Accept': 'application/json'
-        })
-      }
-      this.getUserProfile(httpHeaders)
-    });
-  }
+			const httpHeaders = {
+				headers: new HttpHeaders({
+					'Authorization': `Bearer ${this.token}`,
+					'Accept': 'application/json'
+				})
+			}
+			this.getUserProfile(httpHeaders)
+		});
+	}
 
-  getUserProfile(headers: {}) {
-    this.http.get("https://api.spotify.com/v1/me", headers)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (err) => {
-          //TIJDELIJK, logt opnieuw in als er een error is, activeerd bij iedere error
-          this.spotifyAuthSvc.authorize();
-        }
-      })
-  }
+	getUserProfile(headers: {}) {
+		this.http.get("https://api.spotify.com/v1/me", headers)
+			.subscribe({
+				next: (res) => {
+					console.log(res);
+				},
+				error: (err) => {
+					console.log(err);
+					//logt opnieuw in als er een error is, activeerd bij iedere error
+					//remove access token omdat een error kan komen door expired token
+					localStorage.removeItem('access_token');
+					this.spotifyAuthSvc.authorize();
+				}
+			})
+	}
 
 }
