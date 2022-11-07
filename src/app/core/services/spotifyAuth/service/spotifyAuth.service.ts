@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 
-import { AuthFormat } from '../shared/spotify-auth-format';
+import { SpotifyAuth } from '../../../models/spotifyAuth';
 
 @Injectable()
 export class SpotifyAuthService {
 
-  private AuthFormat: AuthFormat = {
+  private SpotifyAuth: SpotifyAuth = {
     client_id: environment.client_id,
     response_type: 'code',
     redirect_uri: environment.redirect_uri_decoded,
@@ -21,7 +21,7 @@ export class SpotifyAuthService {
 
   private buildAuthUrl(): string {
     const params = [];
-    for (const [key, value] of Object.entries(this.AuthFormat)) {
+    for (const [key, value] of Object.entries(this.SpotifyAuth)) {
       if (typeof (value) === 'object') {
         params.push(`${key}=${(value as string[]).join(' ')}`);
       } else {
