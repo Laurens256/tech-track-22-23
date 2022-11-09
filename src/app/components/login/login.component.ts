@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpotifyAuthService } from 'src/app/core/services/spotifyAuth/service/spotifyAuth.service';
+import { SpotifyAuthService } from 'src/app/core/services/spotifyAuth/index';
 
 @Component({
   selector: 'app-login',

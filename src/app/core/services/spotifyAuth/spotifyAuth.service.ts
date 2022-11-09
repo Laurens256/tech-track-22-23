@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 
-import { SpotifyAuth } from '../../../models/spotifyAuth';
+import { SpotifyAuth } from '../../models/spotifyAuth';
 
 @Injectable()
 export class SpotifyAuthService {

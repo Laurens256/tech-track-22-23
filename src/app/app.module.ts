@@ -8,12 +8,11 @@ import { AppComponent } from './app.component';
 //services
 import { SpotifyAuthService } from './core/services/spotifyAuth/index';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     //alle routing components in 1 variabele
-    routingComponents
+    routingComponents,
   ],
   imports: [
     BrowserModule,

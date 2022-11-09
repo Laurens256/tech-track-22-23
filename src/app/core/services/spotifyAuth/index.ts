@@ -1,2 +1,2 @@
 
-export { SpotifyAuthService } from './service/spotifyAuth.service';
+export { SpotifyAuthService } from './spotifyAuth.service';
