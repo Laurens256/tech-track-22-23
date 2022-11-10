@@ -9,6 +9,9 @@ import { UserProfile } from 'src/app/core/models/userProfile';
 import { UserPlaylists } from 'src/app/core/models/userPlaylists';
 import { UserPlaylistData } from 'src/app/core/models/userPlaylistData';
 
+// @ts-ignore
+import * as d3 from 'd3';
+
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
