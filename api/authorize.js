@@ -25,7 +25,6 @@ export default async function handler(req, res) {
     }
   })).json();
 
-  //stuur access token terug in res headers
   const tokens = await tokensRaw;
   console.timeEnd();
 
