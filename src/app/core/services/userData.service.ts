@@ -24,7 +24,7 @@ export class UserDataService {
       .set('Authorization', `Bearer ${this.tokenService.getAccessToken}`)
       .set('Accept', 'application/json');
 
-    this.http.get<UserProfile>("https://api.spotify.com/v1/me", { headers: headers  })
+    this.http.get<UserProfile>("https://api.spotify.com/v1/me")
       .subscribe(response => {
         console.log(response);
       })

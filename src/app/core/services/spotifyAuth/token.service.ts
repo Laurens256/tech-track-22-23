@@ -20,8 +20,8 @@ export class TokenService {
     this.token$.next(this.token);
   }
 
-  public getAuthHeader(): {[Authorization: string]: string} {
-    return { Authorization: `Bearer ${this.token}` };
+  public get getAuthHeader(): {[Authorization: string]: string} {
+    return this.token ? { Authorization: `Bearer ${this.token}` } : {};
   }
 
   public get authTokens(): Observable<any> {
