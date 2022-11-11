@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
+import { SpotifyAuthService } from './core/services/spotifyAuth/index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,22 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   constructor(
-
-  ) {}
+    private spotifyAuthService: SpotifyAuthService,
+    private router: Router
+  ) { }
   title = 'frontend';
 
 
 
   ngOnInit(): void {
+    this.checkAuthState();
+  }
+
+  checkAuthState() {
+    this.spotifyAuthService.authorizedCheck.subscribe((authorized: boolean) => {
+      if (authorized) {
+        this.router.navigate(['home']);
+      }
+    });
   }
 }

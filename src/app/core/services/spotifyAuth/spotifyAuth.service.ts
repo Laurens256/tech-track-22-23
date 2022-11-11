@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -6,6 +7,8 @@ import { SpotifyAuth } from '../../models/spotifyAuth';
 
 @Injectable()
 export class SpotifyAuthService {
+
+  private isAuthorized: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   private SpotifyAuth: SpotifyAuth = {
     client_id: environment.client_id,
@@ -17,8 +20,15 @@ export class SpotifyAuthService {
 
 
   public authorize() {
-    console.log(this.SpotifyAuth);
     window.location.href = this.buildAuthUrl();
+  }
+
+  public authorized(): void {
+    this.isAuthorized.next(true);
+  }
+
+  public get authorizedCheck(): Observable<boolean> {
+    return this.isAuthorized.asObservable();
   }
 
   private buildAuthUrl(): string {

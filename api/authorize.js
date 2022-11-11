@@ -27,11 +27,7 @@ export default async function handler(req, res) {
 
   //stuur access token terug in res headers
   const tokens = await tokensRaw;
-  console.log(tokens);
   console.timeEnd();
 
   res.redirect(301, `${redirect_uri}?access_token=${tokens.access_token}`)
-
-  // res.status(200);
-  // res.send({'access_token': tokens.access_token});
 }

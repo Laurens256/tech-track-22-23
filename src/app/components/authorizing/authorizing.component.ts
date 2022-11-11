@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpotifyAuthService } from 'src/app/core/services/spotifyAuth';
 
 @Component({
   selector: 'app-authorizing',
@@ -9,11 +10,12 @@ import { Router } from '@angular/router';
 export class AuthorizingComponent implements AfterViewInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private spotifyAuthService: SpotifyAuthService
   ) { }
 
   ngAfterViewInit(): void {
-    this.router.navigate(['home']);
+    this.spotifyAuthService.authorized();
   }
 
 }
