@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, CanActivateChild } from '@angular/router';
 
 // import { AuthService } from './auth.service';
 // import { TokenService } from './token.service';
@@ -9,16 +9,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   // constructor(private authService: AuthService, private tokenSvc: TokenService) { }
 
-  public canActivate(
-    next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivateChild(next, state);
+  public canActivate(url: ActivatedRouteSnapshot): boolean {
+    console.log(url.queryParams);
+    return this.canActivateChild(url);
   }
 
-  public canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const response: any = next.queryParams;
-    if (response.access_token) {
+  public canActivateChild(url: ActivatedRouteSnapshot): boolean {
+    const access_token: string = url.queryParams['access_token'];
+    if (access_token) {
       // this.tokenSvc.setAuthToken(response);
     }
-    return !!response;
+    return !!access_token;
   }
 }

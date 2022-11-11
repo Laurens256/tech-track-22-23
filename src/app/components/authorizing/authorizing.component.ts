@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorizing',
@@ -7,10 +8,12 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 export class AuthorizingComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngAfterViewInit(): void {
-
+    this.router.navigate(['home']);
   }
 
 }

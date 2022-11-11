@@ -6,7 +6,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 //services
-import { SpotifyAuthService } from './core/services/spotifyAuth/index';
+import { SpotifyAuthService, AuthGuard } from './core/services/spotifyAuth/index';
 import { AuthorizingComponent } from './components/authorizing/authorizing.component';
 
 @NgModule({
@@ -23,6 +23,7 @@ import { AuthorizingComponent } from './components/authorizing/authorizing.compo
   ],
   providers: [
     SpotifyAuthService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
