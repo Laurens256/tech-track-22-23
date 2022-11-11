@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 //services
 import { SpotifyAuthService } from './core/services/spotifyAuth/index';
+import { AuthorizingComponent } from './components/authorizing/authorizing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     //alle routing components in 1 variabele
     routingComponents,
+    AuthorizingComponent,
   ],
   imports: [
     BrowserModule,

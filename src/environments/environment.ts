@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   redirect_uri_decoded: 'http://localhost:3000/home/',
   client_id: '176a1a3e2d5a4065983995129a9b96bf',
-  apiUrl: 'http://localhost:3000/api/authorize'
+  apiUrl: 'http://localhost:3000/api/authorize/'
 };
 
 /*

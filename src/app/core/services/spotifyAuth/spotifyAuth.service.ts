@@ -10,12 +10,14 @@ export class SpotifyAuthService {
   private SpotifyAuth: SpotifyAuth = {
     client_id: environment.client_id,
     response_type: 'code',
-    redirect_uri: environment.redirect_uri_decoded,
+    redirect_uri: environment.apiUrl,
+    // redirect_uri: environment.redirect_uri_decoded,
     scope: 'user-read-private user-top-read playlist-modify-public playlist-modify-private'
   };
 
 
   public authorize() {
+    console.log(this.SpotifyAuth);
     window.location.href = this.buildAuthUrl();
   }
 

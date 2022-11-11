@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.getBearerToken()
+		// this.getBearerToken()
 	}
 
 	getBearerToken() {

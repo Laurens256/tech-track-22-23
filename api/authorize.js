@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 
+const api_uri = process.env.API_URI;
 const redirect_uri = process.env.REDIRECT_URI_DECODED;
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
@@ -16,7 +17,7 @@ export default async function handler(req, res) {
     body: new URLSearchParams({
       grant_type: 'authorization_code',
       code: req.query.code,
-      redirect_uri: redirect_uri,
+      redirect_uri: api_uri,
     }).toString(),
     headers: {
       'Authorization': 'Basic ' + Buffer.from(`${client_id}:${client_secret}`).toString('base64'),
@@ -26,7 +27,11 @@ export default async function handler(req, res) {
 
   //stuur access token terug in res headers
   const tokens = await tokensRaw;
+  console.log(tokens);
   console.timeEnd();
-  res.status(200);
-  res.send({'access_token': tokens.access_token});
+
+  res.redirect(301, `${redirect_uri}?access_token=${tokens.access_token}`)
+
+  // res.status(200);
+  // res.send({'access_token': tokens.access_token});
 }
