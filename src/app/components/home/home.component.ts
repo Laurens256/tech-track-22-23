@@ -36,11 +36,6 @@ export class HomeComponent implements OnInit {
       this.spotifyAuthService.authorized();
 
       this.requestUserData();
-
-      // this.userDataService.getUserInfo();
-      // this.userPlaylists = this.userDataService.getPlaylists();
-      // console.log(this.userPlaylists);
-
     } else {
       this.tokenService.clearToken();
       this.spotifyAuthService.authorize();

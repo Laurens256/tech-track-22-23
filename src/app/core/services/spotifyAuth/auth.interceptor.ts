@@ -10,7 +10,7 @@ export class SpotifyAuthInterceptor implements HttpInterceptor {
     private tokenService: TokenService
   ) { }
 
-  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<HttpEvent<Request>>, next: HttpHandler): Observable<HttpEvent<Response>> {
     const modifiedReq = req.clone({ setHeaders: this.tokenService.getAuthHeader });
     return next.handle(modifiedReq);
   }

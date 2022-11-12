@@ -9,23 +9,20 @@ export class TokenService {
 
   private token = '';
 
-  private token$ = new BehaviorSubject(this.token);
-
   public get getAccessToken(): string {
     return this.token;
   }
 
   public clearToken(): void {
     this.token = '';
-    this.token$.next(this.token);
   }
 
   public get getAuthHeader(): {[Authorization: string]: string} {
-    return this.token ? { Authorization: `Bearer ${this.token}` } : {};
-  }
-
-  public get authTokens(): Observable<any> {
-    return this.token$.asObservable();
+    if(this.token) {
+        return { Authorization: `Bearer ${this.token}` };
+      } else {
+        return {};
+      }
   }
 
   public setAccessToken(access_token: string): boolean {
@@ -34,7 +31,6 @@ export class TokenService {
     } else {
       this.token = '';
     }
-    this.token$.next(this.token);
     return !!this.token;
   }
 
