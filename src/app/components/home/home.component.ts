@@ -58,25 +58,4 @@ export class HomeComponent implements OnInit {
       this.userPlaylists = data.userPlaylists.items;
     })
   }
-
-  // getPlaylistTracks(playlist_id: string, headers: {}) {
-  // 	this.http.get<UserPlaylistData>(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {headers: headers})
-  // 		.subscribe(response => {
-  // 			console.log(response);
-
-  //       let ids: any = [];
-  //       response.items.forEach(element => {
-  //         ids.push(element.track.id)
-  //       });
-  //       ids = ids.join(',');
-  //       this.getAudioFeatures(ids, headers);
-  // 		})
-  // }
-
-  // getAudioFeatures(ids: any, headers: {}) {
-  //   this.http.get(`https://api.spotify.com/v1/audio-features?ids=${ids}`, {headers: headers})
-  //   .subscribe(response => {
-  //     console.log(response);
-  //   })
-  // }
 }

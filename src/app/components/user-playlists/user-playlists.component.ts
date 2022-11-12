@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserDataService } from 'src/app/core/services/userData.service';
 
+import { UserPlaylists } from 'src/app/core/models/userPlaylists';
+
 @Component({
   selector: 'app-user-playlists',
   templateUrl: './user-playlists.component.html',
@@ -8,8 +10,7 @@ import { UserDataService } from 'src/app/core/services/userData.service';
 })
 export class UserPlaylistsComponent implements OnInit {
 
-  @Input() data: any;
-  test: any;
+  @Input() data!: UserPlaylists['items'];
 
   constructor(
     private userDataService: UserDataService,

@@ -6,11 +6,9 @@ export interface UserPlaylists {
       href: string,
       id: string,
       images: [{
-        0: {
-          height: null | string,
-          url: string,
-          width: null | string
-        }
+        height: null | string,
+        url: string,
+        width: null | string
       }],
       name: string,
       owner: { display_name: string, href: string, id: string },

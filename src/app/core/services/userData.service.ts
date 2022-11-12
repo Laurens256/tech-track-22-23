@@ -7,6 +7,7 @@ import { TokenService } from './spotifyAuth/index';
 import { UserProfile } from 'src/app/core/models/userProfile';
 import { UserPlaylists } from 'src/app/core/models/userPlaylists';
 import { UserPlaylistData } from 'src/app/core/models/userPlaylistData';
+import { AudioFeatures } from '../models/audioFeatures';
 
 @Injectable()
 export class UserDataService {
@@ -61,16 +62,18 @@ export class UserDataService {
     this.getAudioFeatures(allSongIds);
   }
 
-  async getAudioFeatures(ids: any) {
+  async getAudioFeatures(ids: {}[] | string) {
     let allAudioFeatures: {}[] = [];
     for (let i = 0; i < ids.length / 100; i++) {
       //sliced iedere keer 100 ids voor 1 http request
-      let idsLimit = ids.slice(i * 100, i * 100 + 100);
-      idsLimit = idsLimit.join(',');
+      let idsLimit: string[] | string | {}[] = ids.slice(i * 100, i * 100 + 100);
+      if(typeof idsLimit !== 'string') {
+        idsLimit = idsLimit.join(',');
+      }
 
-      const songs = await firstValueFrom(this.http.get<any>(`${this.playlistTrackFeaturesUri}${idsLimit}`));
+      const songs = await firstValueFrom(this.http.get<AudioFeatures>(`${this.playlistTrackFeaturesUri}${idsLimit}`));
 
-      songs.audio_features.forEach((song: any) => allAudioFeatures.push(song));
+      songs.audio_features.forEach((song) => allAudioFeatures.push(song));
     }
     console.log({'all audio features:': allAudioFeatures});
   }
