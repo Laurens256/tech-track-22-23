@@ -1,0 +1,51 @@
+ul {
+  display: grid;
+  gap: .5em;
+  grid-template-columns: repeat(auto-fit, minmax(28em, 1fr));
+  /* 56.5 = 2 columns van 28 met .5 gap  */
+  width: 56.5em;
+  /* calc 90vw - padding .8em beide kanten */
+  max-width: calc(90vw - 1.6em);
+  align-items: center;
+}
+
+ul li {
+  width: 28em;
+  /* calc 90vw - padding .8em beide kanten */
+  max-width: calc(90vw - 1.6em);
+}
+
+ul li button {
+  display: flex;
+  background: red;
+  width: 100%;
+  height: 100%;
+  gap: 1em;
+  align-items: center;
+  padding: .8em;
+  overflow: hidden;
+}
+
+ul li button img {
+  width: 5em;
+}
+
+ul li button div {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+ul li button div h2 {
+  overflow: hidden;
+  text-overflow: '..';
+  white-space: nowrap;
+  text-align: start;
+}
+
+ul li button div p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: start;
+}

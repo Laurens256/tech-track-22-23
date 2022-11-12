@@ -1,6 +1,11 @@
 <ul>
   <li *ngFor="let item of data">
-    <img src="{{item.images[0].url}}" alt="playlist icon">
-    <h2>{{item.name}}</h2>
+    <button #playlist id="{{item.id}}" (click)="choosePlaylist(playlist)">
+      <img src="{{item.images[0].url}}" alt="playlist icon">
+      <div>
+        <h2>{{item.name}}</h2>
+        <p>{{item.description}}</p>
+      </div>
+    </button>
   </li>
 </ul>

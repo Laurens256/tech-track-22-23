@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserDataService } from 'src/app/core/services/userData.service';
 
 @Component({
   selector: 'app-user-playlists',
@@ -8,10 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserPlaylistsComponent implements OnInit {
 
   @Input() data: any;
+  test: any;
 
-  constructor() { }
+  constructor(
+    private userDataService: UserDataService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  choosePlaylist(e: HTMLButtonElement) {
+    this.userDataService.getPlaylistTracks(e.id);
   }
 
 }

@@ -14,7 +14,7 @@ export class UserDataService {
 
   userProfileUri = 'https://api.spotify.com/v1/me';
   userPlaylistsUri = 'https://api.spotify.com/v1/me/playlists'
-  userPlaylistTracksUri = 'https://api.spotify.com/v1/playlists/'
+  userPlaylistTracksUri = 'https://api.spotify.com/v1/playlists'
 
 
   constructor(
@@ -44,12 +44,24 @@ export class UserDataService {
       .subscribe(response => {
         console.log(response);
 
-        let trackIds: [] | string | any = [];
+        let trackIds: string | string[] = [];
+
         response.items.forEach(element => {
-          trackIds.push(element.track.id)
+
+          //check of element track bestaat omdat local storage bestanden die niet hebben
+          if(element.track && typeof trackIds !== 'string') {
+            trackIds.push(element.track.id)
+          }
         });
         trackIds = trackIds.join(',');
-        // this.getAudioFeatures(trackIds);
+        this.getAudioFeatures(trackIds);
+      })
+  }
+
+  getAudioFeatures(ids: string) {
+    this.http.get(`https://api.spotify.com/v1/audio-features?ids=${ids}`)
+      .subscribe(response => {
+        console.log(response);
       })
   }
 }
