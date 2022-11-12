@@ -31,5 +31,6 @@ export class AppRoutingModule { }
 export const routingComponents = [
   LoginComponent,
   HomeComponent,
-  AuthorizingComponent
+  AuthorizingComponent,
+  UserPlaylistsComponent
 ];

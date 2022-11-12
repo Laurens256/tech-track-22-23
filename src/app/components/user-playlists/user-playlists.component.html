@@ -1,1 +1,6 @@
-<p>user-playlists works!</p>
+<ul>
+  <li *ngFor="let item of data">
+    <img src="{{item.images[0].url}}" alt="playlist icon">
+    <h2>{{item.name}}</h2>
+  </li>
+</ul>

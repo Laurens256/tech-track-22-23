@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth/index';
 
+import { UserProfile } from 'src/app/core/models/userProfile';
+import { UserPlaylists } from 'src/app/core/models/userPlaylists';
+
+import { forkJoin } from 'rxjs';
+
 // @ts-ignore
 import * as d3 from 'd3';
 
@@ -23,16 +28,35 @@ export class HomeComponent implements OnInit {
     this.checkAuth();
   }
 
+  userProfile!: UserProfile
+  userPlaylists!: UserPlaylists['items'];
+
   checkAuth() {
     if (this.tokenService.getAccessToken !== '') {
       this.spotifyAuthService.authorized();
 
-      this.userDataService.getUserInfo();
-      this.userDataService.getPlaylists();
+      this.requestUserData();
+
+      // this.userDataService.getUserInfo();
+      // this.userPlaylists = this.userDataService.getPlaylists();
+      // console.log(this.userPlaylists);
+
     } else {
       this.tokenService.clearToken();
       this.spotifyAuthService.authorize();
     }
+  }
+
+  requestUserData() {
+    forkJoin({
+      userProfile: this.userDataService.getUserInfo(),
+      userPlaylists: this.userDataService.getPlaylists()
+    }).subscribe(data => {
+      console.log(data);
+
+      this.userProfile = data.userProfile
+      this.userPlaylists = data.userPlaylists.items;
+    })
   }
 
   // getPlaylistTracks(playlist_id: string, headers: {}) {

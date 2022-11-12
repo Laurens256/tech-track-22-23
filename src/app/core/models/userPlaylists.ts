@@ -1,7 +1,6 @@
 export interface UserPlaylists {
   items: [
     {
-      collaborative: boolean,
       description: string,
       external_urls: { spotify: string },
       href: string,

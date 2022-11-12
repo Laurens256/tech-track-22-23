@@ -7,6 +7,8 @@ import { UserProfile } from 'src/app/core/models/userProfile';
 import { UserPlaylists } from 'src/app/core/models/userPlaylists';
 import { UserPlaylistData } from 'src/app/core/models/userPlaylistData';
 
+import { map } from 'rxjs';
+
 @Injectable()
 export class UserDataService {
 
@@ -22,17 +24,19 @@ export class UserDataService {
   }
 
   getUserInfo() {
-    this.http.get<UserProfile>(this.userProfileUri)
-      .subscribe(response => {
-        console.log(response);
-      })
+    return this.http.get<UserProfile>(this.userProfileUri)
+    // .subscribe(response => {
+    //   console.log(response);
+    // })
+    // return '';
   }
 
   getPlaylists() {
-    this.http.get<UserPlaylists>(this.userPlaylistsUri)
-      .subscribe(response => {
-        console.log(response);
-      })
+    return this.http.get<UserPlaylists>(this.userPlaylistsUri)
+    // .subscribe(response => {
+    //   console.log(response.items);
+    //   return response.items;
+    // })
   }
 
   getPlaylistTracks(playlist_id: string) {
