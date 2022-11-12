@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let item of data">
-    <button #playlist id="{{item.id}}" (click)="choosePlaylist(playlist)">
+    <button #playlist id="{{item.id + ';' + item.tracks.total}}" (click)="choosePlaylist(playlist)">
       <img src="{{item.images[0].url}}" alt="playlist icon">
       <div>
         <h2>{{item.name}}</h2>
