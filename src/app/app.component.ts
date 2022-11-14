@@ -36,7 +36,7 @@ export class AppComponent {
   }
 
   checkAuthState() {
-    // niet echt nodig maar soort vangnet
+    // stuurt user door naar home na authorization
     this.spotifyAuthService.authorizedCheck.subscribe((authorized: boolean) => {
       if (authorized) {
         this.router.navigate(['home']);

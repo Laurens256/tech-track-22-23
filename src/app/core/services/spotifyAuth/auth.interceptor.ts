@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable, NEVER } from 'rxjs';
 import { TokenService } from './token.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SpotifyAuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   public intercept(req: HttpRequest<HttpEvent<Request>>, next: HttpHandler): Observable<HttpEvent<Response>> {
-    const modifiedReq = req.clone({ setHeaders: this.tokenService.getAuthHeader });
+    // check of authorization bestaat, anders opnieuw inloggen
+    if (Object.keys(this.tokenService.getAuthHeader).length === 0) {
+      this.router.navigate(['login']);
+      return NEVER;
+    }
+
+    const modifiedReq: any = req.clone({ setHeaders: this.tokenService.getAuthHeader });
     return next.handle(modifiedReq);
   }
 
