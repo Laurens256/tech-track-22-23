@@ -3,8 +3,8 @@ import { environment } from '../environments/environment';
 import { SpotifyAuthService } from './core/services/spotifyAuth/index';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TokenService } from './core/services/spotifyAuth/index';
 
-export let browserRefresh = false;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,11 +14,15 @@ export class AppComponent {
   subscription: Subscription;
   constructor(
     private spotifyAuthService: SpotifyAuthService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
+    // wanneer user reload, sla access token weer op zodat user niet opnieuw in hoeft te loggen
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        browserRefresh = !router.navigated;
+        if (!router.navigated) {
+          this.tokenService.getAccessToken;
+        }
       }
     });
     // Bron browser refresh: https://stackoverflow.com/questions/56325272/detect-browser-refresh-in-an-angular-project

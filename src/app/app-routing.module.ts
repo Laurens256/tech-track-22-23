@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'playlist', component: PlaylistComponent },
   // { path: 'playlist/:', component: PlaylistComponent },
 
-  // { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   //404 pagina of iets dergelijks kan hier in de plaats worden gezet
   // { path: '**', redirectTo: 'data' },
 
