@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, NEVER } from 'rxjs';
 import { TokenService } from './token.service';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class SpotifyAuthInterceptor implements HttpInterceptor {
       return NEVER;
     }
 
-    const modifiedReq: any = req.clone({ setHeaders: this.tokenService.getAuthHeader });
+    const modifiedReq: HttpRequest<HttpEvent<Request>> = req.clone({ setHeaders: this.tokenService.getAuthHeader });
     return next.handle(modifiedReq);
   }
 

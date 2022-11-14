@@ -1,3 +1,17 @@
+<header>
+  <section class="info">
+    <img src="" alt="playlist icon">
+    <p *ngIf="userPlaylistData">{{userPlaylistData.length}} songs</p>
+  </section>
+
+  <section class="funfacts">
+
+  </section>
+
+  <button>Visualize</button>
+
+</header>
+
 <ul>
   <li *ngFor="let song of userPlaylistData">
     <div>
@@ -8,7 +22,7 @@
     <div>
       <small>
         {{song.duration_ms | date:'mm:ss'}}
-    </small>
-  </div>
+      </small>
+    </div>
   </li>
 </ul>

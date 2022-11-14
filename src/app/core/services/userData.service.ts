@@ -54,10 +54,12 @@ export class UserDataService {
         //check of song 'track' bestaat omdat local storage bestanden die niet hebben
         if (song.track) {
           allSongs.push(song.track);
-          allSongIds.push(song.track.id);
+          // allSongIds.push(song.track.id);
         }
       })
     }
+    const playlistCover = await firstValueFrom(this.http.get<any>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
+    console.log(playlistCover.images[0].url);
     console.log({'all songs:': allSongs});
     return allSongs;
     // this.getAudioFeatures(allSongIds);

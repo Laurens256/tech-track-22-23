@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       userProfile: this.userDataService.getUserInfo(),
       userPlaylists: this.userDataService.getPlaylists()
     }).subscribe(data => {
-      console.log(data);
+      // console.log(data);
 
       this.userProfile = data.userProfile
       this.userPlaylists = data.userPlaylists.items;
