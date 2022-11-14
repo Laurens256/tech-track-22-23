@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserPlaylistsComponent } from './components/user-playlists/user-playlists.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 import { AuthorizingComponent } from './components/authorizing/authorizing.component';
 
 import { AuthGuard } from './core/services/spotifyAuth/auth.guard';
@@ -13,12 +14,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   // { path: 'home', component: UserPlaylistsComponent },
-  { path: 'authorizing', component: AuthorizingComponent, canActivate: [AuthGuard] },
+  { path: 'playlist', component: PlaylistComponent },
+  // { path: 'playlist/:', component: PlaylistComponent },
 
   // { path: '', redirectTo: '', pathMatch: 'full' },
   //404 pagina of iets dergelijks kan hier in de plaats worden gezet
   // { path: '**', redirectTo: 'data' },
 
+  { path: 'authorizing', component: AuthorizingComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -32,5 +35,6 @@ export const routingComponents = [
   LoginComponent,
   HomeComponent,
   AuthorizingComponent,
-  UserPlaylistsComponent
+  UserPlaylistsComponent,
+  PlaylistComponent
 ];

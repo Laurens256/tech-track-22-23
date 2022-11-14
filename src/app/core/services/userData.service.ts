@@ -59,6 +59,8 @@ export class UserDataService {
       })
     }
     console.log({'all songs:': allSongs});
+    return allSongs;
+    console.log({'all songs:': allSongs});
     this.getAudioFeatures(allSongIds);
   }
 

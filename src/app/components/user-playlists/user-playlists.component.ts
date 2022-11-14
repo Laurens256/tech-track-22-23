@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserDataService } from 'src/app/core/services/userData.service';
 
 import { UserPlaylists } from 'src/app/core/models/userPlaylists';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-playlists',
@@ -13,14 +13,14 @@ export class UserPlaylistsComponent implements OnInit {
   @Input() data!: UserPlaylists['items'];
 
   constructor(
-    private userDataService: UserDataService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
 
   choosePlaylist(e: HTMLButtonElement) {
-    this.userDataService.getPlaylistTracks(e.id);
+    this.router.navigate(['playlist'], { queryParams: { id: e.id } });
   }
 
 }
