@@ -28,3 +28,11 @@
     </div>
   </li>
 </ul>
+
+
+<!-- loading animation -->
+<ul *ngIf="loading">
+  <li *ngFor="let item of [].constructor(playlistTotal); let i = index" [ngClass]="{'loading': loading}">
+
+  </li>
+</ul>

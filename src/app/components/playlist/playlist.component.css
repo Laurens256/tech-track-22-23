@@ -55,3 +55,7 @@ ul li div:last-of-type {
   margin: 0 .5em;
   width: fit-content;
 }
+
+ul li.loading {
+  background: blue;
+}
