@@ -1,7 +1,7 @@
 <header>
   <section class="info">
     <img src="" alt="playlist icon">
-    <p *ngIf="userPlaylistData">{{userPlaylistData.length}} songs</p>
+    <p>{{playlistTracks.length}} songs</p>
   </section>
 
   <section class="funfacts">
@@ -13,11 +13,13 @@
 </header>
 
 <ul>
-  <li *ngFor="let song of userPlaylistData">
+  <li *ngFor="let song of playlistTracks">
     <div>
       <h2>{{song.name}}</h2>
-      <small *ngFor="let artist of song.artists ; let isLast=last">
-        {{artist.name}}{{isLast ? '' : ', '}}</small>
+      <small>
+        <ng-container *ngFor="let artist of song.artists ; let isLast=last">
+          {{artist.name}}{{isLast ? '' : ', '}}</ng-container>
+      </small>
     </div>
     <div>
       <small>

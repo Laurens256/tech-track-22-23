@@ -1,5 +1,4 @@
 export interface AudioFeatures {
-  audio_features: [{
     acousticness: number
     analysis_url: string
     danceability: number
@@ -18,5 +17,4 @@ export interface AudioFeatures {
     type: "audio_features"
     uri: string
     valence: number
-  }]
 }

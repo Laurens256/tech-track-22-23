@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-import { TokenService } from './spotifyAuth/index';
-
-import { UserProfile } from 'src/app/core/models/userProfile';
-import { UserPlaylists } from 'src/app/core/models/userPlaylists';
-import { UserPlaylistData } from 'src/app/core/models/userPlaylistData';
-import { AudioFeatures } from '../models/audioFeatures';
+import { Track, AudioFeatures, Playlist, UserProfile } from '../models';
 
 @Injectable()
 export class UserDataService {
@@ -20,49 +15,38 @@ export class UserDataService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService
-  ) {
-  }
+  ) {}
 
   getUserInfo() {
     return this.http.get<UserProfile>(this.userProfileUri)
-    // .subscribe(response => {
-    //   console.log(response);
-    // })
-    // return '';
   }
 
   getPlaylists() {
-    return this.http.get<UserPlaylists>(this.userPlaylistsUri)
-    // .subscribe(response => {
-    //   console.log(response.items);
-    //   return response.items;
-    // })
+    return this.http.get<{items: Playlist[]}>(this.userPlaylistsUri)
   }
 
   async getPlaylistTracks(button_id: string) {
     const playlist_id = button_id.split(';')[0];
     const playlist_total = parseInt(button_id.split(';')[1]);
-    let allSongs: {}[] = [];
-    let allSongIds: {}[] = [];
+    let allTracks: Track[] = [];
+    let allTrackIds: {}[] = [];
 
     //loop omdat request limit 100 is, daarom maken we meerdere requests wanneer playlist > 100
     for (let i = 0; i < playlist_total / 100; i++) {
-      const songs = await firstValueFrom(this.http.get<UserPlaylistData>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
+      const songs = await firstValueFrom(this.http.get<{items: {track: Track}[]}>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
 
       songs.items.forEach(song => {
         //check of song 'track' bestaat omdat local storage bestanden die niet hebben
         if (song.track) {
-          allSongs.push(song.track);
-          // allSongIds.push(song.track.id);
+          allTracks.push(song.track);
+          allTrackIds.push(song.track.id);
         }
       })
     }
+    // this.getAudioFeatures(allTrackIds);
     const playlistCover = await firstValueFrom(this.http.get<any>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
-    console.log(playlistCover.images[0].url);
-    console.log({'all songs:': allSongs});
-    return allSongs;
-    // this.getAudioFeatures(allSongIds);
+    console.log({'all songs:': allTracks});
+    return allTracks;
   }
 
   async getAudioFeatures(ids: {}[] | string) {
@@ -74,7 +58,8 @@ export class UserDataService {
         idsLimit = idsLimit.join(',');
       }
 
-      const songs = await firstValueFrom(this.http.get<AudioFeatures>(`${this.playlistTrackFeaturesUri}${idsLimit}`));
+      const songs = await firstValueFrom(this.http.get<{audio_features: AudioFeatures[]}>(`${this.playlistTrackFeaturesUri}${idsLimit}`));
+      console.log(songs);
 
       songs.audio_features.forEach((song) => allAudioFeatures.push(song));
     }

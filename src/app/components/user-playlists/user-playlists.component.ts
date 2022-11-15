@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { UserPlaylists } from 'src/app/core/models/userPlaylists';
+import { Playlist } from 'src/app/core/models/playlist';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserPlaylistsComponent implements OnInit {
 
-  @Input() data!: UserPlaylists['items'];
+  @Input() data!: Playlist[];
 
   constructor(
     private router: Router,

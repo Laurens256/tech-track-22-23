@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth/index';
 
 import { UserProfile } from 'src/app/core/models/userProfile';
-import { UserPlaylists } from 'src/app/core/models/userPlaylists';
+import { Playlist } from 'src/app/core/models/playlist';
 
 import { forkJoin } from 'rxjs';
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   userProfile!: UserProfile
-  userPlaylists!: UserPlaylists['items'];
+  playlists!: Playlist[];
 
   checkAuth() {
     if (this.tokenService.getAccessToken !== '') {
@@ -47,10 +47,8 @@ export class HomeComponent implements OnInit {
       userProfile: this.userDataService.getUserInfo(),
       userPlaylists: this.userDataService.getPlaylists()
     }).subscribe(data => {
-      // console.log(data);
-
       this.userProfile = data.userProfile
-      this.userPlaylists = data.userPlaylists.items;
+      this.playlists = data.userPlaylists.items;
     })
   }
 }

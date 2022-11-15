@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
-import { UserPlaylistData } from 'src/app/core/models/userPlaylistData';
+import { Track } from 'src/app/core/models';
 
 
 import { UserDataService } from 'src/app/core/services/userData.service';
@@ -20,7 +20,7 @@ export class PlaylistComponent implements OnInit {
 
   }
 
-  userPlaylistData!: any;
+  playlistTracks: Track[] = [];
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.queryParamMap.get('id')!;
@@ -28,7 +28,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   async getPlaylistTracks(id: string) {
-    this.userPlaylistData = await this.userDataService.getPlaylistTracks(id);
+    this.playlistTracks = await this.userDataService.getPlaylistTracks(id);
   }
 
 
