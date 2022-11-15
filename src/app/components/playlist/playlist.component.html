@@ -1,7 +1,7 @@
 <header>
   <section class="info">
     <img src="" alt="playlist icon">
-    <p>{{playlistTracks.length}} songs</p>
+    <p><ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} songs<ng-container *ngIf="loading">...</ng-container></p>
   </section>
 
   <section class="funfacts">
