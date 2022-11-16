@@ -1,11 +1,14 @@
-<ul>
-  <li *ngFor="let playlist of data">
-    <button #playlistButton id="{{playlist.id + ';' + playlist.tracks.total}}" (click)="choosePlaylist(playlistButton)">
-      <img src="{{playlist.images[0].url}}" alt="playlist icon">
-      <div>
-        <h2>{{playlist.name}}</h2>
-        <p>{{playlist.description}}</p>
-      </div>
-    </button>
-  </li>
-</ul>
+<main>
+  <ul>
+    <li *ngFor="let playlist of data">
+      <button #playlistButton id="{{playlist.id + ';' + playlist.tracks.total}}"
+        (click)="choosePlaylist(playlistButton)">
+        <img src="{{playlist.images[0].url}}" alt="playlist icon">
+        <div>
+          <h2>{{playlist.name}}</h2>
+          <p>{{playlist.description}}</p>
+        </div>
+      </button>
+    </li>
+  </ul>
+</main>

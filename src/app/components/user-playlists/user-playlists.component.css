@@ -1,51 +1,59 @@
-ul {
+main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+main ul {
   display: grid;
-  gap: .5em;
+  /* gap: 1.5em; */
   grid-template-columns: repeat(auto-fit, minmax(28em, 1fr));
   /* 56.5 = 2 columns van 28 met .5 gap  */
-  width: 56.5em;
+  width: 57.5em;
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
   align-items: center;
 }
 
-ul li {
+main ul li {
   width: 28em;
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
 }
 
-ul li button {
+main ul li button {
   display: flex;
-  background: red;
+  border-bottom: 1px solid var(--primary-text-color);
   width: 100%;
-  height: 100%;
+  height: 8em;
   gap: 1em;
   align-items: center;
   padding: .8em;
   overflow: hidden;
 }
 
-ul li button img {
-  width: 5em;
+main ul li button img {
+  height: 5em;
 }
 
-ul li button div {
+main ul li button div {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-ul li button div h2 {
+main ul li button div h2 {
   overflow: hidden;
   text-overflow: '..';
   white-space: nowrap;
   text-align: start;
+  color: var(--primary-text-color);
 }
 
-ul li button div p {
+main ul li button div p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: start;
+  color: var(--secondary-text-color);
 }

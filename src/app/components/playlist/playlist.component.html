@@ -1,7 +1,10 @@
 <header>
   <section class="info">
     <img src="" alt="playlist icon">
-    <p><ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} songs<ng-container *ngIf="loading">...</ng-container></p>
+    <p>
+      <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} songs<ng-container *ngIf="loading">...
+      </ng-container>
+    </p>
   </section>
 
   <section class="funfacts">
@@ -12,27 +15,39 @@
 
 </header>
 
-<ul>
-  <li *ngFor="let song of playlistTracks">
-    <div>
-      <h2>{{song.name}}</h2>
-      <small>
-        <ng-container *ngFor="let artist of song.artists ; let isLast=last">
-          {{artist.name}}{{isLast ? '' : ', '}}</ng-container>
-      </small>
-    </div>
-    <div>
-      <small>
-        {{song.duration_ms | date:'mm:ss'}}
-      </small>
-    </div>
-  </li>
-</ul>
+<main>
+  <ul>
+    <li *ngFor="let song of playlistTracks">
+      <div>
+        <h2>{{song.name}}</h2>
+        <small>
+          <ng-container *ngFor="let artist of song.artists ; let isLast=last">
+            {{artist.name}}{{isLast ? '' : ', '}}</ng-container>
+        </small>
+      </div>
+      <div>
+        <small>
+          {{song.duration_ms | date:'mm:ss'}}
+        </small>
+      </div>
+    </li>
+  </ul>
+</main>
 
 
 <!-- loading animation -->
-<ul *ngIf="loading">
-  <li *ngFor="let item of [].constructor(playlistTotal); let i = index" [ngClass]="{'loading': loading}">
-
-  </li>
-</ul>
+<main *ngIf="loading">
+  <ul>
+    <li *ngFor="let item of [].constructor(playlistTotal); let i = index" [ngClass]="{'loading': loading}">
+      <div class="loadAnimation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </li>
+  </ul>
+</main>
