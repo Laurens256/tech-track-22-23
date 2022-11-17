@@ -2,7 +2,7 @@
   <ul>
     <li *ngFor="let playlist of data">
       <button #playlistButton id="{{playlist.id + ';' + playlist.tracks.total}}"
-        (click)="choosePlaylist(playlistButton)">
+        (click)="choosePlaylist(playlistButton)" attr.aria-label="open playlist {{playlist.name}}">
         <img src="{{playlist.images[0].url}}" alt="playlist icon">
         <div>
           <h2>{{playlist.name}}</h2>

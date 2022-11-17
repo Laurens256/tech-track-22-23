@@ -32,7 +32,7 @@ main section:first-of-type a {
   text-decoration: none;
   font-weight: 600;
   font-size: 1.2em;
-  background: #1db954;
+  background: var(--spotify-green);
   text-align: center;
   border-radius: 1em;
   padding: 1em 2em;

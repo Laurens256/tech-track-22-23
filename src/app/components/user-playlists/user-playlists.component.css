@@ -6,7 +6,7 @@ main {
 
 main ul {
   display: grid;
-  /* gap: 1.5em; */
+  gap: 12px 24px;
   grid-template-columns: repeat(auto-fit, minmax(28em, 1fr));
   /* 56.5 = 2 columns van 28 met .5 gap  */
   width: 57.5em;
@@ -23,17 +23,28 @@ main ul li {
 
 main ul li button {
   display: flex;
-  border-bottom: 1px solid var(--primary-text-color);
+  /* background: linear-gradient(#323232, #2f2f2f); */
+  background: rgba(255, 255, 255, 0.1);
   width: 100%;
-  height: 8em;
-  gap: 1em;
+  height: 6em;
+  gap: 1.3em;
   align-items: center;
-  padding: .8em;
   overflow: hidden;
+  border-radius: 4px;
+  transition: all .25s ease;
+}
+
+main ul li button:hover,
+main ul li button:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+main ul li button:focus-visible {
+  outline: var(--spotify-green) 2px solid;
 }
 
 main ul li button img {
-  height: 5em;
+  height: 100%;
 }
 
 main ul li button div {

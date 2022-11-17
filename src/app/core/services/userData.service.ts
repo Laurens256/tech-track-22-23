@@ -29,7 +29,7 @@ export class UserDataService {
     const playlist_id = button_id.split(';')[0];
     const playlist_total = parseInt(button_id.split(';')[1]);
     let allTracks: Track[] = [];
-    let allTrackIds: {}[] = [];
+    let allTrackIds: string[] = [];
 
     //loop omdat request limit 100 is, daarom maken we meerdere requests wanneer playlist > 100
     for (let i = 0; i < playlist_total / 100; i++) {
@@ -45,12 +45,12 @@ export class UserDataService {
     }
     // this.getAudioFeatures(allTrackIds);
     const playlistCover = await firstValueFrom(this.http.get<any>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
-    console.log({'all songs:': allTracks});
-    return allTracks;
+    // console.log({'all songs:': allTracks});
+    return {alltracks: allTracks, allTrackIds: allTrackIds};
   }
 
-  async getAudioFeatures(ids: {}[] | string) {
-    let allAudioFeatures: {}[] = [];
+  async getAudioFeatures(ids: string[] | string) {
+    let allAudioFeatures: AudioFeatures[] = [];
     for (let i = 0; i < ids.length / 100; i++) {
       //sliced iedere keer 100 ids voor 1 http request
       let idsLimit: string[] | string | {}[] = ids.slice(i * 100, i * 100 + 100);
@@ -59,11 +59,11 @@ export class UserDataService {
       }
 
       const songs = await firstValueFrom(this.http.get<{audio_features: AudioFeatures[]}>(`${this.playlistTrackFeaturesUri}${idsLimit}`));
-      console.log(songs);
 
       songs.audio_features.forEach((song) => allAudioFeatures.push(song));
     }
-    console.log({'all audio features:': allAudioFeatures});
+    // console.log({'all audio features:': allAudioFeatures});
+    return allAudioFeatures;
   }
 
 }

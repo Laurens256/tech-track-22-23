@@ -11,7 +11,7 @@
 
   </section>
 
-  <button>Visualize</button>
+  <button (click)="this.getAudioFeatures()">Visualize</button>
 
 </header>
 
@@ -38,7 +38,7 @@
 <!-- loading animation -->
 <main *ngIf="loading">
   <ul>
-    <li *ngFor="let item of [].constructor(playlistTotal); let i = index" [ngClass]="{'loading': loading}">
+    <li *ngFor="let item of [].constructor(playlistTotal); let i = index" class="loading">
       <div class="loadAnimation">
         <span></span>
         <span></span>

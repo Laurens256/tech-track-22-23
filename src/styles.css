@@ -13,9 +13,14 @@
 }
 
 :root {
+  /* colors */
   --bg-color: #212121;
   --primary-text-color: #fff;
   --secondary-text-color: #b3b3b3;
+  --spotify-green: #1db954;
+
+  /* sizes */
+  --playlist-song-width: 24em;
 }
 
 body {
