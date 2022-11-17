@@ -21,6 +21,7 @@
 body {
   background: var(--bg-color);
   font-family: montserrat, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
 }
 
 ul,
