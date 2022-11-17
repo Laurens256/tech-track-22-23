@@ -15,6 +15,7 @@ export class SpotifyAuthInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<HttpEvent<Request>>, next: HttpHandler): Observable<HttpEvent<Response>> {
     // check of authorization bestaat, anders opnieuw inloggen
     if (Object.keys(this.tokenService.getAuthHeader).length === 0) {
+      alert("Your session has expired, please login again");
       this.router.navigate(['login']);
       return NEVER;
     }
