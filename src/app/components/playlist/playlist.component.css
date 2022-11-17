@@ -18,7 +18,6 @@ header button {
 
 
 
-
 main {
   display: flex;
   justify-content: center;
@@ -73,6 +72,22 @@ main ul li div small {
 main ul li div:last-of-type {
   margin: 0 .5em;
   width: fit-content;
+}
+
+
+
+section.visualisation {
+  display: none;
+}
+
+section.visualisation.visible {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-color);
 }
 
 /*----------------------------------------

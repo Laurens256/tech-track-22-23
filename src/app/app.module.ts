@@ -9,14 +9,13 @@ import { AppComponent } from './app.component';
 import { SpotifyAuthService, AuthGuard, TokenService, SpotifyAuthInterceptor }
 from './core/services/spotifyAuth/index';
 import { UserDataService } from './core/services/userData.service';
-import { PlaylistComponent } from './components/playlist/playlist.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     //alle routing components in 1 variabele
     routingComponents,
-    PlaylistComponent,
   ],
   imports: [
     BrowserModule,

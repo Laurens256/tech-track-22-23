@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { Track, AudioFeatures } from 'src/app/core/models';
+import { Track, AudioFeatures, HighlightedTrack } from 'src/app/core/models';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
 
@@ -28,6 +28,7 @@ export class PlaylistComponent implements OnInit {
     danceability: 0
   }
 
+
   // average = {
   //   valence: 0,
   //   danceability: 0,
@@ -48,6 +49,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   async getAudioFeatures() {
+    document.querySelector('.visualisation')?.classList.add('visible');
     const data: AudioFeatures[] = await this.userDataService.getAudioFeatures(this.playlistTrackIds);
     console.log(data);
     this.cleanAudioFeatures(data)
@@ -63,22 +65,10 @@ export class PlaylistComponent implements OnInit {
       this.average[key] = this.average[key] / arr.length * 100;
     });
     console.log(this.average);
-
-    // console.log(this.superSecret(this.average));
   }
 
-  // superSecret(spy: any) {
-  //   Object.keys(spy).forEach(function (key) {
-  //     spy[key] = 10
-  //   });
-  //   return spy;
+  // getHighlights() {
+
   // }
-
-  superSecret(spy: any) {
-    Object.keys(spy).forEach(function (key) {
-      spy[key] = 10
-    });
-    return spy;
-  }
 
 }

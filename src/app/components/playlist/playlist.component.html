@@ -2,13 +2,10 @@
   <section class="info">
     <img src="" alt="playlist icon">
     <p>
-      <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} songs<ng-container *ngIf="loading">...
+      <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} song<ng-container *ngIf="playlistTotal > 1">s</ng-container>
+      <ng-container *ngIf="loading">...
       </ng-container>
     </p>
-  </section>
-
-  <section class="funfacts">
-
   </section>
 
   <button (click)="this.getAudioFeatures()">Visualize</button>
@@ -33,6 +30,10 @@
     </li>
   </ul>
 </main>
+
+<section class="visualisation">
+  <app-visualisation></app-visualisation>
+</section>
 
 
 <!-- loading animation -->
