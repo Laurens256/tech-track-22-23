@@ -1,7 +1,43 @@
 header {
   width: 100%;
-  height: 30vh;
-  background: pink;
+  height: 35vh;
+  background: linear-gradient(red, var(--bg-color));
+}
+
+header section.info {
+  /* zelfde width en max width als nummers eronder */
+  width: calc(90vw - 1.6em);
+  max-width: calc((var(--playlist-song-width) + 11.6em) * 2);
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 9em 1fr;
+  grid-template-rows: 9em 2em;
+  padding: 1em;
+  align-items: center;
+  column-gap: 1.5em;
+  padding-top: 7vh;
+  position: relative;
+}
+
+header section.info p {
+  color: var(--secondary-text-color);
+  justify-self: center;
+}
+
+header section.info div h1 {
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--primary-text-color);
+}
+
+header section.info div p {
+  font-weight: 500;
+  color: var(--secondary-text-color);
+}
+
+header section.info img {
+  width: 9em;
 }
 
 header button {
@@ -14,6 +50,7 @@ header button {
   display: inline-block;
   width: fit-content;
   color: black;
+  /* justify-self: end; */
 }
 
 

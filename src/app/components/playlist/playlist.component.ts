@@ -22,11 +22,12 @@ export class PlaylistComponent implements OnInit {
   hasPlaylist: boolean = false;
   popupVisible: boolean = false;
 
-  playlist: any;
+  playlist!: Playlist;
 
   playlistTracks: Track[] = [];
   playlistTrackIds: string[] = [];
   playlistTotal: number = 0;
+  playlistDuration: number = 0;
 
   average = {
     valence: 0,
@@ -75,6 +76,9 @@ export class PlaylistComponent implements OnInit {
     if (data.playlist != null) this.playlist = data.playlist;
     this.playlistTracks = data.alltracks;
     this.playlistTrackIds = data.allTrackIds;
+    data.alltracks.forEach(item => {
+      this.playlistDuration += item.duration_ms;
+    })
     this.loading = false;
   }
 

@@ -1,15 +1,21 @@
 <header>
   <section class="info">
-    <!-- <h1>{{playlist.name}}</h1> -->
-    <!-- <img *ngIf="playlist.images[0].url != null" src="{{playlist.images[0].url}}" alt="playlist icon"> -->
+    <img *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon">
+    <div *ngIf="playlist != undefined">
+      <h1>{{playlist.name}}</h1>
+      <p>{{playlist.description}}</p>
+    </div>
     <p>
-      <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} song<ng-container *ngIf="playlistTotal > 1">s</ng-container>
+      <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} song<ng-container
+        *ngIf="playlistTotal > 1">s</ng-container>
       <ng-container *ngIf="loading">...
       </ng-container>
+      <ng-container *ngIf="!loading"> - {{playlistDuration | date:'HH:mm':'+0000'}}</ng-container>
     </p>
+    <button (click)="this.toggleVisualisation()">Visualize</button>
   </section>
 
-  <button (click)="this.toggleVisualisation()">Visualize</button>
+  <!-- <button (click)="this.toggleVisualisation()">Visualize</button> -->
 
 </header>
 
