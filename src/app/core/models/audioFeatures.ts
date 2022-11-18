@@ -4,7 +4,7 @@ export interface AudioFeatures {
     danceability: number
     duration_ms: number
     energy: number
-    id: "56eSclzdXaWU5jOJ7DX7Vp"
+    id: string
     instrumentalness: number
     key: number
     liveness: number

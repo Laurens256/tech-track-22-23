@@ -21,24 +21,25 @@ export class PlaylistComponent implements OnInit {
   loading: boolean = true;
   hasPlaylist: boolean = false;
 
-  // playlist: Partial<Playlist> = {
-  //   name: ' ',
-  //   images: [{
-  //     url: '',
-  //     width: '',
-  //     height: ''
-  //   }]
-  // };
   playlist: any;
 
   playlistTracks: Track[] = [];
   playlistTrackIds: string[] = [];
   playlistTotal: number = 0;
 
-  average: any = {
-    valence: 0,
-    danceability: 0
-  }
+  average: {
+    valence: number,
+    danceability: number,
+    energy: number,
+    acousticness: number,
+    instrumentalness: number,
+  } = {
+      valence: 0,
+      danceability: 0,
+      energy: 0,
+      acousticness: 0,
+      instrumentalness: 0,
+    }
 
   ngOnInit(): void {
     if (history.state.data) {
@@ -57,7 +58,6 @@ export class PlaylistComponent implements OnInit {
     this.playlistTracks = data.alltracks;
     this.playlistTrackIds = data.allTrackIds;
     this.loading = false;
-    console.log(this.playlist);
   }
 
   async getAudioFeatures() {
@@ -68,12 +68,16 @@ export class PlaylistComponent implements OnInit {
 
   cleanAudioFeatures(arr: AudioFeatures[]) {
     arr.forEach(item => {
-      this.average.valence += item.valence;
-      this.average.danceability += item.danceability;
+      this.average.valence! += item.valence;
+      this.average.danceability! += item.danceability;
+      this.average.energy! += item.energy;
+      this.average.acousticness! += item.acousticness;
+      this.average.instrumentalness! += item.instrumentalness;
     })
 
+    type avgKey = keyof typeof this.average;
     Object.keys(this.average).forEach(key => {
-      this.average[key] = this.average[key] / arr.length * 100;
+      this.average[key as avgKey] = this.average[key as avgKey] / arr.length * 100;
     });
     console.log(this.average);
   }
