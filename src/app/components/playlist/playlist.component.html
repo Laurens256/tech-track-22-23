@@ -9,7 +9,7 @@
     </p>
   </section>
 
-  <button (click)="this.getAudioFeatures()">Visualize</button>
+  <button (click)="this.toggleVisualisation()">Visualize</button>
 
 </header>
 
@@ -32,7 +32,7 @@
   </ul>
 </main>
 
-<section class="visualisation">
+<section *ngIf="popupVisible" class="visualisation">
   <app-visualisation></app-visualisation>
 </section>
 

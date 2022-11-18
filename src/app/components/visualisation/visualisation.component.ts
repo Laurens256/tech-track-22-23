@@ -13,7 +13,8 @@ export class VisualisationComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    // console.log('ja');
+    // console.log(this.data);
   }
 
 }
