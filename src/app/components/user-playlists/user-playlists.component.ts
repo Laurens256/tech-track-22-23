@@ -20,7 +20,18 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   choosePlaylist(e: HTMLButtonElement) {
-    this.router.navigate(['playlist'], { queryParams: { id: e.id } });
+    const playListId = e.id.split(';')[0];
+    let playlist;
+    this.data.forEach(obj => {
+      if(obj.id == playListId) {
+        playlist = obj;
+      }
+    })
+
+    // console.log(playListId);
+    // console.log(this.data);
+
+    this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: playlist} });
   }
 
 }

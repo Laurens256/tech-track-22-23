@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Track, AudioFeatures, HighlightedTrack } from 'src/app/core/models';
+import { Track, AudioFeatures, HighlightedTrack, Playlist } from 'src/app/core/models';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
 
@@ -19,6 +19,18 @@ export class PlaylistComponent implements OnInit {
   ) { }
 
   loading: boolean = true;
+  hasPlaylist: boolean = false;
+
+  // playlist: Partial<Playlist> = {
+  //   name: ' ',
+  //   images: [{
+  //     url: '',
+  //     width: '',
+  //     height: ''
+  //   }]
+  // };
+  playlist: any;
+
   playlistTracks: Track[] = [];
   playlistTrackIds: string[] = [];
   playlistTotal: number = 0;
@@ -28,30 +40,29 @@ export class PlaylistComponent implements OnInit {
     danceability: 0
   }
 
-
-  // average = {
-  //   valence: 0,
-  //   danceability: 0,
-  // }
-
   ngOnInit(): void {
+    if (history.state.data) {
+      this.playlist = history.state.data;
+      this.hasPlaylist = true;
+    }
     const id: string = this.route.snapshot.queryParamMap.get('id')!;
     this.getPlaylistTracks(id);
     this.playlistTotal = parseInt(this.route.snapshot.queryParamMap.get('id')!.split(';')[1]);
   }
 
   async getPlaylistTracks(id: string) {
-    const data = await this.userDataService.getPlaylistTracks(id);
-    // this.playlistTracks = await this.userDataService.getPlaylistTracks(id);
+    const data = await this.userDataService.getPlaylistTracks(id, this.hasPlaylist);
+
+    if (data.playlist != null) this.playlist = data.playlist;
     this.playlistTracks = data.alltracks;
     this.playlistTrackIds = data.allTrackIds;
     this.loading = false;
+    console.log(this.playlist);
   }
 
   async getAudioFeatures() {
     document.querySelector('.visualisation')?.classList.add('visible');
     const data: AudioFeatures[] = await this.userDataService.getAudioFeatures(this.playlistTrackIds);
-    console.log(data);
     this.cleanAudioFeatures(data)
   }
 

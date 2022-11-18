@@ -1,6 +1,7 @@
 <header>
   <section class="info">
-    <img src="" alt="playlist icon">
+    <!-- <h1>{{playlist.name}}</h1> -->
+    <!-- <img *ngIf="playlist.images[0].url != null" src="{{playlist.images[0].url}}" alt="playlist icon"> -->
     <p>
       <ng-container *ngIf="loading">Loading: </ng-container>{{playlistTotal}} song<ng-container *ngIf="playlistTotal > 1">s</ng-container>
       <ng-container *ngIf="loading">...
