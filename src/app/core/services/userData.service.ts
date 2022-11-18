@@ -31,6 +31,8 @@ export class UserDataService {
     let allTracks: Track[] = [];
     let allTrackIds: string[] = [];
 
+    const playlist = await firstValueFrom(this.http.get<Playlist>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
+
     //loop omdat request limit 100 is, daarom maken we meerdere requests wanneer playlist > 100
     for (let i = 0; i < playlist_total / 100; i++) {
       const songs = await firstValueFrom(this.http.get<{items: {track: Track}[]}>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
@@ -44,7 +46,7 @@ export class UserDataService {
       })
     }
     // this.getAudioFeatures(allTrackIds);
-    const playlistCover = await firstValueFrom(this.http.get<any>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
+    console.log(playlist.primary_color);
     // console.log({'all songs:': allTracks});
     return {alltracks: allTracks, allTrackIds: allTrackIds};
   }
