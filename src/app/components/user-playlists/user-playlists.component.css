@@ -8,17 +8,19 @@ main ul {
   display: grid;
   gap: 12px 24px;
   grid-template-columns: repeat(auto-fit, minmax(28em, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(28em, 1fr)); */
   /* 56.5 = 2 columns van 28 met .5 gap  */
   width: 57.5em;
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
-  align-items: center;
+  justify-content: center;
 }
 
 main ul li {
   width: 28em;
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
+  justify-self: center;
 }
 
 main ul li button {
