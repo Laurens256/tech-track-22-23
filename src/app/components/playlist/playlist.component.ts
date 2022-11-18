@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { FastAverageColor } from 'fast-average-color';
+
 import { Track, AudioFeatures, HighlightedTrack, Playlist } from 'src/app/core/models';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
@@ -57,6 +59,7 @@ export class PlaylistComponent implements OnInit {
     highlights: this.highlights,
   }
 
+
   ngOnInit(): void {
     //check of playlist uit route change wordt meegegeven zodat we die later niet hoeven requesten
     //history state is niet beschikbaar na reload
@@ -80,6 +83,19 @@ export class PlaylistComponent implements OnInit {
       this.playlistDuration += item.duration_ms;
     })
     this.loading = false;
+    this.getPlaylistColor(this.playlist.images[0].url);
+  }
+
+  getPlaylistColor(url: string) {
+    const fac = new FastAverageColor();
+    fac.getColorAsync(url)
+      .then(color => {
+        const header = document.querySelector('header');
+        console.log(header);
+        if (header != null) {
+          header.style.background = `linear-gradient(${color.hex}, var(--bg-color))`;
+        }
+      })
   }
 
 

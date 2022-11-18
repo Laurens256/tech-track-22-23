@@ -1,6 +1,6 @@
 <header>
   <section class="info">
-    <img *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon">
+    <img #playlistImg *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon" crossorigin="anonymous">
     <div *ngIf="playlist != undefined">
       <h1>{{playlist.name}}</h1>
       <p>{{playlist.description}}</p>
