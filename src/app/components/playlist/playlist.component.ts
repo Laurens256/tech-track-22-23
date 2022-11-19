@@ -22,7 +22,7 @@ export class PlaylistComponent implements OnInit {
 
   loading: boolean = true;
   hasPlaylist: boolean = false;
-  popupVisible: boolean = false;
+  visualisationOpen: boolean = false;
 
   playlist!: Playlist;
 
@@ -91,7 +91,6 @@ export class PlaylistComponent implements OnInit {
     fac.getColorAsync(url)
       .then(color => {
         const header = document.querySelector('header');
-        console.log(header);
         if (header != null) {
           header.style.background = `linear-gradient(${color.hex}, var(--bg-color))`;
         }
@@ -101,8 +100,16 @@ export class PlaylistComponent implements OnInit {
 
 
   async toggleVisualisation() {
-    this.popupVisible = !this.popupVisible;
-    document.querySelector('.visualisation')?.classList.toggle('visible');
+    this.visualisationOpen = !this.visualisationOpen;
+
+    if (this.visualisationOpen) {
+      // 272px is de hoogte van de info section waar we voorbij willen scrollen
+      //delay zodat playlists met weinig nummers ook scrollen en ziet er wel geinig uit
+      setTimeout(() => window.scrollTo({ top: 272, behavior: 'smooth' }), 800)
+    } else {
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 800)
+    }
+
     //check of highlights al is ingevuld met juiste data, 2 is een onmogelijke waarde nadat de functie een keer is uitgevoerd
     if (this.visualisationData.highlights.valence.low === 2) {
       const audioFeatures: AudioFeatures[] = await this.userDataService.getAudioFeatures(this.playlistTrackIds);
@@ -149,4 +156,8 @@ export class PlaylistComponent implements OnInit {
       })
     });
   };
+
+  backPage() {
+    this.router.navigate(['home']);
+  }
 }

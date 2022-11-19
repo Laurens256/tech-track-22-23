@@ -1,6 +1,8 @@
-<header>
+<header [ngClass]="{'visualisationopen' : visualisationOpen}">
+  <button (click)="this.backPage()" class="back" aria-label="back to playlists">Back</button>
   <section class="info">
-    <img #playlistImg *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon" crossorigin="anonymous">
+    <img #playlistImg *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon"
+      crossorigin="anonymous">
     <div *ngIf="playlist != undefined">
       <h1>{{playlist.name}}</h1>
       <p>{{playlist.description}}</p>
@@ -12,10 +14,21 @@
       </ng-container>
       <ng-container *ngIf="!loading"> - {{playlistDuration | date:'HH:mm':'+0000'}}</ng-container>
     </p>
-    <button (click)="this.toggleVisualisation()">Visualize</button>
   </section>
 
-  <!-- <button (click)="this.toggleVisualisation()">Visualize</button> -->
+  <section [ngClass]="{'open' : visualisationOpen}" class="visualisation">
+    <div>
+      <app-visualisation></app-visualisation>
+    </div>
+  </section>
+
+
+  <section class="buttonsection">
+    <button (click)="this.toggleVisualisation()" aria-label="toggle visualisation">
+      <ng-container *ngIf="!visualisationOpen">Visualize</ng-container>
+      <ng-container *ngIf="visualisationOpen">Close</ng-container>
+    </button>
+  </section>
 
 </header>
 
@@ -37,10 +50,6 @@
     </li>
   </ul>
 </main>
-
-<section *ngIf="popupVisible" class="visualisation">
-  <app-visualisation></app-visualisation>
-</section>
 
 
 <!-- loading animation -->
