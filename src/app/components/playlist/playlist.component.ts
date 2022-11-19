@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { FastAverageColor } from 'fast-average-color';
 
-import { Track, AudioFeatures, HighlightedTrack, Playlist } from 'src/app/core/models';
+import { Track, AudioFeatures, Playlist, Highlights, Averages } from 'src/app/core/models';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
 
@@ -31,7 +31,7 @@ export class PlaylistComponent implements OnInit {
   playlistTotal: number = 0;
   playlistDuration: number = 0;
 
-  average = {
+  average: Averages = {
     valence: 0,
     danceability: 0,
     energy: 0,
@@ -39,7 +39,7 @@ export class PlaylistComponent implements OnInit {
     instrumentalness: 0,
   }
 
-  highlights = {
+  highlights: Highlights = {
     valence: {
       id_low: '',
       id_high: '',
@@ -51,7 +51,25 @@ export class PlaylistComponent implements OnInit {
       id_high: '',
       low: 2,
       high: -1,
-    }
+    },
+    energy: {
+      id_low: '',
+      id_high: '',
+      low: 2,
+      high: -1,
+    },
+    acousticness: {
+      id_low: '',
+      id_high: '',
+      low: 2,
+      high: -1,
+    },
+    instrumentalness: {
+      id_low: '',
+      id_high: '',
+      low: 2,
+      high: -1,
+    },
   }
 
   visualisationData = {
@@ -86,15 +104,12 @@ export class PlaylistComponent implements OnInit {
     this.getPlaylistColor(this.playlist.images[0].url);
   }
 
-  getPlaylistColor(url: string) {
-    const fac = new FastAverageColor();
-    fac.getColorAsync(url)
-      .then(color => {
-        const header = document.querySelector('header');
-        if (header != null) {
-          header.style.background = `linear-gradient(${color.hex}, var(--bg-color))`;
-        }
-      })
+  async getPlaylistColor(url: string) {
+    const color = await new FastAverageColor().getColorAsync(url);
+    const header = document.querySelector('header');
+    if (header != null) {
+      header.style.background = `linear-gradient(${color.hex}, var(--bg-color))`;
+    }
   }
 
 
