@@ -18,13 +18,13 @@
 
   <section [ngClass]="{'open' : visualisationOpen}" class="visualisation">
     <div>
-      <app-visualisation [data]="visualisationData"></app-visualisation>
+      <app-visualisation [data]="visualisationData" [isOpen]="visualisationOpen"></app-visualisation>
     </div>
   </section>
 
 
   <section class="buttonsection">
-    <button (click)="this.toggleVisualisation()" aria-label="toggle visualisation">
+    <button (click)="this.toggleVisualisation()" aria-label="toggle visualisation" [disabled]="loading">
       <ng-container *ngIf="!visualisationOpen">Visualize</ng-container>
       <ng-container *ngIf="visualisationOpen">Close</ng-container>
     </button>

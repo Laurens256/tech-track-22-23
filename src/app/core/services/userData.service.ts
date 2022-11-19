@@ -40,11 +40,10 @@ export class UserDataService {
 
     //loop omdat request limit 100 is, daarom maken we meerdere requests wanneer playlist > 100
     for (let i = 0; i < playlist_total / 100; i++) {
-      const songs = await firstValueFrom(this.http.get<{ items: { track: Track }[] }>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
-
+      const songs = await firstValueFrom(this.http.get<{ items: { track: Track, is_local: boolean }[] }>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
       songs.items.forEach(song => {
-        //check of song 'track' bestaat omdat local storage bestanden die niet hebben
-        if (song.track) {
+        //check of song geen lokaal bestand is of een podcast
+        if (song.is_local === false && song.track != null && song.track.type === 'track') {
           allTracks.push(song.track);
           allTrackIds.push(song.track.id);
         }
