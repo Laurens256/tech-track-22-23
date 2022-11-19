@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FastAverageColor } from 'fast-average-color';
 
 import { Track, AudioFeatures, Playlist, Highlights, Averages } from 'src/app/core/models';
+import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
 
@@ -17,7 +18,8 @@ export class PlaylistComponent implements OnInit {
     private userDataService: UserDataService,
     private router: Router,
     private route: ActivatedRoute,
-
+    private tokenService: TokenService,
+    private spotifyAuthService: SpotifyAuthService
   ) { }
 
   loading: boolean = true;
@@ -79,6 +81,11 @@ export class PlaylistComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.tokenService.getAccessToken == '') {
+      this.tokenService.clearToken();
+      this.spotifyAuthService.authorize();
+      return;
+    }
     //check of playlist uit route change wordt meegegeven zodat we die later niet hoeven requesten
     //history state is niet beschikbaar na reload
     if (history.state.data) {
@@ -105,6 +112,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   async getPlaylistColor(url: string) {
+    // gebruik FastAverageColor module om kleur uit de playlist afbeelding te halen en stel die als achtergrondkleur gradient in
     const color = await new FastAverageColor().getColorAsync(url);
     const header = document.querySelector('header');
     if (header != null) {

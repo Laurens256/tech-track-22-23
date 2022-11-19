@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   spotifyLogin(): void {
+    // gebruik deze function ipv een url in de link omdat deze op andere plekken ook aangeroepen wordt
     this.spotifyAuthService.authorize();
   }
 }

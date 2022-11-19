@@ -21,6 +21,7 @@ export class AppComponent {
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         if (!router.navigated) {
+          this.checkAuthState();
           this.tokenService.getAccessToken;
         }
       }

@@ -9,7 +9,7 @@ export class UserDataService {
 
   userProfileUri = 'https://api.spotify.com/v1/me';
   userPlaylistsUri = 'https://api.spotify.com/v1/me/playlists'
-  userPlaylistTracksUri = 'https://api.spotify.com/v1/playlists'
+  playlistTracksUri = 'https://api.spotify.com/v1/playlists'
   playlistTrackFeaturesUri = 'https://api.spotify.com/v1/audio-features?ids='
 
 
@@ -18,10 +18,12 @@ export class UserDataService {
   ) { }
 
   getUserInfo() {
+    // get user profile
     return this.http.get<UserProfile>(this.userProfileUri)
   }
 
   getPlaylists() {
+    // get user playlists
     return this.http.get<{ items: Playlist[] }>(this.userPlaylistsUri)
   }
 
@@ -33,14 +35,13 @@ export class UserDataService {
 
     let playlist;
     if (!hasPlaylist) {
-      playlist = await firstValueFrom(this.http.get<Playlist>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
+      //if playlist wasn't passed via route change (on reload), fetch playlist data
+      playlist = await firstValueFrom(this.http.get<Playlist>(`${this.playlistTracksUri}/${playlist_id}`));
     }
-    // const playlist = await firstValueFrom(this.http.get<Playlist>(`https://api.spotify.com/v1/playlists/${playlist_id}`));
-
 
     //loop omdat request limit 100 is, daarom maken we meerdere requests wanneer playlist > 100
     for (let i = 0; i < playlist_total / 100; i++) {
-      const songs = await firstValueFrom(this.http.get<{ items: { track: Track, is_local: boolean }[] }>(`${this.userPlaylistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
+      const songs = await firstValueFrom(this.http.get<{ items: { track: Track, is_local: boolean }[] }>(`${this.playlistTracksUri}/${playlist_id}/tracks?offset=${i * 100}`));
       songs.items.forEach(song => {
         //check of song geen lokaal bestand is of een podcast
         if (song.is_local === false && song.track != null && song.track.type === 'track') {
@@ -49,8 +50,8 @@ export class UserDataService {
         }
       })
     }
-    // this.getAudioFeatures(allTrackIds);
-    // console.log({'all songs:': allTracks});
+
+    //als playlist opnieuw was opgehaald, return die. Anders return die niet
     if(playlist != null) {
       return { playlist: playlist, alltracks: allTracks, allTrackIds: allTrackIds };
     } else {
@@ -59,6 +60,7 @@ export class UserDataService {
   }
 
   async getAudioFeatures(ids: string[] | string) {
+    // haalt audio features van alle songs op, weer een loop vanwege de limit
     let allAudioFeatures: AudioFeatures[] = [];
     for (let i = 0; i < ids.length / 100; i++) {
       //sliced iedere keer 100 ids voor 1 http request
@@ -71,7 +73,6 @@ export class UserDataService {
 
       songs.audio_features.forEach((song) => allAudioFeatures.push(song));
     }
-    // console.log({'all audio features:': allAudioFeatures});
     return allAudioFeatures;
   }
 

@@ -20,16 +20,16 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   choosePlaylist(e: HTMLButtonElement) {
+    // haal playlist id op uit id van html button
     const playListId = e.id.split(';')[0];
+
+    // zoek playlist met id en pass die via route state data mee zodat data niet opnieuw gefetched hoeft te worden
     let playlist;
     this.data.forEach(obj => {
       if(obj.id == playListId) {
         playlist = obj;
       }
     })
-
-    // console.log(playListId);
-    // console.log(this.data);
 
     this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: playlist} });
   }

@@ -14,11 +14,12 @@ export class SpotifyAuthService {
     client_id: environment.client_id,
     response_type: 'code',
     redirect_uri: environment.apiUrl,
-    scope: 'user-read-private user-top-read playlist-modify-public playlist-modify-private'
+    scope: 'user-read-private user-top-read'
   };
 
 
   public authorize() {
+    // stuur user naar spotify authorization
     window.location.href = this.buildAuthUrl();
   }
 
@@ -27,6 +28,7 @@ export class SpotifyAuthService {
   }
 
   public get authorizedCheck(): Observable<boolean> {
+    // geeft aan user authorized is
     return this.isAuthorized.asObservable();
   }
 
