@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
+import { VisualisationService } from 'src/app/core/services/generateVis.service';
 
 import * as d3 from 'd3';
 let svg: SVGElement;
@@ -12,7 +13,9 @@ let svg: SVGElement;
 })
 export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit {
 
-  constructor() { }
+  constructor(
+    private visualisationSvc: VisualisationService
+  ) { }
 
 
   @Input() data!: {
@@ -20,6 +23,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     highlights: Highlights
   };
   @Input() isOpen!: boolean;
+  @Input() hasVisData: boolean = false;
+
   first: boolean = true;
 
   ngOnChanges(changes: SimpleChanges) {
@@ -29,7 +34,10 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         // speel animatie dingetje af
       }
 
-      // d3 zooi
+      if(this.hasVisData) {
+        const test = this.visualisationSvc.genEnergy(this.data.averages.energy);
+        svg.insertAdjacentHTML('beforeend', test)
+      }
     }
   }
 

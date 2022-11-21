@@ -5,7 +5,6 @@ import { FastAverageColor } from 'fast-average-color';
 
 import { Track, AudioFeatures, Playlist, Highlights, Averages } from 'src/app/core/models';
 import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth';
-
 import { UserDataService } from 'src/app/core/services/userData.service';
 
 @Component({
@@ -79,6 +78,8 @@ export class PlaylistComponent implements OnInit {
     highlights: this.highlights,
   }
 
+  hasVisData: boolean = false;
+
 
   ngOnInit(): void {
     if (this.tokenService.getAccessToken == '') {
@@ -133,11 +134,12 @@ export class PlaylistComponent implements OnInit {
       setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 800)
     }
 
-    //check of highlights al is ingevuld met juiste data, 2 is een onmogelijke waarde nadat de functie een keer is uitgevoerd
-    if (this.visualisationData.highlights.valence.low === 2) {
+    //check of visualisation data al is opgehaald
+    if (this.hasVisData === false) {
       const audioFeatures: AudioFeatures[] = await this.userDataService.getAudioFeatures(this.playlistTrackIds);
       this.averageAudioFeatures(audioFeatures)
       this.getHighlights(audioFeatures);
+      this.hasVisData = true;
     }
   }
 

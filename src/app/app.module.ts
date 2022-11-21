@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { SpotifyAuthService, AuthGuard, TokenService, SpotifyAuthInterceptor }
 from './core/services/spotifyAuth/index';
 import { UserDataService } from './core/services/userData.service';
+import { VisualisationService } from './core/services/generateVis.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { UserDataService } from './core/services/userData.service';
     AuthGuard,
     TokenService,
     UserDataService,
+    VisualisationService,
     [{
       provide:  HTTP_INTERCEPTORS,
       useClass:  SpotifyAuthInterceptor,
