@@ -1,3 +1,25 @@
 * {
   color: white;
 }
+
+main {
+  position: relative;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background: yellow;
+}
+
+#energygroup {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 20%;
+  right: 0;
+  top: 0;
+}

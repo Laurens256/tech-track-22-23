@@ -83,6 +83,13 @@ header button.back {
   top: 1em;
   left: 1em;
   z-index: 2;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+}
+
+header button.back.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 

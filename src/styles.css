@@ -19,6 +19,9 @@
   --secondary-text-color: #b3b3b3;
   --spotify-green: #1db954;
 
+  /* visualisation colors */
+  --energy-fill: #e344de;
+
   /* sizes */
   --playlist-song-width: 24em;
 }

@@ -5,6 +5,7 @@ import { VisualisationService } from 'src/app/core/services/generateVis.service'
 
 import * as d3 from 'd3';
 let svg: SVGElement;
+let energyGroup: any;
 
 @Component({
   selector: 'app-visualisation',
@@ -35,18 +36,27 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
       }
 
       if(this.hasVisData) {
-        const test = this.visualisationSvc.genEnergy(this.data.averages.energy);
-        svg.insertAdjacentHTML('beforeend', test)
+        const energy = this.visualisationSvc.genEnergy(this.data.averages.energy);
+        energyGroup.insertAdjacentHTML('beforeend', energy)
       }
     }
   }
 
   ngOnInit(): void {
     // console.log(this.svg);
+    window.addEventListener("scroll", () => {
+      // console.log(scrollY);
+      if(scrollY > 240 && scrollY < 280 && this.isOpen) {
+        document.querySelector('.back')?.classList.add('hidden');
+      } else {
+        document.querySelector('.back')?.classList.remove('hidden');
+      }
+  });
   }
 
   ngAfterViewInit(): void {
     svg = document.querySelector('#visualisation')!;
+    energyGroup = document.querySelector('#energygroup')!;
   }
 
   valenceGen() {

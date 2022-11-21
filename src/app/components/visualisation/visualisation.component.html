@@ -4,6 +4,9 @@
 <p>Average acousticness: {{data.averages.acousticness | number : '1.2-2'}}%</p>
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p>
 
-<svg id="visualisation" width="400" height="110">
-  <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-</svg>
+<main>
+  <div id="energygroup"></div>
+
+  <svg id="bg"> <rect viewBox="0 0 100 100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+  </svg>
+</main>
