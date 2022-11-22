@@ -4,8 +4,8 @@ import { Averages, Highlights } from 'src/app/core/models';
 import { VisualisationService } from 'src/app/core/services/generateVis.service';
 
 import * as d3 from 'd3';
-let svg: SVGElement;
-let energyGroup: any;
+let energyContainers: NodeListOf<HTMLDivElement>;
+let acousticnessContainer: NodeListOf<HTMLDivElement>;
 
 @Component({
   selector: 'app-visualisation',
@@ -36,8 +36,21 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
       }
 
       if(this.hasVisData) {
+        const people = this.visualisationSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
+
         const energy = this.visualisationSvc.genEnergy(this.data.averages.energy);
-        energyGroup.insertAdjacentHTML('beforeend', energy)
+        const acousticness = this.visualisationSvc.genAcousticness(this.data.averages.acousticness);
+        // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
+
+
+        energyContainers.forEach((container: HTMLDivElement) => {
+          container.innerHTML = energy;
+        })
+
+        acousticnessContainer.forEach((container: HTMLDivElement) => {
+          container.innerHTML = acousticness;
+        })
+
       }
     }
   }
@@ -55,12 +68,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    svg = document.querySelector('#visualisation')!;
-    energyGroup = document.querySelector('#energygroup')!;
-  }
-
-  valenceGen() {
-
+    energyContainers = document.querySelectorAll('.energycontainer')!;
+    acousticnessContainer = document.querySelectorAll('.acousticnesscontainer')!;
   }
 
 }

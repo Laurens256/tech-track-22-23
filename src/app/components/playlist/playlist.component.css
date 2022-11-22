@@ -118,7 +118,7 @@ section.visualisation div {
   width: 90%;
   height: 90%;
   margin-bottom: 3em;
-  background: var(--bg-color);
+  /* background: var(--bg-color); */
 }
 
 

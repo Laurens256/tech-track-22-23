@@ -4,22 +4,38 @@
 
 main {
   position: relative;
-}
-
-#bg {
-  position: absolute;
-  top: 0;
   height: 100%;
   width: 100%;
-  z-index: -1;
-  background: yellow;
+  overflow: hidden;
 }
 
-#energygroup {
+.energycontainer, .acousticnesscontainer {
+  z-index: 5;
+}
+
+.energycontainer {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  width: 20%;
-  right: 0;
+  width: fit-content;
   top: 0;
+}
+.energycontainer:first-of-type {
+  left: 0;
+}
+.energycontainer:last-of-type {
+  right: 0;
+}
+
+.acousticnesscontainer {
+  position: absolute;
+  top: 50%;
+  transform: rotate(-90deg);
+  left: -1em;
+}
+
+#room {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
