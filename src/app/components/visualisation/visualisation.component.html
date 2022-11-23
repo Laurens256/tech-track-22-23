@@ -32,7 +32,10 @@
     <g class="energygroup right"></g>
 
     <!-- acoustic sound waves -->
+    <g class="acousticnessgroup topleft"></g>
     <g class="acousticnessgroup topright"></g>
+    <g class="acousticnessgroup bottomright"></g>
+    <g class="acousticnessgroup bottomleft"></g>
 
     <style>
       svg * {
@@ -50,7 +53,7 @@
 
       .acousticnessgroup path {
         fill: none;
-        stroke: #000;
+        stroke: rgb(152, 232, 35);
         stroke-linecap: round;
         animation: acousticbounce 1500ms linear infinite normal forwards;
         animation-timing-function: cubic-bezier(0, 1, 1, 0);

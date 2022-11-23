@@ -9,20 +9,16 @@ export class EnergyService {
       left: '',
       right: ''
     }
-    switch (true) {
-      case (energy > 0 && energy <= 33):
-        energySvg.left = this.energy.left.low;
-        energySvg.right = this.energy.right.low;
-      case (energy <= 66):
-        energySvg.left = energySvg.left + this.energy.left.mid;
-        energySvg.right = energySvg.right + this.energy.right.mid;
-      case (energy <= 100):
-        energySvg.left = energySvg.left + this.energy.left.high;
-        energySvg.right = energySvg.right + this.energy.right.high;
-        break;
-      default:
-        energySvg.left = '';
-        energySvg.right = '';
+
+    energySvg.left = this.energy.left.low;
+    energySvg.right = this.energy.right.low;
+    if (energy >= 33) {
+      energySvg.left = energySvg.left + this.energy.left.mid;
+      energySvg.right = energySvg.right + this.energy.right.mid;
+    }
+    if (energy >= 66) {
+      energySvg.left = energySvg.left + this.energy.left.high;
+      energySvg.right = energySvg.right + this.energy.right.high;
     }
     return energySvg;
   }
