@@ -10,7 +10,6 @@ const client_secret = process.env.CLIENT_SECRET;
 // };
 
 export default async function handler(req, res) {
-  console.time();
   //haal token op met code die je krijgt van user login
   const tokensRaw = (await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
@@ -26,7 +25,10 @@ export default async function handler(req, res) {
   })).json();
 
   const tokens = await tokensRaw;
-  console.timeEnd();
 
-  res.redirect(301, `${redirect_uri}?access_token=${tokens.access_token}`)
+  if (tokens.error) {
+    res.json(tokens.error)
+  } else {
+    res.redirect(301, `${redirect_uri}?access_token=${tokens.access_token}`)
+  }
 }
