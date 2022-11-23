@@ -5,13 +5,7 @@ main {
   overflow: hidden;
 }
 
-#room g {
-  position: absolute;
-  top: 0;
-}
-
 #room {
-  position: absolute;
   height: 100%;
   width: 100%;
 }

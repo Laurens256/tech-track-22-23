@@ -5,25 +5,160 @@
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p> -->
 
 <main>
-  <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455 388" stroke="#000" stroke-miterlimit="1">
+  <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.22 386.5">
+    <!-- kamer -->
+    <g>
+      <polygon points="11.06 277.83 10.83 119.17 .5 114.5 .5 272.72 11.06 277.83"
+        style="fill: #2e3192; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="227.06 386.06 227.06 371.83 11.04 263.17 11.06 277.83 227.06 386.06"
+        style="fill: #ef4136; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="443.28 263.17 227.06 371.83 227.06 386.06 443.28 278.28 443.28 263.17"
+        style="fill: #00aeef; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="443.5 119.39 443.28 263.17 443.28 278.28 453.72 272.72 453.72 114.06 443.5 119.39"
+        style="fill: #be1e2d; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="226.83 155.17 443.28 263.17 443.5 119.39 226.83 10.72 226.83 155.17"
+        style="fill: #f15a29; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="11.04 263.17 226.83 155.17 226.83 10.72 10.83 119.17 11.04 263.17"
+        style="fill: #fff200; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="11.04 263.17 227.06 371.83 443.28 263.17 226.83 155.17 11.04 263.17"
+        style="fill: #754c29; stroke: #231f20; stroke-miterlimit: 1;" />
+      <polygon points="226.83 .5 .5 114.5 10.83 119.17 226.83 10.72 443.5 119.39 453.72 114.06 226.83 .5"
+        style="fill: #ec008c; stroke: #231f20; stroke-miterlimit: 1;" />
+    </g>
+
+    <!-- energy bolts -->
+    <g class="energygroup left"></g>
+    <g class="energygroup right"></g>
+
+    <!-- acoustic sound waves -->
+    <g class="acousticnessgroup">
+      <path d="M330.61,42.26c12.11-3.2,28.67,5.36,33.34,16.72"
+        style="fill: none; stroke: #000; stroke-linecap: round;" />
+      <path d="M335.61,37.26c12.11-3.2,28.67,5.36,33.34,16.72"
+        style="fill: none; stroke: #000; stroke-linecap: round;" />
+      <path d="M340.61,32.26c12.11-3.2,28.67,5.36,33.34,16.72"
+        style="fill: none; stroke: #000; stroke-linecap: round;" />
+    </g>
+
     <style>
-      svg.energy path {
+      svg * {
+        transform-box: fill-box;
         transform-origin: center;
       }
+
+      .energygroup path {
+        fill: #ec008c;
+        stroke: #000;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+        animation: energyrotate 1500ms linear infinite normal forwards;
+      }
+
+      .acousticnessgroup path {
+        animation: acousticbounce 1500ms linear infinite normal forwards;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        transform-origin: left;
+      }
+
+      @keyframes energyrotate {
+        0% {
+          transform: rotate(0);
+        }
+
+        10% {
+          transform: rotate(0);
+        }
+
+        15% {
+          transform: rotate(5deg);
+        }
+
+        20% {
+          transform: rotate(10deg);
+        }
+
+        25% {
+          transform: rotate(15deg);
+        }
+
+        30% {
+          transform: rotate(5deg);
+        }
+
+        35% {
+          transform: rotate(15deg);
+        }
+
+        40% {
+          transform: rotate(10deg);
+        }
+
+        45% {
+          transform: rotate(5deg);
+        }
+
+        50% {
+          transform: rotate(0);
+        }
+
+        55% {
+          transform: rotate(-5deg);
+        }
+
+        60% {
+          transform: rotate(-10deg);
+        }
+
+        65% {
+          transform: rotate(-15deg);
+        }
+
+        70% {
+          transform: rotate(-5deg);
+        }
+
+        75% {
+          transform: rotate(-15deg);
+        }
+
+        80% {
+          transform: rotate(-10deg);
+        }
+
+        85% {
+          transform: rotate(-5deg);
+        }
+
+        90% {
+          transform: rotate(0);
+        }
+
+        100% {
+          transform: rotate(0);
+        }
+      }
+
+      @keyframes acousticbounce {
+        0% {
+          transform: scale(1);
+        }
+
+        20% {
+          transform: scale(1.3);
+        }
+
+        40% {
+          transform: scale(1);
+        }
+
+        60% {
+          transform: scale(1.3);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
     </style>
-
-    <g transform="translate(-100, 0)" class="energygroup"></g>
-    <g class="energygroup"></g>
-
-    <polygon points="11.55 278.34 11.33 119.67 1 115 1 273.22 11.55 278.34" style="fill: #2e3192;" />
-    <polygon points="227.55 386.56 227.55 372.34 11.53 263.67 11.55 278.34 227.55 386.56" style="fill: #ef4136;" />
-    <polygon points="443.78 263.67 227.55 372.34 227.55 386.56 443.78 278.78 443.78 263.67" style="fill: #00aeef;" />
-    <polygon points="444 119.89 443.78 263.67 443.78 278.78 454.22 273.22 454.22 114.56 444 119.89"
-      style="fill: #be1e2d;" />
-    <polygon points="227.33 155.67 443.78 263.67 444 119.89 227.33 11.22 227.33 155.67" style="fill: #f15a29;" />
-    <polygon points="11.53 263.67 227.33 155.67 227.33 11.22 11.33 119.67 11.53 263.67" style="fill: #fff200;" />
-    <polygon points="11.53 263.67 227.55 372.34 443.78 263.67 227.33 155.67 11.53 263.67" style="fill: #754c29;" />
-    <polygon points="227.33 1 1 115 11.33 119.67 227.33 11.22 444 119.89 454.22 114.56 227.33 1"
-      style="fill: #ec008c;" />
   </svg>
 </main>

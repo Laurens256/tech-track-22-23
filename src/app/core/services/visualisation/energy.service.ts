@@ -4,19 +4,41 @@ import { Injectable } from '@angular/core';
 export class EnergyService {
   constructor() { }
 
-  genEnergy(energy: number): string {
+  genEnergy(energy: number) {
+    let energySvg = {
+      left: '',
+      right: ''
+    }
     switch (true) {
       case (energy > 0 && energy <= 33):
-        return `${this.energy}`;
+        energySvg.left = this.energy.left.low;
+        energySvg.right = this.energy.right.low;
       case (energy <= 66):
-        return `${this.energy}${this.energy}`;
+        energySvg.left = energySvg.left + this.energy.left.mid;
+        energySvg.right = energySvg.right + this.energy.right.mid;
       case (energy <= 100):
-        return `${this.energy}${this.energy}${this.energy}`;
+        energySvg.left = energySvg.left + this.energy.left.high;
+        energySvg.right = energySvg.right + this.energy.right.high;
+        break;
       default:
-        return ``;
+        energySvg.left = '';
+        energySvg.right = '';
     }
+    return energySvg;
+
+    // dummyString = dummyString.replace(/strToReplace/g, '')
   }
 
-  energy: string = '<svg width="10" class="energy" xmlns="http://www.w3.org/2000/svg" ><path xmlns="http://www.w3.org/2000/svg" d="M 157,25 91,221 164,221 88,425 290,185 218,185 312,25z" style="stroke-width:10px;stroke:black;stroke-linejoin:round;fill:var(--energy-fill);"> <animateTransform attributeName="transform" type="rotate" calcMode="linear" repeatCount="indefinite" dur="2s" values="0; 0; 0; 5; 10; 15; 5; 15; 10; 5; 0; -5; -10; -15; -5; -15; -10; -5; 0; 0; 0;" keyTimes="0; 0.05; 0.1; 0.15; 0.2; 0.25; 0.3; 0.35; 0.4; 0.45; 0.5; 0.55; 0.6; 0.65; 0.7; 0.75; 0.8; 0.85; 0.9; 0.95; 1;"/></path></svg>';
-
+  energy = {
+    left: {
+      low: '<path d="M189.26,74.05l10.38,30.82h-11.48s11.95,32.08,11.95,32.08l-31.76-37.74h11.32s-14.78-25.16-14.78-25.16h24.37Z"/>',
+      mid: '<path d="M69.26,144.05l10.38,30.82h-11.48s11.95,32.08,11.95,32.08l-31.76-37.74h11.32s-14.78-25.16-14.78-25.16h24.37Z"/>',
+      high: '<path d="M129.26,104.05l10.38,30.82h-11.48s11.95,32.08,11.95,32.08l-31.76-37.74h11.32s-14.78-25.16-14.78-25.16h24.37Z"/>',
+    },
+    right: {
+      low: '<path d="M263.74,74.05l-10.38,30.82h11.48s-11.95,32.08-11.95,32.08l31.76-37.74h-11.32s14.78-25.16,14.78-25.16h-24.37Z"/>',
+      mid: '<path d="M383.74,144.05l-10.38,30.82h11.48s-11.95,32.08-11.95,32.08l31.76-37.74h-11.32s14.78-25.16,14.78-25.16h-24.37Z"/>',
+      high: '<path d="M323.74,104.05l-10.38,30.82h11.48s-11.95,32.08-11.95,32.08l31.76-37.74h-11.32s14.78-25.16,14.78-25.16h-24.37Z"/>',
+    }
+  }
 }

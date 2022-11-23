@@ -5,5 +5,8 @@
       "dest": "api/authorize.js",
       "methods": ["GET", "POST"]
     }
-  ]
+  ],
+  "github": {
+    "silent": true
+}
 }
