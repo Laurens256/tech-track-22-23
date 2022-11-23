@@ -3,8 +3,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterVie
 import { Averages, Highlights } from 'src/app/core/models';
 import { PeopleService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
 
-let energyContainers: NodeListOf<HTMLDivElement>;
-let acousticnessContainer: NodeListOf<HTMLDivElement>;
+let svg: SVGElement;
 
 @Component({
   selector: 'app-visualisation',
@@ -44,13 +43,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
-
-        energyContainers.forEach((container: HTMLDivElement) => {
-          container.innerHTML = energy;
-        })
-
-        acousticnessContainer.forEach((container: HTMLDivElement) => {
-          container.innerHTML = acousticness;
+        svg.querySelectorAll('.energygroup').forEach(group => {
+          group.innerHTML = energy;
         })
 
       }
@@ -70,8 +64,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    energyContainers = document.querySelectorAll('.energycontainer')!;
-    acousticnessContainer = document.querySelectorAll('.acousticnesscontainer')!;
+    svg = document.querySelector('svg')!;
   }
 
 }

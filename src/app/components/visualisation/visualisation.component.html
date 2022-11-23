@@ -5,27 +5,16 @@
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p> -->
 
 <main>
-  <div class="energy">
-    <div class="energycontainer"></div>
-    <div class="energycontainer"></div>
-  </div>
-
-  <div class="acoustic">
-    <div class="acousticnesscontainer"></div>
-  </div>
-
-
   <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455 388" stroke="#000" stroke-miterlimit="1">
     <style>
       svg.energy path {
         transform-origin: center;
       }
-
-      svg.energy,
-      svg.acoustic {
-        width: 5em;
-      }
     </style>
+
+    <g transform="translate(-100, 0)" class="energygroup"></g>
+    <g class="energygroup"></g>
+
     <polygon points="11.55 278.34 11.33 119.67 1 115 1 273.22 11.55 278.34" style="fill: #2e3192;" />
     <polygon points="227.55 386.56 227.55 372.34 11.53 263.67 11.55 278.34 227.55 386.56" style="fill: #ef4136;" />
     <polygon points="443.78 263.67 227.55 372.34 227.55 386.56 443.78 278.78 443.78 263.67" style="fill: #00aeef;" />
