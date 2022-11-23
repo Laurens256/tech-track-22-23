@@ -37,7 +37,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         // speel animatie dingetje af
       }
 
-      if(this.hasVisData) {
+      if (this.hasVisData) {
         console.log(this.data);
         const people = this.peopleSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
 
@@ -65,12 +65,12 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     // console.log(this.svg);
     window.addEventListener("scroll", () => {
       // console.log(scrollY);
-      if(scrollY > 240 && scrollY < 280 && this.isOpen) {
+      if (scrollY > 240 && scrollY < 280 && this.isOpen) {
         document.querySelector('.back')?.classList.add('hidden');
       } else {
         document.querySelector('.back')?.classList.remove('hidden');
       }
-  });
+    });
   }
 
   ngAfterViewInit(): void {
@@ -79,4 +79,15 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     acousticGroups = svg.querySelectorAll('.acousticnessgroup');
   }
 
+  toggleFilters() {
+    const filterPanel: HTMLElement = document.querySelector('main aside')!;
+    filterPanel.classList.toggle('hidden');
+    // filterPanel.classList.remove('delayedzindex');
+    if (!filterPanel.classList.contains('hidden')) {
+      setTimeout(() => {
+        filterPanel.classList.add('delayedzindex');
+      }, 400);
+    }
+
+  }
 }

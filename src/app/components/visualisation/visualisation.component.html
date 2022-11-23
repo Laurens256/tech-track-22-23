@@ -5,7 +5,10 @@
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p> -->
 
 <main>
-  <button>Filter</button>
+  <button (click)="this.toggleFilters()" class="filterbtn">Filter</button>
+  <aside class="hidden">
+    <section>section</section>
+  </aside>
   <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.22 386.5">
     <!-- kamer -->
     <g>
