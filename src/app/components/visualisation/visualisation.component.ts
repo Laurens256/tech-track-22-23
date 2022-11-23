@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
-import { VisualisationService } from 'src/app/core/services/generateVis.service';
+import { PeopleService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
 
-import * as d3 from 'd3';
 let energyContainers: NodeListOf<HTMLDivElement>;
 let acousticnessContainer: NodeListOf<HTMLDivElement>;
 
@@ -15,7 +14,9 @@ let acousticnessContainer: NodeListOf<HTMLDivElement>;
 export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(
-    private visualisationSvc: VisualisationService
+    private peopleSvc: PeopleService,
+    private energySvc: EnergyService,
+    private acousticnessSvc: AcousticNessService
   ) { }
 
 
@@ -37,10 +38,10 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
       if(this.hasVisData) {
         console.log(this.data);
-        const people = this.visualisationSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
+        const people = this.peopleSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
 
-        const energy = this.visualisationSvc.genEnergy(this.data.averages.energy);
-        const acousticness = this.visualisationSvc.genAcousticness(this.data.averages.acousticness);
+        const energy = this.energySvc.genEnergy(this.data.averages.energy);
+        const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
 

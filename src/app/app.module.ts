@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 //services
 import { SpotifyAuthService, AuthGuard, TokenService, SpotifyAuthInterceptor }
 from './core/services/spotifyAuth/index';
+import { PeopleService, EnergyService, AcousticNessService } from './core/services/visualisation';
 import { UserDataService } from './core/services/userData.service';
-import { VisualisationService } from './core/services/generateVis.service';
 
 
 @NgModule({
@@ -27,8 +27,12 @@ import { VisualisationService } from './core/services/generateVis.service';
     SpotifyAuthService,
     AuthGuard,
     TokenService,
+
+    PeopleService,
+    EnergyService,
+    AcousticNessService,
+
     UserDataService,
-    VisualisationService,
     [{
       provide:  HTTP_INTERCEPTORS,
       useClass:  SpotifyAuthInterceptor,
