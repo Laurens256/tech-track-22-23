@@ -12,28 +12,26 @@ export class AcousticNessService {
       bottomright: '',
       bottomleft: ''
     }
-    switch (true) {
-      case (acousticness > 0 && acousticness <= 33):
-        acousticSvg.topleft = acousticSvg + this.acoustic.topleft.low;
-        acousticSvg.topright = acousticSvg + this.acoustic.topright.low;
-        acousticSvg.bottomright = acousticSvg + this.acoustic.bottomright.low;
-        acousticSvg.bottomleft = acousticSvg + this.acoustic.bottomleft.low;
-      case (acousticness <= 66):
-        acousticSvg.topleft = acousticSvg + this.acoustic.topleft.mid;
-        acousticSvg.topright = acousticSvg + this.acoustic.topright.mid;
-        acousticSvg.bottomright = acousticSvg + this.acoustic.bottomright.mid;
-        acousticSvg.bottomleft = acousticSvg + this.acoustic.bottomleft.mid;
-      case (acousticness <= 100):
-        acousticSvg.topleft = acousticSvg + this.acoustic.topleft.high;
-        acousticSvg.topright = acousticSvg + this.acoustic.topright.high;
-        acousticSvg.bottomright = acousticSvg + this.acoustic.bottomright.high;
-        acousticSvg.bottomleft = acousticSvg + this.acoustic.bottomleft.high;
-        break;
-      default:
-        acousticSvg.topleft = '';
-        acousticSvg.topright = '';
-        acousticSvg.topright = '';
-        acousticSvg.topright = '';
+
+    acousticSvg.topleft = this.acoustic.topleft.low;
+    acousticSvg.topright = this.acoustic.topright.low;
+    acousticSvg.bottomright = this.acoustic.bottomright.low;
+    acousticSvg.bottomleft = this.acoustic.bottomleft.low;
+    document.documentElement.style.setProperty('--acousticbounce', '1.2');
+
+    if (acousticness >= 33) {
+      acousticSvg.topleft = acousticSvg.topleft + this.acoustic.topleft.mid;
+      acousticSvg.topright = acousticSvg.topright + this.acoustic.topright.mid;
+      acousticSvg.bottomright = acousticSvg.bottomright + this.acoustic.bottomright.mid;
+      acousticSvg.bottomleft = acousticSvg.bottomleft + this.acoustic.bottomleft.mid;
+      document.documentElement.style.setProperty('--acousticbounce', '1.5');
+    }
+    if (acousticness >= 66) {
+      acousticSvg.topleft = acousticSvg.topleft + this.acoustic.topleft.high;
+      acousticSvg.topright = acousticSvg.topright + this.acoustic.topright.high;
+      acousticSvg.bottomright = acousticSvg.bottomright + this.acoustic.bottomright.high;
+      acousticSvg.bottomleft = acousticSvg.bottomleft + this.acoustic.bottomleft.high;
+      document.documentElement.style.setProperty('--acousticbounce', '2');
     }
     return acousticSvg;
   }

@@ -247,3 +247,15 @@ main ul li div.loadAnimation span:nth-child(7) {
     background: var(--secondary-text-color);
   }
 }
+
+
+/* maakt de visualisation kleiner voor mobiel scherm */
+@media screen and (max-width:600px) {
+  header.visualisationopen {
+    /* iets kleiner voor mobile*/
+    height: calc(50vh + 3em + 15em);
+  }
+  section.visualisation.open {
+    height: 50vh;
+  }
+}

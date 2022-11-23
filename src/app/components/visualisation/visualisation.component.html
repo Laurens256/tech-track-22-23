@@ -5,6 +5,7 @@
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p> -->
 
 <main>
+  <button>Filter</button>
   <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.22 386.5">
     <!-- kamer -->
     <g>
@@ -140,7 +141,7 @@
         }
 
         20% {
-          transform: scale(1.3);
+          transform: scale(var(--acousticbounce));
         }
 
         40% {
@@ -148,7 +149,7 @@
         }
 
         60% {
-          transform: scale(1.3);
+          transform: scale(var(--acousticbounce));
         }
 
         100% {

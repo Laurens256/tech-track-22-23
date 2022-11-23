@@ -2,10 +2,24 @@ main {
   position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  max-width: 60em;
+  margin: 0 auto;
 }
 
-#room {
+main #room {
   height: 100%;
   width: 100%;
 }
+
+main button {
+  position: absolute;
+  right: 0;
+  top: 2em;
+  color: var(--test);
+}
+
+/* @media screen and (max-width:600px) {
+  * {
+    background: red;
+  }
+} */

@@ -22,6 +22,9 @@
   /* visualisation colors */
   --energy-fill: #e344de;
 
+  /* visualisation other */
+  --acousticbounce: 1.2;
+
   /* sizes */
   --playlist-song-width: 24em;
 }
