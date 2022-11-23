@@ -4,7 +4,8 @@ import { Averages, Highlights } from 'src/app/core/models';
 import { PeopleService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
 
 let svg: SVGElement;
-let energyGroups: any;
+let energyGroups: NodeListOf<SVGElement>;
+let acousticGroups: NodeListOf<SVGElement>
 
 @Component({
   selector: 'app-visualisation',
@@ -44,9 +45,16 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
-        energyGroups.forEach((group: SVGElement) => {
-          // @ts-ignore
-          group.innerHTML = energy[group.classList[1]];
+        type peopleKey = keyof typeof people;
+        type energyKey = keyof typeof energy;
+        type acousticKey = keyof typeof acousticness;
+
+        energyGroups.forEach(group => {
+          group.innerHTML = energy[group.classList[1] as energyKey];
+        })
+
+        acousticGroups.forEach(group => {
+          group.innerHTML = acousticness[group.classList[1] as acousticKey];
         })
 
       }
@@ -68,6 +76,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   ngAfterViewInit(): void {
     svg = document.querySelector('svg')!;
     energyGroups = svg.querySelectorAll('.energygroup');
+    acousticGroups = svg.querySelectorAll('.acousticnessgroup');
   }
 
 }

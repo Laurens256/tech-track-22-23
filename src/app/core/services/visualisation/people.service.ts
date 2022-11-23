@@ -38,8 +38,7 @@ export class PeopleService {
     }
 
     //voegt het gezicht op de juiste plek toe binnen de svg
-    const position = danceabilityStr.indexOf('|');
-    const people = [danceabilityStr.slice(0, position), valenceStr, danceabilityStr.slice(position + 1)].join('');
+    const people = danceabilityStr.replace('|', valenceStr)
     console.log(people);
   }
 

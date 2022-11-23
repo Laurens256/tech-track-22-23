@@ -31,14 +31,7 @@
     <g class="energygroup right"></g>
 
     <!-- acoustic sound waves -->
-    <g class="acousticnessgroup">
-      <path d="M330.61,42.26c12.11-3.2,28.67,5.36,33.34,16.72"
-        style="fill: none; stroke: #000; stroke-linecap: round;" />
-      <path d="M335.61,37.26c12.11-3.2,28.67,5.36,33.34,16.72"
-        style="fill: none; stroke: #000; stroke-linecap: round;" />
-      <path d="M340.61,32.26c12.11-3.2,28.67,5.36,33.34,16.72"
-        style="fill: none; stroke: #000; stroke-linecap: round;" />
-    </g>
+    <g class="acousticnessgroup topright"></g>
 
     <style>
       svg * {
@@ -55,6 +48,9 @@
       }
 
       .acousticnessgroup path {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
         animation: acousticbounce 1500ms linear infinite normal forwards;
         animation-timing-function: cubic-bezier(0, 1, 1, 0);
         transform-origin: left;

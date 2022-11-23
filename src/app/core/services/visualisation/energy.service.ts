@@ -25,8 +25,6 @@ export class EnergyService {
         energySvg.right = '';
     }
     return energySvg;
-
-    // dummyString = dummyString.replace(/strToReplace/g, '')
   }
 
   energy = {
