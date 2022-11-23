@@ -11,7 +11,7 @@ const client_secret = process.env.CLIENT_SECRET;
 
 export default async function handler(req, res) {
   //haal token op met code die je krijgt van user login
-  const tokensRaw = (await fetch('https://accounts.spotify.com/api/token', {
+  const tokens = await (await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     body: new URLSearchParams({
       grant_type: 'authorization_code',
@@ -23,8 +23,6 @@ export default async function handler(req, res) {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
   })).json();
-
-  const tokens = await tokensRaw;
 
   if (tokens.error) {
     res.json(tokens.error)
