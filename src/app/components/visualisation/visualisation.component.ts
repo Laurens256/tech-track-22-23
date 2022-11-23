@@ -36,6 +36,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
       }
 
       if(this.hasVisData) {
+        console.log(this.data);
         const people = this.visualisationSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
 
         const energy = this.visualisationSvc.genEnergy(this.data.averages.energy);
