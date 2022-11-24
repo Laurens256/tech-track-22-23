@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
 import { PeopleService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
@@ -10,7 +10,8 @@ let acousticGroups: NodeListOf<SVGElement>
 @Component({
   selector: 'app-visualisation',
   templateUrl: './visualisation.component.html',
-  styleUrls: ['./visualisation.component.css']
+  styleUrls: ['./visualisation.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit {
 
@@ -86,8 +87,15 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     if (!filterPanel.classList.contains('hidden')) {
       setTimeout(() => {
         filterPanel.classList.add('delayedzindex');
-      }, 400);
+      }, 300);
     }
 
+  }
+
+  toggleElement(element: HTMLInputElement) {
+    console.log(element);
+    document.querySelectorAll(`.${element.id}`)?.forEach(el => {
+      el.classList.toggle('hidden');
+    });
   }
 }

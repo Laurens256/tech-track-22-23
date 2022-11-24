@@ -7,8 +7,17 @@
 <main>
   <button (click)="this.toggleFilters()" class="filterbtn">Filter</button>
   <aside class="hidden">
-    <section>section</section>
+    <section>
+      <h2>
+        Toggle Elements
+    </h2>
+    <label for="energy">Energy</label>
+    <input #energy type="checkbox" id="energy" name="energy" (change)="this.toggleElement(energy)" checked>
+    <label for="acoustic">Acousticness</label>
+    <input #acoustic type="checkbox" id="acoustic" name="acoustic" (change)="this.toggleElement(acoustic)" checked>
+  </section>
   </aside>
+
   <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.22 386.5">
     <!-- kamer -->
     <g>
