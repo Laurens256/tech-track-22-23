@@ -4,6 +4,7 @@ main {
   position: relative;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 main section:first-of-type {
@@ -63,4 +64,23 @@ main img.bg-image {
   left: 0;
   right: 0;
   z-index: -1;
+  animation: rotate 800s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main img.bg-image {
+    animation: none;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(360deg) scale(5);
+  }
+  100% {
+    transform: rotate(720deg) scale(1);
+  }
 }
