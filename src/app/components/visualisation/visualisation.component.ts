@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
-import { PeopleService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
+import { DanceService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
 
 let svg: SVGElement;
 let energyGroups: NodeListOf<SVGElement>;
-let acousticGroups: NodeListOf<SVGElement>
+let acousticGroups: NodeListOf<SVGElement>;
+let danceContainers: NodeListOf<HTMLDivElement>;
 
 @Component({
   selector: 'app-visualisation',
@@ -16,7 +17,7 @@ let acousticGroups: NodeListOf<SVGElement>
 export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(
-    private peopleSvc: PeopleService,
+    private danceSvc: DanceService,
     private energySvc: EnergyService,
     private acousticnessSvc: AcousticNessService
   ) { }
@@ -40,15 +41,18 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
       if (this.hasVisData) {
         console.log(this.data);
-        const people = this.peopleSvc.genPeople(this.data.averages.valence, this.data.averages.danceability);
-
+        const dance = this.danceSvc.genDanceability(this.data.averages.danceability);
         const energy = this.energySvc.genEnergy(this.data.averages.energy);
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
-        type peopleKey = keyof typeof people;
+        type danceKey = keyof typeof dance;
         type energyKey = keyof typeof energy;
         type acousticKey = keyof typeof acousticness;
+
+        danceContainers.forEach(container => {
+          container.innerHTML = dance[container.classList[1] as danceKey];
+        })
 
         energyGroups.forEach(group => {
           group.innerHTML = energy[group.classList[1] as energyKey];
@@ -76,11 +80,12 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   ngAfterViewInit(): void {
     svg = document.querySelector('svg')!;
+    danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = svg.querySelectorAll('.energygroup');
     acousticGroups = svg.querySelectorAll('.acousticnessgroup');
   }
 
-  toggleFilters() {
+  toggleFiltersPanel() {
     const filterPanel: HTMLElement = document.querySelector('main aside')!;
     filterPanel.classList.toggle('hidden');
     // filterPanel.classList.remove('delayedzindex');
@@ -92,7 +97,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   }
 
-  toggleElement(element: HTMLInputElement) {
+  toggleFilters(element: HTMLInputElement) {
     console.log(element);
     document.querySelectorAll(`.${element.id}`)?.forEach(el => {
       el.classList.toggle('hidden');

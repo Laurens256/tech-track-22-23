@@ -1,3 +1,3 @@
-export { PeopleService } from './people.service';
+export { DanceService } from './dance.service';
 export { EnergyService } from './energy.service';
 export { AcousticNessService } from './acousticness.service';

@@ -4,39 +4,47 @@
 <p>Average acousticness: {{data.averages.acousticness | number : '1.2-2'}}%</p>
 <p>Average instrumentalness: {{data.averages.instrumentalness | number : '1.2-2'}}%</p> -->
 
-<main>
-  <button (click)="this.toggleFilters()" class="filterbtn">Filter</button>
+<main [ngClass]="{'open' : this.isOpen}">
+  <button (click)="this.toggleFiltersPanel()" class="filterbtn">Filter</button>
   <aside class="hidden">
     <section>
       <h2>
         Toggle Elements
-    </h2>
-    <label for="energy">Energy</label>
-    <input #energy type="checkbox" id="energy" name="energy" (change)="this.toggleElement(energy)" checked>
-    <label for="acoustic">Acousticness</label>
-    <input #acoustic type="checkbox" id="acoustic" name="acoustic" (change)="this.toggleElement(acoustic)" checked>
-  </section>
+      </h2>
+      <label for="energy">Energy</label>
+      <input #energy type="checkbox" id="energy" name="energy" (change)="this.toggleFilters(energy)" checked>
+      <label for="acoustic">Acousticness</label>
+      <input #acoustic type="checkbox" id="acoustic" name="acoustic" (change)="this.toggleFilters(acoustic)" checked>
+    </section>
   </aside>
 
+  <div class="dancecontainer high"></div>
+  <div class="dancecontainer mid"></div>
+  <div class="dancecontainer low"></div>
+
+
+  <!-- kamer -->
   <svg id="room" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.22 386.5">
-    <!-- kamer -->
-    <g>
-      <polygon points="11.06 277.83 10.83 119.17 .5 114.5 .5 272.72 11.06 277.83"
-        style="fill: #2e3192; stroke: #231f20; stroke-miterlimit: 1;" />
-      <polygon points="227.06 386.06 227.06 371.83 11.04 263.17 11.06 277.83 227.06 386.06"
-        style="fill: #ef4136; stroke: #231f20; stroke-miterlimit: 1;" />
-      <polygon points="443.28 263.17 227.06 371.83 227.06 386.06 443.28 278.28 443.28 263.17"
-        style="fill: #00aeef; stroke: #231f20; stroke-miterlimit: 1;" />
+    <g stroke-miterlimit="1">
+      <!-- zijkant van muur -->
+      <polygon points="11.06 277.83 10.83 119.17 .5 114.5 .5 272.72 11.06 277.83" style="fill: #261f27;" />
       <polygon points="443.5 119.39 443.28 263.17 443.28 278.28 453.72 272.72 453.72 114.06 443.5 119.39"
-        style="fill: #be1e2d; stroke: #231f20; stroke-miterlimit: 1;" />
-      <polygon points="226.83 155.17 443.28 263.17 443.5 119.39 226.83 10.72 226.83 155.17"
-        style="fill: #f15a29; stroke: #231f20; stroke-miterlimit: 1;" />
-      <polygon points="11.04 263.17 226.83 155.17 226.83 10.72 10.83 119.17 11.04 263.17"
-        style="fill: #fff200; stroke: #231f20; stroke-miterlimit: 1;" />
-      <polygon points="11.04 263.17 227.06 371.83 443.28 263.17 226.83 155.17 11.04 263.17"
-        style="fill: #754c29; stroke: #231f20; stroke-miterlimit: 1;" />
+        style="fill: #302d2c;" />
+
+      <!-- zijkant van vloer -->
+      <polygon points="227.06 386.06 227.06 371.83 11.04 263.17 11.06 277.83 227.06 386.06" style="fill: #252a2e;" />
+      <polygon points="443.28 263.17 227.06 371.83 227.06 386.06 443.28 278.28 443.28 263.17" style="fill: #404040;" />
+
+      <!-- muur -->
+      <polygon points="11.04 263.17 226.83 155.17 226.83 10.72 10.83 119.17 11.04 263.17" style="fill: #2a2428;" />
+      <polygon points="226.83 155.17 443.28 263.17 443.5 119.39 226.83 10.72 226.83 155.17" style="fill: #1d191c;" />
+
+      <!-- bovenkant van muur -->
       <polygon points="226.83 .5 .5 114.5 10.83 119.17 226.83 10.72 443.5 119.39 453.72 114.06 226.83 .5"
-        style="fill: #ec008c; stroke: #231f20; stroke-miterlimit: 1;" />
+        style="fill: #373737;" />
+
+      <!-- vloer -->
+      <polygon points="11.04 263.17 227.06 371.83 443.28 263.17 226.83 155.17 11.04 263.17" style="fill: #282b2c;" />
     </g>
 
     <!-- energy bolts -->

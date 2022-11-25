@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 //services
 import { SpotifyAuthService, AuthGuard, TokenService, SpotifyAuthInterceptor }
 from './core/services/spotifyAuth/index';
-import { PeopleService, EnergyService, AcousticNessService } from './core/services/visualisation';
+import { DanceService, EnergyService, AcousticNessService } from './core/services/visualisation';
 import { UserDataService } from './core/services/userData.service';
 
 
@@ -28,7 +28,7 @@ import { UserDataService } from './core/services/userData.service';
     AuthGuard,
     TokenService,
 
-    PeopleService,
+    DanceService,
     EnergyService,
     AcousticNessService,
 

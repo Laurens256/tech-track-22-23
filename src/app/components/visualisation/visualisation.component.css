@@ -18,7 +18,7 @@ app-visualisation main button {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 5;
+  z-index: 6;
 }
 
 app-visualisation main aside {
@@ -26,20 +26,22 @@ app-visualisation main aside {
   height: 20em;
   width: 20em;
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 0;
   visibility: visible;
   transform: translate(0, 0);
   transition: all .3s ease-in-out;
-  filter:blur(0);
+  filter: blur(0);
 }
 
-app-visualisation main aside.delayedzindex {
-  z-index: 3;
+@media screen and (min-width:601px) {
+  app-visualisation main aside.delayedzindex {
+    z-index: 3;
+  }
 }
 
 app-visualisation main aside.hidden {
-  filter:blur(3px);
+  filter: blur(3px);
   z-index: 1;
   visibility: hidden;
   transform: translate(0, 80%);
@@ -52,11 +54,11 @@ app-visualisation main aside.hidden {
     height: 90%;
     width: 100%;
     transition: all .4s ease-in-out;
-    z-index: 3;
+    z-index: 5;
   }
 
   app-visualisation main aside.hidden {
-    z-index: 3;
+    z-index: 5;
     transform: translate(100%, 0);
   }
 }
@@ -69,4 +71,35 @@ app-visualisation .acoustic.hidden {
 app-visualisation .acoustic,
 app-visualisation .energy {
   transition: all .4s ease-in-out;
+}
+
+
+
+app-visualisation .dancecontainer {
+  position: absolute;
+  z-index: 4;
+  height: 0;
+  width: 0;
+  margin-left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1.3s ease-in-out;
+}
+
+app-visualisation main.open .dancecontainer {
+  height: 100%;
+  width: 100%;
+  margin-left: 0;
+  transition: all .7s ease-in-out;
+}
+
+app-visualisation .dancecontainer img {
+  position: absolute;
+}
+
+app-visualisation .dancecontainer.high img {
+  width: 20%;
+  margin-left: -25%;
+  margin-top: 20%;
 }
