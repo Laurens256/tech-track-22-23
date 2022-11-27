@@ -22,6 +22,13 @@
   /* visualisation colors */
   --energy-fill: #e344de;
 
+  --speaker-left: #ed1174;
+  --speaker-top: #f7b500;
+  --speaker-right: #00c1d4;
+  --speaker-outer-circle: #000;
+  --speaker-inner-circle: #212121;
+  --speaker-handle: #fff;
+
   /* visualisation other */
   --acousticbounce: 1.2;
 

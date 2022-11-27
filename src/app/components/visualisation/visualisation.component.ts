@@ -5,7 +5,8 @@ import { DanceService, EnergyService, AcousticNessService } from 'src/app/core/s
 
 let svg: SVGElement;
 let energyGroups: NodeListOf<SVGElement>;
-let acousticGroups: NodeListOf<SVGElement>;
+let acousticWaveGroups: NodeListOf<SVGElement>;
+let acousticSpeakerGroups: NodeListOf<SVGElement>;
 let danceContainers: NodeListOf<HTMLDivElement>;
 
 @Component({
@@ -48,7 +49,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
         type danceKey = keyof typeof dance;
         type energyKey = keyof typeof energy;
-        type acousticKey = keyof typeof acousticness;
+
+        type acousticWavesKey = keyof typeof acousticness.soundWaves;
+        type acousticSpeakersKey = keyof typeof acousticness.speakers;
 
         danceContainers.forEach(container => {
           container.innerHTML = dance[container.classList[1] as danceKey];
@@ -58,9 +61,13 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
           group.innerHTML = energy[group.classList[1] as energyKey];
         })
 
-        acousticGroups.forEach(group => {
-          group.innerHTML = acousticness[group.classList[1] as acousticKey];
+        acousticWaveGroups.forEach(group => {
+          group.innerHTML = acousticness.soundWaves[group.classList[1] as acousticWavesKey];
         })
+
+        acousticSpeakerGroups.forEach(group => {
+          group.innerHTML = acousticness.speakers[group.classList[1] as acousticSpeakersKey];
+        });
 
       }
     }
@@ -82,7 +89,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     svg = document.querySelector('svg')!;
     danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = svg.querySelectorAll('.energygroup');
-    acousticGroups = svg.querySelectorAll('.acousticnessgroup');
+    acousticWaveGroups = svg.querySelectorAll('.acousticwavegroup');
+    acousticSpeakerGroups = svg.querySelectorAll('.speakergroup');
   }
 
   toggleFiltersPanel() {
