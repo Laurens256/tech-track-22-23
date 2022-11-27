@@ -36,7 +36,7 @@ app-visualisation main aside {
 
 @media screen and (min-width:601px) {
   app-visualisation main aside.delayedzindex {
-    z-index: 3;
+    z-index: 5;
   }
 }
 
@@ -96,6 +96,12 @@ app-visualisation main.open .dancecontainer {
 
 app-visualisation .dancecontainer img {
   position: absolute;
+}
+
+app-visualisation .dancecontainer.mid img {
+  width: 15%;
+  margin-left: 20%;
+  margin-top: 45%;
 }
 
 app-visualisation .dancecontainer.high img {

@@ -57,9 +57,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
           container.innerHTML = dance[container.classList[1] as danceKey];
         })
 
-        energyGroups.forEach(group => {
-          group.innerHTML = energy[group.classList[1] as energyKey];
-        })
+        // energyGroups.forEach(group => {
+        //   group.innerHTML = energy[group.classList[1] as energyKey];
+        // })
 
         acousticWaveGroups.forEach(group => {
           group.innerHTML = acousticness.soundWaves[group.classList[1] as acousticWavesKey];
