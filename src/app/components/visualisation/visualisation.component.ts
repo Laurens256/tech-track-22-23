@@ -53,9 +53,13 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         type acousticWavesKey = keyof typeof acousticness.soundWaves;
         type acousticSpeakersKey = keyof typeof acousticness.speakers;
 
-        danceContainers.forEach(container => {
-          container.innerHTML = dance[container.classList[1] as danceKey];
-        })
+        // danceContainers.forEach(container => {
+        //   container.innerHTML = dance[container.classList[1] as danceKey];
+        // })
+
+        for (let i = 0; i < danceContainers.length; i++) {
+          danceContainers[i].innerHTML = dance[i];
+        }
 
         // energyGroups.forEach(group => {
         //   group.innerHTML = energy[group.classList[1] as energyKey];

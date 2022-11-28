@@ -5,34 +5,40 @@ export class DanceService {
   constructor() { }
 
   genDanceability(danceability: number) {
-    let danceabilityObj = {
-      low: '',
-      mid: '',
-      high: ''
-    };
+    const template = ['<img src="/assets/img/visualisation/', '.gif" alt="dancing animal">'];
+    const danceabilityArr: string[] = [];
+    let level = 'low';
 
-    danceabilityObj.low = this.danceability.low;
-
-    //meerdere losse if statements zodat er minder code wordt herhaald ,geloof me dit is beter:(
-    if (danceability >= 33) {
-      danceabilityObj.mid = this.danceability.mid;
+    if (danceability >= 33 && danceability <= 66) {
+      level = 'mid'
+    } else if (danceability >= 66) {
+      level = 'high'
     }
 
-    if (danceability >= 66) {
-      danceabilityObj.high = this.danceability.high;
+    for (let i = 0; i < 3; i++) {
+      const file = `${template[0]}dance_${level}_${i}${template[1]}`;
+      danceabilityArr.push(file);
     }
 
-    return danceabilityObj;
+    return danceabilityArr;
   }
 
-  danceability = {
-    low: '',
-    mid: '<img src="/assets/img/visualisation/dance_mid.gif" alt="dancing cat">',
-    high: '<img src="/assets/img/visualisation/dance_high.gif" alt="enthousiastic dancing cat">',
-  }
-  bronnen = {
-    low: '',
-    mid: ['https://twitter.com/USBFIG/status/1115050915059335169', 'https://knowyourmeme.com/memes/dancing-cat-gif'],
-    high: 'https://giphy.com/gifs/cat-dance-furry-BK1EfIsdkKZMY',
+  bronnen_gifs = {
+    low: {
+      0: 'https://fuckyeah-pixels.tumblr.com/post/33842467769',
+      1: 'https://tenor.com/en-GB/view/cute-hello-kitty-hearts-dance-gif-16314321',
+      2: '',
+    },
+    mid: {
+      0: 'https://knowyourmeme.com/memes/dancing-cat-gif',
+      1: 'https://tenor.com/en-GB/view/cat-dance-groove-cute-dancing-gif-16231868',
+      2: 'https://tenor.com/en-GB/view/cat-dancing-gif-26079394',
+      extra: 'https://twitter.com/USBFIG/status/1115050915059335169'
+    },
+    high: {
+      0: 'https://giphy.com/gifs/cat-dance-furry-BK1EfIsdkKZMY',
+      1: '',
+      2: '',
+    }
   }
 }
