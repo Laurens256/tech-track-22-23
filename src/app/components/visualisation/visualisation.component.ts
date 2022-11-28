@@ -104,7 +104,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     if (!filterPanel.classList.contains('hidden')) {
       setTimeout(() => {
         filterPanel.classList.add('delayedzindex');
-      }, 300);
+      }, 500);
+    } else {
+      filterPanel.classList.remove('delayedzindex');
     }
 
   }

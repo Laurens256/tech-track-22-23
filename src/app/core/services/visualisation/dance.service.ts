@@ -27,7 +27,7 @@ export class DanceService {
     low: {
       0: 'https://fuckyeah-pixels.tumblr.com/post/33842467769',
       1: 'https://tenor.com/en-GB/view/cute-hello-kitty-hearts-dance-gif-16314321',
-      2: '',
+      2: 'https://tenor.com/view/happy-dancing-cute-cat-delighted-gif-16286608',
     },
     mid: {
       0: 'https://knowyourmeme.com/memes/dancing-cat-gif',

@@ -11,16 +11,20 @@
       <h2>
         Toggle Elements
       </h2>
+      <label for="danceability">Danceability</label>
+      <input #danceability type="checkbox" id="danceability" name="danceability" (change)="this.toggleFilters(danceability)" checked>
+
       <label for="energy">Energy</label>
       <input #energy type="checkbox" id="energy" name="energy" (change)="this.toggleFilters(energy)" checked>
+
       <label for="acoustic">Acousticness</label>
       <input #acoustic type="checkbox" id="acoustic" name="acoustic" (change)="this.toggleFilters(acoustic)" checked>
     </section>
   </aside>
 
-  <div class="dancecontainer"></div>
-  <div class="dancecontainer"></div>
-  <div class="dancecontainer"></div>
+  <div class="dancecontainer danceability"></div>
+  <div class="dancecontainer danceability"></div>
+  <div class="dancecontainer danceability"></div>
 
 
   <!-- kamer -->
@@ -52,15 +56,15 @@
     <g class="energygroup right"></g>
 
     <!-- acousticness -->
-    <g class="acousticwavegroup topleft"></g>
-    <g class="acousticwavegroup topright"></g>
-    <g class="acousticwavegroup bottomright"></g>
-    <g class="acousticwavegroup bottomleft"></g>
+    <g class="acousticwavegroup topleft acoustic"></g>
+    <g class="acousticwavegroup topright acoustic"></g>
+    <g class="acousticwavegroup bottomright acoustic"></g>
+    <g class="acousticwavegroup bottomleft acoustic"></g>
 
-    <g class="speakergroup left"></g>
+    <g class="speakergroup left acoustic"></g>
     <!-- outline van de speaker, wss niet nodig -->
     <!-- <path style="fill:none;" d="M303.29,159.2l-20.9,10.5l0,32l20.9,10.6l21.3,-10.7l0,-32l-21.3,-10.4z" /> -->
-    <g class="speakergroup right"></g>
+    <g class="speakergroup right acoustic"></g>
 
     <style>
       svg * {
