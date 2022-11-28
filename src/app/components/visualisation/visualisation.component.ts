@@ -112,7 +112,6 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   toggleFilters(element: HTMLInputElement) {
-    console.log(element);
     document.querySelectorAll(`.${element.id}`)?.forEach(el => {
       el.classList.toggle('hidden');
     });

@@ -1,7 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { Playlist } from 'src/app/core/models/playlist';
 import { Router } from '@angular/router';
+
+import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth/index';
+
+import { forkJoin } from 'rxjs';
+
+import { Playlist, UserProfile } from 'src/app/core/models';
+
+import { UserDataService } from 'src/app/core/services/userData.service';
 
 @Component({
   selector: 'app-user-playlists',
@@ -10,13 +16,45 @@ import { Router } from '@angular/router';
 })
 export class UserPlaylistsComponent implements OnInit {
 
-  @Input() data!: Playlist[];
-
   constructor(
     private router: Router,
+    private spotifyAuthService: SpotifyAuthService,
+    private tokenService: TokenService,
+    private userDataService: UserDataService
   ) { }
 
+  userProfile!: UserProfile
+  playlists!: Playlist[];
+
+  loading: boolean = true;
+
   ngOnInit(): void {
+    this.checkAuth();
+  }
+
+  checkAuth() {
+    if (this.tokenService.getAccessToken !== '') {
+      this.spotifyAuthService.authorized();
+
+      // timeout om coole animatie te flexen
+      // setTimeout(() => {
+        this.requestUserData();
+      // }, 3000);
+    } else {
+      this.tokenService.clearToken();
+      this.spotifyAuthService.authorize();
+    }
+  }
+
+  requestUserData() {
+    forkJoin({
+      userProfile: this.userDataService.getUserInfo(),
+      userPlaylists: this.userDataService.getPlaylists()
+    }).subscribe(data => {
+      this.userProfile = data.userProfile
+      this.playlists = data.userPlaylists.items;
+      this.loading = false;
+    })
   }
 
   choosePlaylist(e: HTMLButtonElement) {
@@ -24,14 +62,10 @@ export class UserPlaylistsComponent implements OnInit {
     const playListId = e.id.split(';')[0];
 
     // zoek playlist met id en pass die via route state data mee zodat data niet opnieuw gefetched hoeft te worden
-    let playlist;
-    this.data.forEach(obj => {
-      if(obj.id == playListId) {
-        playlist = obj;
-      }
-    })
+    // let playlist;
+    const clickedPlaylist = this.playlists.filter(playlist => playlist.id === playListId)[0];
 
-    this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: playlist} });
+    this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: clickedPlaylist} });
   }
 
 }

@@ -1,6 +1,8 @@
-<main>
+<main *ngIf="!loading">
+  <h1>Welkom</h1>
+  <p>Kies een playlist om te visualiseren</p>
   <ul>
-    <li *ngFor="let playlist of data">
+    <li *ngFor="let playlist of playlists">
       <button #playlistButton id="{{playlist.id + ';' + playlist.tracks.total}}"
         (click)="choosePlaylist(playlistButton)" attr.aria-label="open playlist {{playlist.name}}">
         <img src="{{playlist.images[0].url}}" alt="playlist icon">
@@ -11,4 +13,20 @@
       </button>
     </li>
   </ul>
+
+  <div class="noplaylists" *ngIf="playlists.length == 0">Looks like you don't have any public playlists :(<br>You can create
+    one in <a href="https://open.spotify.com/" target="_blank">Spotify</a></div>
 </main>
+
+<div *ngIf="loading" class="loading">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
