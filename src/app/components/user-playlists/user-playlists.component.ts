@@ -62,7 +62,6 @@ export class UserPlaylistsComponent implements OnInit {
     const playListId = e.id.split(';')[0];
 
     // zoek playlist met id en pass die via route state data mee zodat data niet opnieuw gefetched hoeft te worden
-    // let playlist;
     const clickedPlaylist = this.playlists.filter(playlist => playlist.id === playListId)[0];
 
     this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: clickedPlaylist} });

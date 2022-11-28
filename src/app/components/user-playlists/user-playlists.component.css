@@ -5,19 +5,52 @@ main {
   flex-direction: column;
 }
 
-main h1 {
-  font-size: 2.5em;
-  margin-top: 1em;
+main header {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: .3em;
+  align-items: center;
   text-align: center;
+  margin: 2em 0;
+
+  /* zelfde width als ul eronder */
+  width: 57.5em;
+  max-width: calc(90vw - 1.6em);
 }
 
-main > p {
-  font-size: 1.2em;
-  width: 90%;
-  margin-top: .3em;
-  margin-bottom: 2em;
-  text-align: center;
+main header h1 {
+  font-size: 2.5em;
 }
+
+main header p {
+  font-size: 1.2em;
+}
+
+main header img {
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  height: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  main header {
+    margin-top: 3.5em;
+  }
+
+  main header img {
+    height: 3em;
+    top: -2.5em;
+    transform: none;
+  }
+}
+
+
 
 main ul {
   display: grid;
@@ -57,7 +90,7 @@ main ul li button:focus-visible {
 }
 
 main ul li button:focus-visible {
-  outline: var(--spotify-green) 2px solid;
+  outline: var(--spotify-green) 3px solid;
 }
 
 main ul li button img {
@@ -123,42 +156,53 @@ main div.noplaylists a {
 }
 
 @keyframes loader {
-  0%, 100% {
-      height: 2px;
+
+  0%,
+  100% {
+    height: 2px;
   }
 
   50% {
-      height: 80px;
+    height: 80px;
   }
 }
 
 .loading div:nth-child(1) {
   animation-delay: 1s;
 }
+
 .loading div:nth-child(2) {
   animation-delay: .8s;
 }
+
 .loading div:nth-child(3) {
   animation-delay: .6s;
 }
+
 .loading div:nth-child(4) {
   animation-delay: .4s;
 }
+
 .loading div:nth-child(5) {
   animation-delay: .2s;
 }
+
 .loading div:nth-child(6) {
   animation-delay: .2s;
 }
+
 .loading div:nth-child(7) {
   animation-delay: .4s;
 }
+
 .loading div:nth-child(8) {
   animation-delay: .6s;
 }
+
 .loading div:nth-child(9) {
   animation-delay: .8s;
 }
+
 .loading div:nth-child(10) {
   animation-delay: 1s;
 }

@@ -11,7 +11,7 @@ header {
 
 header.visualisationopen {
   /* calc 100vh + hoogte van info section en hoogte van visualize button */
-  height: calc(100vh + 3em + 15em);
+  height: calc(100vh + 3em + 14em);
 }
 
 header section.info {
@@ -63,6 +63,17 @@ header section.buttonsection {
 header section.buttonsection button {
   height: 100%;
   width: 8em;
+  transition: all .1s ease-in-out;
+}
+
+header button:hover,
+header button:focus-visible {
+  background: var(--spotify-green-hover);
+  transform: scale(1.05);
+}
+
+header button:focus-visible {
+  text-decoration: underline;
 }
 
 header button {
