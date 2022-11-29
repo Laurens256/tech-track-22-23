@@ -47,15 +47,10 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
-        type danceKey = keyof typeof dance;
         type energyKey = keyof typeof energy;
 
         type acousticWavesKey = keyof typeof acousticness.soundWaves;
         type acousticSpeakersKey = keyof typeof acousticness.speakers;
-
-        // danceContainers.forEach(container => {
-        //   container.innerHTML = dance[container.classList[1] as danceKey];
-        // })
 
         for (let i = 0; i < danceContainers.length; i++) {
           danceContainers[i].innerHTML = dance[i];
@@ -92,9 +87,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   ngAfterViewInit(): void {
     svg = document.querySelector('svg')!;
     danceContainers = document.querySelectorAll('.dancecontainer')!;
-    energyGroups = svg.querySelectorAll('.energygroup');
-    acousticWaveGroups = svg.querySelectorAll('.acousticwavegroup');
-    acousticSpeakerGroups = svg.querySelectorAll('.speakergroup');
+    energyGroups = document.querySelectorAll('.energygroup');
+    acousticWaveGroups = document.querySelectorAll('.acousticwavegroup');
+    acousticSpeakerGroups = document.querySelectorAll('.speakergroup');
   }
 
   toggleFiltersPanel() {

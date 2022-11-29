@@ -25,20 +25,19 @@ export class DanceService {
 
   bronnen_gifs = {
     low: {
-      0: 'https://fuckyeah-pixels.tumblr.com/post/33842467769',
+      0: 'https://tenor.com/view/milk-mocha-dance-cute-dancing-grooves-gif-16875359',
       1: 'https://tenor.com/en-GB/view/cute-hello-kitty-hearts-dance-gif-16314321',
       2: 'https://tenor.com/view/happy-dancing-cute-cat-delighted-gif-16286608',
     },
     mid: {
-      0: 'https://knowyourmeme.com/memes/dancing-cat-gif',
-      1: 'https://tenor.com/en-GB/view/cat-dance-groove-cute-dancing-gif-16231868',
-      2: 'https://tenor.com/en-GB/view/cat-dancing-gif-26079394',
-      extra: 'https://twitter.com/USBFIG/status/1115050915059335169'
+      0: 'https://tenor.com/view/love-mochi-cute-cat-gif-14105323',
+      1: 'https://tenor.com/view/distracton-dance-cats-eric-the-cat-humor-just-like-giolaboman-gif-21537298',
+      2: 'https://tenor.com/view/mocha-gif-20253967',
     },
     high: {
-      0: 'https://giphy.com/gifs/cat-dance-furry-BK1EfIsdkKZMY',
-      1: '',
-      2: '',
+      0: 'https://tenor.com/view/dancing-gif-24393094',
+      1: 'https://tenor.com/view/bear-dance-gif-21364988',
+      2: 'https://tenor.com/view/mocha-bear-dance-happy-smile-gif-14783170',
     }
   }
 }
