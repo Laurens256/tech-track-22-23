@@ -1,5 +1,6 @@
 <main [ngClass]="{'open' : this.isOpen}">
-  <button (click)="this.toggleFiltersPanel()" class="filterbtn" [attr.tabindex]="isOpen ? '0' : '-1'">
+  <button #filterButton (click)="this.toggleFiltersPanel(filterButton)" data-panel="filtercontainer" class="filterbtn"
+    [attr.tabindex]="isOpen ? '0' : '-1'">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.68 210.68">
       <path d="M205.613,30.693c0-10.405-10.746-18.149-32.854-23.676C154.659,2.492,130.716,0,105.34,0
       C79.965,0,56.021,2.492,37.921,7.017C15.813,12.544,5.066,20.288,5.066,30.693c0,3.85,1.476,7.335,4.45,10.479l68.245,82.777v79.23
@@ -12,7 +13,7 @@
       C58.1,59.1,81.058,61.387,105.34,61.387c24.283,0,47.24-2.287,65.034-6.449L119.631,116.486z" />
     </svg>
   </button>
-  <aside class="hidden">
+  <aside class="hidden filtercontainer">
     <section>
       <h2>Toggle Elements</h2>
 
@@ -34,12 +35,19 @@
         </label>
 
         <label for="instrumental">Instrumentalness
-          <input #instrumental type="checkbox" id="instrumental" name="instrumental" (change)="this.toggleFilters(instrumental)"
-            checked>
+          <input #instrumental type="checkbox" id="instrumental" name="instrumental"
+            (change)="this.toggleFilters(instrumental)" checked>
         </label>
 
       </div>
     </section>
+  </aside>
+
+  <aside *ngIf="isOpen" class="hidden creditscontainer">
+    <ul>
+      <li *ngFor="let source of gifSource">{{source.name}} via <a href="{{source.source}}"
+          target="_blank">{{source.source.split('/')[2].split('.')[0] | titlecase}}</a></li>
+    </ul>
   </aside>
 
   <div class="dancecontainer danceability"></div>

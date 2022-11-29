@@ -34,6 +34,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   first: boolean = true;
 
+  gifSource!: {name: string, source: string}[];
+
   ngOnChanges(changes: SimpleChanges) {
     if (this.isOpen) {
       if (this.first) {
@@ -54,8 +56,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         type acousticSpeakersKey = keyof typeof acousticness.speakers;
 
         for (let i = 0; i < danceContainers.length; i++) {
-          danceContainers[i].innerHTML = dance[i];
+          danceContainers[i].innerHTML = dance.gifs[i];
         }
+        this.gifSource = dance.source;
 
         // energyGroups.forEach(group => {
         //   group.innerHTML = energy[group.classList[1] as energyKey];
@@ -70,13 +73,11 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         });
 
         instrumentalBg.insertAdjacentHTML('beforeend', instrumentalness);
-
       }
     }
   }
 
   ngOnInit(): void {
-    // console.log(this.svg);
     window.addEventListener("scroll", () => {
       // console.log(scrollY);
       if (scrollY > 240 && scrollY < 280 && this.isOpen) {
@@ -95,15 +96,15 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     instrumentalBg = document.querySelector('.instrumental')!;
   }
 
-  toggleFiltersPanel() {
-    const filterPanel: HTMLElement = document.querySelector('main aside')!;
-    filterPanel.classList.toggle('hidden');
-    if (!filterPanel.classList.contains('hidden')) {
+  toggleFiltersPanel(e: HTMLButtonElement) {
+    const panel: HTMLElement = document.querySelector(`.${e.dataset['panel']}`)!;
+    panel.classList.toggle('hidden');
+    if (!panel.classList.contains('hidden')) {
       setTimeout(() => {
-        filterPanel.classList.add('delayedzindex');
+        panel.classList.add('delayedzindex');
       }, 500);
     } else {
-      filterPanel.classList.remove('delayedzindex');
+      panel.classList.remove('delayedzindex');
     }
 
   }

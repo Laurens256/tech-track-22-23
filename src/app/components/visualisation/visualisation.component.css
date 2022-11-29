@@ -14,10 +14,13 @@ app-visualisation main #room {
 	width: 100%;
 }
 
+
+
+/*----------------------------------------
+buttons voor filters, credits
+----------------------------------------*/
 app-visualisation main button {
 	position: absolute;
-	top: 0;
-	right: 0;
 	z-index: 6;
 	height: 4em;
 	width: 4em;
@@ -39,6 +42,21 @@ app-visualisation main button:hover svg path {
 	fill: var(--primary-text-color);
 }
 
+app-visualisation main button.filterbtn {
+	top: 0;
+	right: 0;
+}
+
+app-visualisation main button.creditsbtn {
+  bottom: 0;
+  right: 0;
+}
+
+
+
+/*----------------------------------------
+popups voor filters, credits
+----------------------------------------*/
 app-visualisation main aside {
 	background: var(--bg-color);
 	color: var(--primary-text-color);
@@ -48,25 +66,9 @@ app-visualisation main aside {
 	height: 20em;
 	width: 20em;
 	position: absolute;
-	top: 0;
-	right: 0;
 	transition: all .8s cubic-bezier(.6, .04, .1, 3);
 	filter: none;
 	visibility: visible;
-}
-
-app-visualisation main aside div {
-	display: flex;
-	flex-direction: column;
-	gap: .5em;
-	margin-top: 1em;
-}
-
-app-visualisation main aside div label {
-	display: flex;
-	flex-direction: row-reverse;
-	place-self: start;
-	gap: .5em;
 }
 
 @media screen and (min-width:601px) {
@@ -86,7 +88,7 @@ app-visualisation main aside.hidden {
 	visibility: hidden;
 }
 
-/* mobiel scherm filters */
+/* mobiel scherm popup */
 @media screen and (max-width:600px) {
 	app-visualisation main aside {
 		height: 90%;
@@ -103,6 +105,41 @@ app-visualisation main aside.hidden {
 	}
 }
 
+/*----------------------------------------
+popups voor filters
+----------------------------------------*/
+app-visualisation main aside.filtercontainer:not(.hidden) {
+  top: 0;
+  right: 0;
+}
+
+app-visualisation main aside.filtercontainer div {
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+	margin-top: 1em;
+}
+
+app-visualisation main aside.filtercontainer div label {
+	display: flex;
+	flex-direction: row-reverse;
+	place-self: start;
+	gap: .5em;
+}
+
+/*----------------------------------------
+popups voor credits
+----------------------------------------*/
+app-visualisation main aside.creditscontainer:not(.hidden) {
+  bottom: 0;
+  right: 0;
+}
+
+
+
+/*----------------------------------------
+visualisatie filter effects
+----------------------------------------*/
 app-visualisation .dancecontainer.hidden,
 app-visualisation .energy.hidden,
 app-visualisation .acoustic.hidden {
