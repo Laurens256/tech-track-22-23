@@ -25,12 +25,15 @@
 
   --soundwaves: rgb(152, 232, 35);
 
-  --speaker-left: #ed1174;
-  --speaker-top: #f7b500;
-  --speaker-right: #00c1d4;
-  --speaker-outer-circle: #000;
+  --note-color-1: #1db954;
+  --note-color-2: #212121;
+
+  --speaker-left: #363c4f;
+  --speaker-top: #898b8f;
+  --speaker-right: #42203e;
+  --speaker-outer-circle: #212121;
   --speaker-inner-circle: #212121;
-  --speaker-handle: #fff;
+  --speaker-handle: #041d2b;
 
   /* visualisation other */
   --acousticbounce: 1.2;

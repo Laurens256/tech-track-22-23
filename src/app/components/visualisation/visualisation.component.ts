@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
-import { DanceService, EnergyService, AcousticNessService } from 'src/app/core/services/visualisation';
+import { DanceService, EnergyService, AcousticNessService, InstrumentalService } from 'src/app/core/services/visualisation';
 
-let svg: SVGElement;
 let energyGroups: NodeListOf<SVGElement>;
 let acousticWaveGroups: NodeListOf<SVGElement>;
 let acousticSpeakerGroups: NodeListOf<SVGElement>;
 let danceContainers: NodeListOf<HTMLDivElement>;
+let instrumentalBg: SVGElement;
 
 @Component({
   selector: 'app-visualisation',
@@ -20,7 +20,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   constructor(
     private danceSvc: DanceService,
     private energySvc: EnergyService,
-    private acousticnessSvc: AcousticNessService
+    private acousticnessSvc: AcousticNessService,
+    private instrumentalSvc: InstrumentalService
   ) { }
 
 
@@ -41,11 +42,11 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
       }
 
       if (this.hasVisData) {
-        console.log(this.data);
+        console.log(this.data.averages);
         const dance = this.danceSvc.genDanceability(this.data.averages.danceability);
         const energy = this.energySvc.genEnergy(this.data.averages.energy);
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
-        // const instrumentalness = this.visualisationSvc.genInstrumentalness(this.data.averages.instrumentalness);
+        const instrumentalness = this.instrumentalSvc.genInstrumentalness(this.data.averages.instrumentalness);
 
         type energyKey = keyof typeof energy;
 
@@ -68,6 +69,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
           group.innerHTML = acousticness.speakers[group.classList[1] as acousticSpeakersKey];
         });
 
+        instrumentalBg.insertAdjacentHTML('beforeend', instrumentalness);
+
       }
     }
   }
@@ -85,17 +88,16 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    svg = document.querySelector('svg')!;
     danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = document.querySelectorAll('.energygroup');
     acousticWaveGroups = document.querySelectorAll('.acousticwavegroup');
     acousticSpeakerGroups = document.querySelectorAll('.speakergroup');
+    instrumentalBg = document.querySelector('.instrumental')!;
   }
 
   toggleFiltersPanel() {
     const filterPanel: HTMLElement = document.querySelector('main aside')!;
     filterPanel.classList.toggle('hidden');
-    // filterPanel.classList.remove('delayedzindex');
     if (!filterPanel.classList.contains('hidden')) {
       setTimeout(() => {
         filterPanel.classList.add('delayedzindex');
