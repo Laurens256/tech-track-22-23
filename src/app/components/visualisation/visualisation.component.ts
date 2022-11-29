@@ -34,7 +34,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   first: boolean = true;
 
-  gifSource!: {name: string, source: string}[];
+  gifSource!: { name: string, source: string }[];
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.isOpen) {
@@ -79,7 +79,6 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   ngOnInit(): void {
     window.addEventListener("scroll", () => {
-      // console.log(scrollY);
       if (scrollY > 240 && scrollY < 280 && this.isOpen) {
         document.querySelector('.back')?.classList.add('hidden');
       } else {
@@ -89,6 +88,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
+    // haalt alle elementen op die we nodig hebben
     danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = document.querySelectorAll('.energygroup');
     acousticWaveGroups = document.querySelectorAll('.acousticwavegroup');
@@ -96,7 +96,12 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     instrumentalBg = document.querySelector('.instrumental')!;
   }
 
-  toggleFiltersPanel(e: HTMLButtonElement) {
+  togglePanel(e: HTMLElement) {
+    //haalt eerst alle popups die open staan weg (behalve degene die we willen togglen)
+    document.querySelectorAll('.panel')?.forEach((el: any) => {
+      el.classList.contains(e.dataset['panel']) ? null : el.classList.add('hidden');
+    });
+
     const panel: HTMLElement = document.querySelector(`.${e.dataset['panel']}`)!;
     panel.classList.toggle('hidden');
     if (!panel.classList.contains('hidden')) {
@@ -110,6 +115,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   }
 
   toggleFilters(element: HTMLInputElement) {
+    //zoek alle elementen die de id hebben van de checkbox en geef ze de class hidden
     document.querySelectorAll(`.${element.id}`)?.forEach(el => {
       el.classList.toggle('hidden');
     });

@@ -32,7 +32,7 @@ export class DanceService {
     mid: [
       { name: 'Love Mochi Sticker', source: 'https://tenor.com/view/love-mochi-cute-cat-gif-14105323' },
       { name: 'Distracton Dance Cats Sticker', source: 'https://tenor.com/view/distracton-dance-cats-eric-the-cat-humor-just-like-giolaboman-gif-21537298' },
-      { name: 'Mocha Sticker', source: 'https://tenor.com/view/mocha-gif-20253967' },
+      { name: 'Happy Cat Sticker', source: 'https://tenor.com/view/happy-cat-gif-26295747' },
     ],
     high: [
       { name: 'Dancing Sticker', source: 'https://tenor.com/view/dancing-gif-24393094' },
