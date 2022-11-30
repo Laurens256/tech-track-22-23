@@ -17,7 +17,7 @@ app-visualisation main #room {
 
 
 /*----------------------------------------
-buttons voor filters, credits
+buttons voor filters, raw data
 ----------------------------------------*/
 app-visualisation main button {
 	position: absolute;
@@ -47,15 +47,15 @@ app-visualisation main button.filterbtn {
 	right: 0;
 }
 
-app-visualisation main button.creditsbtn {
-  bottom: 0;
-  right: 0;
+app-visualisation main button.rawdatabtn {
+  top: 0;
+  left: 0;
 }
 
 
 
 /*----------------------------------------
-popups voor filters, credits
+popups voor filters, raw data, filters
 ----------------------------------------*/
 app-visualisation main aside {
 	background: var(--bg-color);
@@ -78,11 +78,19 @@ app-visualisation main aside.hidden {
 	filter: blur(3px);
 	z-index: 1;
 	top: 50%;
-	right: 50%;
 	transform: translate(50%, -50%);
 	transition: all .8s cubic-bezier(0.90, -2, 0.40, 0.96);
 	visibility: hidden;
 }
+
+/* fix zodat popup links en rechts beide smooth animeert */
+app-visualisation main aside.filtercontainer.hidden {
+  right: 50%;
+}
+app-visualisation main aside.rawdatacontainer.hidden {
+  left: 0;
+}
+
 
 /* mobiel scherm popup */
 @media screen and (max-width:600px) {
@@ -99,10 +107,70 @@ app-visualisation main aside.hidden {
 		top: 0;
 		right: 0;
 	}
+
+  app-visualisation main aside.rawdatacontainer.hidden {
+    transform: translate(-100%, 0);
+  }
 }
 
+
 /*----------------------------------------
-popups voor filters
+popups voor raw data
+----------------------------------------*/
+app-visualisation main aside.rawdatacontainer:not(.hidden) {
+  top: 0;
+  left: 0;
+}
+
+app-visualisation main aside.rawdatacontainer {
+  height: fit-content;
+}
+
+app-visualisation main aside.rawdatacontainer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: .5em;
+}
+
+app-visualisation main aside.rawdatacontainer li > div {
+  height: 1em;
+  width: 100%;
+  background: red;
+  position: relative;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+app-visualisation main aside.rawdatacontainer li > div::before,
+app-visualisation main aside.rawdatacontainer li > div::after {
+  content: ' ';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background: green;
+  top: 0;
+}
+app-visualisation main aside.rawdatacontainer li > div::before{
+  left: 33%;
+}
+app-visualisation main aside.rawdatacontainer li > div::after {
+  left: 66%;
+}
+
+app-visualisation main aside.rawdatacontainer li > div > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: blue;
+  transition: all 1s ease;
+  transition-delay: .8s;
+}
+
+
+/*----------------------------------------
+popup voor filters
 ----------------------------------------*/
 app-visualisation main aside.filtercontainer:not(.hidden) {
   top: 0;
@@ -124,7 +192,8 @@ app-visualisation main aside.filtercontainer div label {
 }
 
 @media screen and (min-width:601px) {
-	app-visualisation main aside.filtercontainer.delayedzindex {
+	app-visualisation main aside.rawdatacontainer.delayedzindex,
+  app-visualisation main aside.filtercontainer.delayedzindex {
 		z-index: 5;
 	}
 }
