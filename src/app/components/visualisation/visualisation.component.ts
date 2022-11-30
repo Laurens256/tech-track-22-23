@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
-import { DanceService, EnergyService, AcousticNessService, InstrumentalService } from 'src/app/core/services/visualisation';
+import { DanceService, EnergyService, AcousticNessService, InstrumentalService, TooltipService } from 'src/app/core/services/visualisation';
 
+let mainElement: HTMLElement;
 let energyGroups: NodeListOf<SVGElement>;
 let acousticWaveGroups: NodeListOf<SVGElement>;
 let acousticSpeakerGroups: NodeListOf<SVGElement>;
@@ -21,7 +22,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     private danceSvc: DanceService,
     private energySvc: EnergyService,
     private acousticnessSvc: AcousticNessService,
-    private instrumentalSvc: InstrumentalService
+    private instrumentalSvc: InstrumentalService,
+    private tooltipSvc: TooltipService,
   ) { }
 
 
@@ -89,11 +91,17 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
 
   ngAfterViewInit(): void {
     // haalt alle elementen op die we nodig hebben
+    mainElement = document.querySelector('main')!;
     danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = document.querySelectorAll('.energygroup');
     acousticWaveGroups = document.querySelectorAll('.acousticwavegroup');
     acousticSpeakerGroups = document.querySelectorAll('.speakergroup');
     instrumentalBg = document.querySelector('.instrumental')!;
+
+    // tooltip ding
+    mainElement.addEventListener('mouseover', (e) => {
+      this.tooltipSvc.doTooltip(e);
+    });
   }
 
   togglePanel(e: HTMLElement) {

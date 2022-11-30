@@ -209,7 +209,7 @@ app-visualisation .dancecontainer {
   pointer-events: none;
 	opacity: 1;
 	position: absolute;
-	z-index: 4;
+	z-index: 3;
 	height: 0;
 	width: 0;
 	margin-left: 50%;
@@ -217,6 +217,10 @@ app-visualisation .dancecontainer {
 	justify-content: center;
 	align-items: center;
 	transition: all 1.3s ease-in-out;
+}
+
+app-visualisation .dancecontainer img {
+  pointer-events: all;
 }
 
 app-visualisation main.open .dancecontainer {
@@ -242,4 +246,19 @@ app-visualisation .dancecontainer:nth-of-type(3) img {
 	height: 20%;
 	margin-left: -30%;
 	margin-top: 25%;
+}
+
+app-visualisation main .tooltip {
+  position: absolute;
+  background: red;
+  height: 2em;
+  width: 5em;
+  opacity: 0;
+  transition: all .1s ease-in-out;
+  z-index: 7;
+  pointer-events: none;
+}
+
+app-visualisation .tooltip.visible {
+  opacity: 1;
 }

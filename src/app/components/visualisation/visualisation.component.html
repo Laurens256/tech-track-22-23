@@ -91,13 +91,13 @@
     <g class="acousticwavegroup bottomright acoustic"></g>
     <g class="acousticwavegroup bottomleft acoustic"></g>
 
-    <g class="speakergroup left acoustic"></g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="speakergroup left acoustic"></g>
     <!-- outline van de speaker, wss niet nodig -->
     <!-- <path style="fill:none;" d="M303.29,159.2l-20.9,10.5l0,32l20.9,10.6l21.3,-10.7l0,-32l-21.3,-10.4z" /> -->
     <g class="speakergroup right acoustic"></g>
 
     <!-- tijdelijke placeholder voor lijstje wat op muur komt te hangen -->
-    <path #creditsButton tabindex="0" (click)="this.togglePanel(creditsButton)"
+    <path #creditsButton class="creditsbtn" tabindex="0" (click)="this.togglePanel(creditsButton)"
       (keyup.enter)="this.togglePanel(creditsButton)" data-panel="creditscontainer"
       d="M 10 10 H 90 V 90 H 10 L 10 10" />
 
@@ -266,4 +266,5 @@
       }
     </style>
   </svg>
+  <div class="tooltip visible"><p></p></div>
 </main>
