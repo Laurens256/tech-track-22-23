@@ -99,7 +99,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     instrumentalBg = document.querySelector('.instrumental')!;
 
     // tooltip ding
-    mainElement.addEventListener('mouseover', (e) => {
+    mainElement.addEventListener('mousemove', (e) => {
       this.tooltipSvc.doTooltip(e);
     });
   }

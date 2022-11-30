@@ -5,35 +5,28 @@ import { formatNumber } from '@angular/common'
 export class TooltipService {
   constructor() { }
 
-  doTooltip(e: any) {
+  doTooltip(e: MouseEvent) {
     let data;
     const tooltip: HTMLDivElement = document.querySelector('.tooltip')!;
 
-    // if (e.target.dataset != undefined) {
-      if (e.target.dataset.tooltip != undefined) {
-        data = e.target.dataset.tooltip;
-      }
-    // }
-    // if (e.target.parentNode.dataset != undefined) {
-      if (e.target.parentNode.dataset.tooltip != undefined) {
-        data = e.target.parentNode.dataset.tooltip;
-      // }
-    }
+    const tooltipData: HTMLElement = (e.target as HTMLElement).closest('*[data-tooltip]')!;
 
-    if (data) {
-      const x = e.clientX;
-      const y = e.clientY;
+    if (tooltipData) {
+      data = tooltipData.dataset['tooltip'];
 
+      const mainElement = document.querySelector('main')!.getBoundingClientRect();
+      const x = e.clientX - mainElement.left;
+      const y = e.clientY - mainElement.top;
       const tooltipText: HTMLParagraphElement = tooltip.querySelector('p')!;
 
       if (tooltip && tooltipText) {
         tooltip.classList.add('visible');
-        tooltip.style.left = `${x}px`;
-        tooltip.style.top = `${y}px`;
+        tooltip.style.left = `${x + 15}px`;
+        tooltip.style.top = `${y + 15}px`;
 
-        tooltipText.textContent = data;
+        const roundedNumber = parseFloat(data!.split(' ')[1]).toFixed(2);
+        tooltipText.textContent = `${data!.split(' ')[0]} ${roundedNumber}%`;
       }
-
     } else {
       tooltip.classList.remove('visible');
     }

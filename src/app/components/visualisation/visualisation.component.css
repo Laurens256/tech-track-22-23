@@ -250,15 +250,25 @@ app-visualisation .dancecontainer:nth-of-type(3) img {
 
 app-visualisation main .tooltip {
   position: absolute;
-  background: red;
-  height: 2em;
-  width: 5em;
+  background: var(--spotify-green);
+  height: calc(fit-content + 1em);
+  width: calc(fit-content + 1em);
+  padding: .5em .5em;
   opacity: 0;
-  transition: all .1s ease-in-out;
+  transition: opacity .2s ease-in-out;
   z-index: 7;
   pointer-events: none;
+  border-radius: 8px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
 }
 
 app-visualisation .tooltip.visible {
   opacity: 1;
+}
+
+app-visualisation main .tooltip p {
+  color: black;
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 600;
 }

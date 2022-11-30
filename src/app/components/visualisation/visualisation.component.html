@@ -52,9 +52,9 @@
     </ul>
   </aside>
 
-  <div class="dancecontainer danceability"></div>
-  <div class="dancecontainer danceability"></div>
-  <div class="dancecontainer danceability"></div>
+  <div attr.data-tooltip="Danceability: {{data.averages.danceability}}" class="dancecontainer danceability"></div>
+  <div attr.data-tooltip="Danceability: {{data.averages.danceability}}" class="dancecontainer danceability"></div>
+  <div attr.data-tooltip="Danceability: {{data.averages.danceability}}" class="dancecontainer danceability"></div>
 
 
   <!-- kamer -->
@@ -86,15 +86,17 @@
     <g class="energygroup right"></g>
 
     <!-- acousticness -->
-    <g class="acousticwavegroup topleft acoustic"></g>
-    <g class="acousticwavegroup topright acoustic"></g>
-    <g class="acousticwavegroup bottomright acoustic"></g>
-    <g class="acousticwavegroup bottomleft acoustic"></g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="acousticwavegroup topleft acoustic"></g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="acousticwavegroup topright acoustic"></g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="acousticwavegroup bottomright acoustic">
+    </g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="acousticwavegroup bottomleft acoustic">
+    </g>
 
     <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="speakergroup left acoustic"></g>
     <!-- outline van de speaker, wss niet nodig -->
     <!-- <path style="fill:none;" d="M303.29,159.2l-20.9,10.5l0,32l20.9,10.6l21.3,-10.7l0,-32l-21.3,-10.4z" /> -->
-    <g class="speakergroup right acoustic"></g>
+    <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="speakergroup right acoustic"></g>
 
     <!-- tijdelijke placeholder voor lijstje wat op muur komt te hangen -->
     <path #creditsButton class="creditsbtn" tabindex="0" (click)="this.togglePanel(creditsButton)"
@@ -266,5 +268,7 @@
       }
     </style>
   </svg>
-  <div class="tooltip visible"><p></p></div>
+  <div class="tooltip">
+    <p></p>
+  </div>
 </main>
