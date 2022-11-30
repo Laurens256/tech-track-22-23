@@ -99,7 +99,7 @@
     <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="speakergroup right acoustic"></g>
 
     <!-- tijdelijke placeholder voor lijstje wat op muur komt te hangen -->
-    <path #creditsButton class="creditsbtn" tabindex="0" (click)="this.togglePanel(creditsButton)"
+    <path aria-label="open gif credits" #creditsButton class="creditsbtn" tabindex="0" (click)="this.togglePanel(creditsButton)"
       (keyup.enter)="this.togglePanel(creditsButton)" data-panel="creditscontainer"
       d="M 10 10 H 90 V 90 H 10 L 10 10" />
 
