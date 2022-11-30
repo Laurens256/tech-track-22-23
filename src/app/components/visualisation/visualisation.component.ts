@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 import { Averages, Highlights } from 'src/app/core/models';
 import { DanceService, EnergyService, AcousticNessService, InstrumentalService, TooltipService } from 'src/app/core/services/visualisation';
@@ -14,7 +14,8 @@ let instrumentalBg: SVGElement;
   selector: 'app-visualisation',
   templateUrl: './visualisation.component.html',
   styleUrls: ['./visualisation.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit {
 
@@ -108,6 +109,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     //haalt eerst alle popups die open staan weg (behalve degene die we willen togglen)
     document.querySelectorAll('.panel')?.forEach((el: any) => {
       el.classList.contains(e.dataset['panel']) ? null : el.classList.add('hidden');
+      el.classList.contains(e.dataset['panel']) ? null : el.classList.remove('delayedzindex');
     });
 
     const panel: HTMLElement = document.querySelector(`.${e.dataset['panel']}`)!;
@@ -119,7 +121,33 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     } else {
       panel.classList.remove('delayedzindex');
     }
+  }
 
+
+  barStyleCount: number = 0;
+  barStyle(width: number, i: number) {
+    // geen idee waarom dit zo werkt maar functie moet 2x voor iedere bar worden aangeroepen zodat de juiste animatie wordt geladen
+    if (this.barStyleCount > Object.keys(this.data.averages).length * 2) return;
+    this.barStyleCount++;
+    document.documentElement.style.setProperty(`--barwidth${i}`, `${width}%`);
+    //definieert de kleur waar de animatie op eindigt
+    if(width <= 33) {
+      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barlaag)`);
+    } else if(width <= 66) {
+      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barmid)`);
+    } else {
+      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barhoog)`);
+    }
+    //return hier zodat er niet 100.000 keer hetzelfde in de css wordt gezet
+    if (this.barStyleCount > Object.keys(this.data.averages).length) return;
+
+    //animatie voor de bars
+    const sheet = window.document.styleSheets[0];
+    sheet.insertRule(`@keyframes bar${i} { 0% { background: var(--barlaag); width: 0%; } 50% { background: var(--barmid); width: calc(var(--barwidth${i}) / 2); } 100% { background: var(--barcolor${i}); width: var(--barwidth${i}); } }`, sheet.cssRules.length);
+
+    // laat animatie spelen als de bars in beeld komen
+    sheet.insertRule(`app-visualisation main aside.rawdatacontainer:not(.hidden) ul li:nth-of-type(${i+1})>div>div {animation-name: bar${i};animation-delay: ${i * 0.5 + 0.5}s;background: var(--barcolor${i});}`, sheet.cssRules.length);
+    return;
   }
 
   toggleFilters(element: HTMLInputElement) {

@@ -21,6 +21,10 @@
   --spotify-green-hover: #1ed760;
 
   /* visualisation colors */
+  --barlaag: #ffa500;
+  --barmid: #ABAD20;
+  --barhoog: var(--spotify-green);
+
   --energy-fill: #e344de;
 
   --soundwaves: rgb(152, 232, 35);
@@ -34,9 +38,6 @@
   --speaker-outer-circle: #212121;
   --speaker-inner-circle: #212121;
   --speaker-handle: #041d2b;
-
-  /* visualisation other */
-  --acousticbounce: 1.2;
 
   /* sizes */
   --playlist-song-width: 24em;
