@@ -1,4 +1,6 @@
-<main [ngClass]="{'open' : this.isOpen}">
+<main [ngClass]="{'open' : this.isOpen}" class="discohidden">
+  <app-disco></app-disco>
+
   <button #rawdatabutton (click)="this.togglePanel(rawdatabutton)" data-panel="rawdatacontainer" class="rawdatabtn"
     [attr.tabindex]="isOpen ? '0' : '-1'">Raw Data</button>
 

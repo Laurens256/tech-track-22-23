@@ -6,6 +6,7 @@ import { UserPlaylistsComponent } from './components/user-playlists/user-playlis
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { AuthorizingComponent } from './components/authorizing/authorizing.component';
 import { VisualisationComponent } from './components/visualisation/visualisation.component';
+import { DiscoComponent } from './components/disco/disco.component';
 
 import { AuthGuard } from './core/services/spotifyAuth/auth.guard';
 
@@ -36,5 +37,6 @@ export const routingComponents = [
   AuthorizingComponent,
   UserPlaylistsComponent,
   PlaylistComponent,
-  VisualisationComponent
+  VisualisationComponent,
+  DiscoComponent
 ];

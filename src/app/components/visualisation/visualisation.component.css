@@ -12,6 +12,43 @@ app-visualisation main #room {
 	z-index: 2;
 	height: 100%;
 	width: 100%;
+  transition: all 1.3s linear;
+  opacity: 1;
+}
+
+
+
+/*----------------------------------------
+DISCO
+----------------------------------------*/
+app-visualisation main app-disco {
+  display: none;
+}
+app-visualisation main app-disco.visible {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  transform: translateY(-100%);
+}
+
+app-visualisation main.open app-disco.visible {
+  animation: discoSwoop 5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes discoSwoop {
+  0%, 10%, 90%, 100% {
+    transform: translateY(-100%);
+  }
+  30%, 70% {
+    transform: translateY(0);
+  }
+}
+
+app-visualisation main.discohidden #room,
+app-visualisation main.discohidden .dancecontainer {
+  opacity: 0;
 }
 
 

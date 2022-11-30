@@ -4,6 +4,7 @@ import { Averages, Highlights } from 'src/app/core/models';
 import { DanceService, EnergyService, AcousticNessService, InstrumentalService, TooltipService } from 'src/app/core/services/visualisation';
 
 let mainElement: HTMLElement;
+let SVGElement: SVGElement;
 let energyGroups: NodeListOf<SVGElement>;
 let acousticWaveGroups: NodeListOf<SVGElement>;
 let acousticSpeakerGroups: NodeListOf<SVGElement>;
@@ -42,8 +43,15 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   ngOnChanges(changes: SimpleChanges) {
     if (this.isOpen) {
       if (this.first) {
+        //speelt een disco animatie af wanneer je visualisatie eerste keer opent
         this.first = !this.first;
-        // speel animatie dingetje af
+        setTimeout(() => {
+          document.querySelector('app-disco')?.classList.add('visible');
+          setTimeout(() => {
+            document.querySelector('app-disco')?.remove()
+            mainElement.classList.remove('discohidden');
+          }, 5000);
+        }, 400);
       }
 
       if (this.hasVisData) {
@@ -93,6 +101,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   ngAfterViewInit(): void {
     // haalt alle elementen op die we nodig hebben
     mainElement = document.querySelector('main')!;
+    SVGElement = document.querySelector('svg#room')!;
     danceContainers = document.querySelectorAll('.dancecontainer')!;
     energyGroups = document.querySelectorAll('.energygroup');
     acousticWaveGroups = document.querySelectorAll('.acousticwavegroup');
