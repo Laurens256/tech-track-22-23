@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, View
 
 import { Averages, Highlights } from 'src/app/core/models';
 import { DanceService, EnergyService, AcousticNessService, InstrumentalService, TooltipService } from 'src/app/core/services/visualisation';
+import { environment } from 'src/environments/environment';
 
 let mainElement: HTMLElement;
 let SVGElement: SVGElement;
@@ -39,20 +40,22 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
   first: boolean = true;
 
   gifSource!: { name: string, source: string }[];
+  otherSources = environment.otherSources;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.isOpen) {
-      if (this.first) {
-        //speelt een disco animatie af wanneer je visualisatie eerste keer opent
-        this.first = !this.first;
-        setTimeout(() => {
-          document.querySelector('app-disco')?.classList.add('visible');
-          setTimeout(() => {
-            document.querySelector('app-disco')?.remove();
-            mainElement.classList.remove('discohidden');
-          }, 4000);
-        }, 600);
-      }
+      // if (this.first) {
+      //   //speelt een disco animatie af wanneer je visualisatie eerste keer opent
+      //   this.first = !this.first;
+      //   setTimeout(() => {
+      //     document.querySelector('app-disco')?.classList.add('visible');
+      //     setTimeout(() => {
+      //       document.querySelector('app-disco')?.remove();
+      //       mainElement.classList.remove('discohidden');
+      //     }, 4000);
+      //   }, 600);
+      // }
+      mainElement.classList.remove('discohidden');
 
       if (this.hasVisData) {
         console.log(this.data.averages);

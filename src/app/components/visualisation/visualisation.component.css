@@ -56,7 +56,7 @@ app-visualisation main.discohidden .dancecontainer img {
 
 
 /*----------------------------------------
-buttons voor filters, raw data
+buttons voor filters, raw data, credits
 ----------------------------------------*/
 app-visualisation main button {
 	position: absolute;
@@ -89,6 +89,10 @@ app-visualisation main button.filterbtn {
 app-visualisation main button.rawdatabtn {
 	top: 0;
 	left: 0;
+}
+
+app-visualisation main g.creditsbtn {
+  cursor: pointer;
 }
 
 
@@ -316,10 +320,14 @@ app-visualisation main aside.creditscontainer button:after {
 }
 
 app-visualisation main aside.creditscontainer ul {
-	margin-top: 1em;
+	margin-top: .5em;
 	display: flex;
 	gap: .5em;
 	flex-direction: column;
+}
+
+app-visualisation main aside.creditscontainer ul:not(:last-of-type) {
+  margin-bottom: 1em;
 }
 
 

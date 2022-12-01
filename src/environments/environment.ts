@@ -5,7 +5,13 @@
 export const environment = {
   production: false,
   client_id: '176a1a3e2d5a4065983995129a9b96bf',
-  apiUrl: 'http://localhost:3000/api/authorize/'
+  apiUrl: 'http://localhost:3000/api/authorize/',
+  otherSources: [
+    {
+      name: 'Disco Ball',
+      source: 'https://codepen.io/YusukeNakaya/pen/WNoWzxX'
+    }
+  ]
 };
 
 /*
