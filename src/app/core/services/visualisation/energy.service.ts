@@ -14,7 +14,6 @@ export class EnergyService {
     if (energy >= 66) {
       lights += this.energy.high;
     }
-    console.log(lights);
 
     return lights;
   }

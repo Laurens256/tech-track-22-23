@@ -10,6 +10,7 @@ import { SpotifyAuthService, AuthGuard, TokenService, SpotifyAuthInterceptor }
 from './core/services/spotifyAuth/index';
 import { DanceService, EnergyService, AcousticNessService, InstrumentalService, TooltipService } from './core/services/visualisation';
 import { UserDataService } from './core/services/userData.service';
+import { PreferencesService } from './core/services/preferences.service';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { UserDataService } from './core/services/userData.service';
     TooltipService,
 
     UserDataService,
+    PreferencesService,
     [{
       provide:  HTTP_INTERCEPTORS,
       useClass:  SpotifyAuthInterceptor,

@@ -6,6 +6,7 @@ import { FastAverageColor } from 'fast-average-color';
 import { Track, AudioFeatures, Playlist, Highlights, Averages } from 'src/app/core/models';
 import { SpotifyAuthService, TokenService } from 'src/app/core/services/spotifyAuth';
 import { UserDataService } from 'src/app/core/services/userData.service';
+import { PreferencesService } from 'src/app/core/services/preferences.service';
 
 @Component({
   selector: 'app-playlist',
@@ -18,7 +19,8 @@ export class PlaylistComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private tokenService: TokenService,
-    private spotifyAuthService: SpotifyAuthService
+    private spotifyAuthService: SpotifyAuthService,
+    private prefSvc: PreferencesService
   ) { }
 
   loading: boolean = true;
@@ -136,7 +138,15 @@ export class PlaylistComponent implements OnInit {
     if (this.visualisationOpen) {
       // 272px is de hoogte van de info section waar we voorbij willen scrollen
       //delay zodat playlists met weinig nummers ook scrollen en ziet er wel geinig uit
-      setTimeout(() => window.scrollTo({ top: 272, behavior: 'smooth' }), 800)
+      setTimeout(() => {
+        window.scrollTo({ top: 272, behavior: 'smooth' })
+        // begin met muziek spelen als autoplay aan staat
+        if(this.prefSvc.autoplay == true) {
+          document.querySelector('audio')?.play();
+          this.isPlaying = true;
+        }
+      }, 800);
+
     } else {
       setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 800)
     }

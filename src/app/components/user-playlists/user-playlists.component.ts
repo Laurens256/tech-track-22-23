@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs';
 import { Playlist, UserProfile } from 'src/app/core/models';
 
 import { UserDataService } from 'src/app/core/services/userData.service';
+import { PreferencesService } from 'src/app/core/services/preferences.service';
 
 @Component({
   selector: 'app-user-playlists',
@@ -20,16 +21,22 @@ export class UserPlaylistsComponent implements OnInit {
     private router: Router,
     private spotifyAuthService: SpotifyAuthService,
     private tokenService: TokenService,
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private prefSvc: PreferencesService,
   ) { }
 
   userProfile!: UserProfile
   playlists!: Playlist[];
 
+  preferences = {
+    autoplay: true
+  }
+
   loading: boolean = true;
 
   ngOnInit(): void {
     this.checkAuth();
+    this.preferences.autoplay = this.prefSvc.autoplay;
   }
 
   checkAuth() {
@@ -65,6 +72,15 @@ export class UserPlaylistsComponent implements OnInit {
     const clickedPlaylist = this.playlists.filter(playlist => playlist.id === playListId)[0];
 
     this.router.navigateByUrl(`playlist?id=${e.id}`, { state: {data: clickedPlaylist} });
+  }
+
+  togglePrefPanel() {
+    document.querySelector('.prefpanel')?.classList.toggle('open');
+  }
+
+  updatePref(pref: HTMLInputElement) {
+    type allPrefs = 'autoplay';
+    this.prefSvc.setPreference(pref.id as allPrefs, pref.checked)
   }
 
 }

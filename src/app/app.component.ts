@@ -4,6 +4,7 @@ import { SpotifyAuthService } from './core/services/spotifyAuth/index';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TokenService } from './core/services/spotifyAuth/index';
+import { PreferencesService } from './core/services/preferences.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   constructor(
     private spotifyAuthService: SpotifyAuthService,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private prefSvc: PreferencesService,
   ) {
     // wanneer user reload, sla access token weer op zodat user niet opnieuw in hoeft te loggen
     this.subscription = router.events.subscribe((event) => {
