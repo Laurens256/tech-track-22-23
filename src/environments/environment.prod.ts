@@ -6,6 +6,10 @@ export const environment = {
     {
       name: 'Disco Ball',
       source: 'https://codepen.io/YusukeNakaya/pen/WNoWzxX'
+    },
+    {
+      name: 'Searchlights',
+      source: 'https://codepen.io/bennettfeely/pen/OJqBgL?editors=1100'
     }
   ]
 };

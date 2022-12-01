@@ -56,6 +56,11 @@
           (change)="this.toggleFilters(instrumental)" checked>
       </label>
 
+      <label for="credits">Sources Sign
+        <input #credits type="checkbox" id="credits" name="credits sign"
+          (change)="this.toggleFilters(credits)" checked>
+      </label>
+
     </div>
   </aside>
 
@@ -120,7 +125,7 @@
     <g attr.data-tooltip="Acousticness: {{data.averages.acousticness}}" class="speakergroup right acoustic"></g>
 
     <!-- panel voor credits muurbordje -->
-    <g aria-label="open gif credits" #creditsButton class="creditsbtn" [attr.tabindex]="isOpen ? '0' : '-1'"
+    <g aria-label="open gif credits" #creditsButton class="creditsbtn credits" [attr.tabindex]="isOpen ? '0' : '-1'"
       (click)="this.togglePanel(creditsButton)" (keyup.enter)="this.togglePanel(creditsButton)"
       data-panel="creditscontainer" transform="matrix(1, 0, 0, 1, 107.272659, 103.491241)">
       <polyline points="21.34 4.99 11.92 .74 11.07 2.09 5.19 13.23"

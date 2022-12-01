@@ -60,11 +60,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
       if (this.hasVisData) {
         console.log(this.data.averages);
         const dance = this.danceSvc.genDanceability(this.data.averages.danceability);
-        const energy = this.energySvc.genEnergy(this.data.averages.energy);
+        const lights = this.energySvc.genLights(this.data.averages.energy);
         const acousticness = this.acousticnessSvc.genAcousticness(this.data.averages.acousticness);
         const instrumentalness = this.instrumentalSvc.genInstrumentalness(this.data.averages.instrumentalness);
-
-        type energyKey = keyof typeof energy;
 
         type acousticWavesKey = keyof typeof acousticness.soundWaves;
         type acousticSpeakersKey = keyof typeof acousticness.speakers;
@@ -74,9 +72,9 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         }
         this.gifSource = dance.source;
 
-        // energyGroups.forEach(group => {
-        //   group.innerHTML = energy[group.classList[1] as energyKey];
-        // })
+        if(document.querySelector('.discolightscontainer')) {
+          document.querySelector('.discolightscontainer')!.innerHTML = lights;
+        }
 
         acousticWaveGroups.forEach(group => {
           group.innerHTML = acousticness.soundWaves[group.classList[1] as acousticWavesKey];

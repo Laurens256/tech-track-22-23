@@ -22,6 +22,7 @@ export class AcousticNessService {
     wavesSvg.bottomright = this.acousticWaves.bottomright.low;
     wavesSvg.bottomleft = this.acousticWaves.bottomleft.low;
     document.documentElement.style.setProperty('--acousticbounce', '1.3');
+    // document.documentElement.style.setProperty('--soundwaves', 'var(--barlow)');
 
     speakerSvg.left = speakerSvg.left + this.acousticSpeakers.left.low;
     speakerSvg.right = speakerSvg.right + this.acousticSpeakers.right.low;
