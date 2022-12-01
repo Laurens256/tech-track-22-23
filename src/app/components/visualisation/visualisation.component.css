@@ -98,6 +98,29 @@ app-visualisation main button.rawdatabtn {
   left: 0;
 }
 
+/* code voor kleine hover effect, vraag me niet wat er allemaal gebeurt */
+app-visualisation main button.rawdatabtn:hover path:nth-of-type(2),
+app-visualisation main button.rawdatabtn:focus-visible path:nth-of-type(2),
+app-visualisation main aside:not(.hidden)~button.rawdatabtn path:nth-of-type(2) {
+  fill: var(--barmid);
+}
+app-visualisation main button.rawdatabtn:hover path:nth-of-type(3),
+app-visualisation main button.rawdatabtn:focus-visible path:nth-of-type(3),
+app-visualisation main aside:not(.hidden)~button.rawdatabtn path:nth-of-type(3) {
+  fill: var(--barlow);
+}
+app-visualisation main button.rawdatabtn:hover path:nth-of-type(4),
+app-visualisation main button.rawdatabtn:focus-visible path:nth-of-type(4),
+app-visualisation main aside:not(.hidden)~button.rawdatabtn path:nth-of-type(4) {
+  fill: var(--barhigh);
+}
+
+app-visualisation main aside:not(.hidden)~button.rawdatabtn path:nth-of-type(1),
+app-visualisation main aside:not(.hidden)~button.rawdatabtn:hover path,
+app-visualisation main aside:not(.hidden)~button.rawdatabtn:focus-visible path {
+  fill: white;
+}
+
 app-visualisation main g.creditsbtn {
   cursor: pointer;
 }
@@ -111,6 +134,7 @@ app-visualisation main aside {
   background: var(--bg-color);
   color: var(--primary-text-color);
   padding: 2em;
+  padding-top: 3em;
   border-radius: .8em;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
   height: 20em;
@@ -264,6 +288,7 @@ app-visualisation main aside.filtercontainer div label {
   place-self: start;
   gap: .5em;
 }
+
 app-visualisation main aside.filtercontainer div label:last-of-type {
   margin-top: 1em;
 }
@@ -438,9 +463,11 @@ lichten animatie deels bron: https://codepen.io/bennettfeely/pen/OJqBgL?editors=
 .discolightscontainer {
   transition: all .4s ease-in-out;
 }
+
 .discolightscontainer.hidden {
   opacity: 0;
 }
+
 .lightleftcontainer,
 .lightmiddlecontainer,
 .lightrightcontainer {
@@ -456,9 +483,11 @@ lichten animatie deels bron: https://codepen.io/bennettfeely/pen/OJqBgL?editors=
 .lightleftcontainer {
   filter: drop-shadow(0px 0px 10px cyan);
 }
+
 .lightmiddlecontainer {
   filter: drop-shadow(0px 0px 10px hotpink);
 }
+
 .lightrightcontainer {
   filter: drop-shadow(0px 0px 10px cyan);
 }
@@ -485,6 +514,7 @@ div.lightright::before {
   animation: middle 7s linear infinite;
   background: radial-gradient(at bottom left, hotpink, transparent);
 }
+
 .lightright::before {
   animation: right 8s ease-in-out alternate infinite;
   background: radial-gradient(at bottom right, cyan, transparent);

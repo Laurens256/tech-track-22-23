@@ -31,6 +31,7 @@ export class UserPlaylistsComponent implements OnInit {
   preferences = {
     autoplay: true
   }
+  prefsOpen: boolean = false;
 
   loading: boolean = true;
 
@@ -75,6 +76,7 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   togglePrefPanel() {
+    this.prefsOpen = !this.prefsOpen;
     document.querySelector('.prefpanel')?.classList.toggle('open');
   }
 

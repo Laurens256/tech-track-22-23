@@ -31,7 +31,7 @@ header section.info {
 }
 
 header section.info p {
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   justify-self: center;
 }
 
@@ -112,6 +112,31 @@ header section.buttonsection button {
   height: 100%;
   width: 8em;
   transition: all .1s ease-in-out;
+  position: relative;
+}
+
+header section.buttonsection button:disabled {
+  color: transparent;
+}
+
+/* spinner via bron: https://stephanwagner.me/only-css-loading-spinner */
+header section.buttonsection button:disabled:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-text-color);
+  border-top-color: var(--bg-color);
+  animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
 }
 
 

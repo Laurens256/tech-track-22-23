@@ -39,9 +39,9 @@
       <aside class="prefpanel">
         <h2>Preferences</h2>
         <div>
-          <label *ngFor="let pref of preferences | keyvalue" for="{{pref.key}}">{{pref.key}}
+          <label *ngFor="let pref of preferences | keyvalue" for="{{pref.key}}">{{pref.key | titlecase}}
             <input #inputRef type="checkbox" id="{{pref.key}}" name="{{pref.key}}" (change)="this.updatePref(inputRef)"
-            [checked]="pref.value == true">
+            [checked]="pref.value == true" [attr.tabindex]="prefsOpen ? '0' : '-1'">
           </label>
         </div>
       </aside>
