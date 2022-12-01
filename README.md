@@ -2,9 +2,6 @@
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
  ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
  ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-<div align="center">
-  <img src="https://raw.githubusercontent.com/wiki/Laurens256/tech-track-22-23/img/week4_login.svg" alt="">
-</div>
 
 ## Table of Contents
 * [Over dit project](#over-dit-project)
