@@ -23,6 +23,7 @@ main section:first-of-type {
 
 main section:first-of-type h1 {
   font-size: 4em;
+  margin-bottom: 1px;
 }
 
 main section:first-of-type p {

@@ -12,10 +12,10 @@ import { AuthGuard } from './core/services/spotifyAuth/auth.guard';
 
 const routes: Routes = [
   //login
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: UserPlaylistsComponent },
+  { path: 'login', component: LoginComponent, title: 'Discofy | Login' },
+  { path: 'home', component: UserPlaylistsComponent, title: 'Discofy | Playlists' },
   // { path: 'home', component: UserPlaylistsComponent },
-  { path: 'playlist', component: PlaylistComponent },
+  { path: 'playlist', component: PlaylistComponent, title: 'Discofy | Visualize' },
   // { path: 'playlist/:', component: PlaylistComponent },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
