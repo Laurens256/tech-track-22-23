@@ -26,6 +26,7 @@ div.rope {
     left: 50%;
     width: 160px;
     height: 160px;
+    // blue rgba background
     background: #000;
     border-radius: 100%;
     transform: translate(-50%, -50%);
@@ -41,7 +42,7 @@ div.rope {
 .surface {
   width: 25px;
   height: 25px;
-  background: #1db954;
+  background: var(--barcolor2);
   transform: translate(-50%, -50%);
   backface-visibility: hidden;
   border-radius: 4px;

@@ -1,5 +1,5 @@
 <div class="rope"></div>
-<div class="container">
+<div class="container" [attr.data-tooltip]="energy === 101 ? null : 'Energy: ' + energy">
   <div class="mirrorball">
     <div class="line" *ngFor="let e of [].constructor(15)">
       <div class="plate" *ngFor="let e of [].constructor(30)">

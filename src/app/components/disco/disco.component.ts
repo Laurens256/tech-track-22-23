@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-disco',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./disco.component.scss']
 })
 export class DiscoComponent implements OnInit {
+
+  @Input() energy: number = 101;
 
   constructor() { }
 

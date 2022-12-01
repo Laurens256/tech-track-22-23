@@ -27,7 +27,7 @@ app-visualisation main app-disco {
 app-visualisation main app-disco.visible {
   display: block;
   position: absolute;
-  z-index: 10;
+  z-index: 7;
   height: 100%;
   width: 100%;
   transform: translateY(-100%);
@@ -391,7 +391,7 @@ app-visualisation main .tooltip {
 	padding: .5em .5em;
 	opacity: 0;
 	transition: opacity .2s ease-in-out;
-	z-index: 7;
+	z-index: 8;
 	pointer-events: none;
 	border-radius: 8px;
 	box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);

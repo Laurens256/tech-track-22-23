@@ -48,7 +48,7 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
         setTimeout(() => {
           document.querySelector('app-disco')?.classList.add('visible');
           setTimeout(() => {
-            document.querySelector('app-disco')?.remove()
+            document.querySelector('app-disco')?.remove();
             mainElement.classList.remove('discohidden');
           }, 4000);
         }, 600);
@@ -141,18 +141,18 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
     document.documentElement.style.setProperty(`--barwidth${i}`, `${width}%`);
     //definieert de kleur waar de animatie op eindigt
     if(width <= 33) {
-      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barlaag)`);
+      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barlow)`);
     } else if(width <= 66) {
       document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barmid)`);
     } else {
-      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barhoog)`);
+      document.documentElement.style.setProperty(`--barcolor${i}`, `var(--barhigh)`);
     }
     //return hier zodat er niet 100.000 keer hetzelfde in de css wordt gezet
     if (this.barStyleCount > Object.keys(this.data.averages).length) return;
 
     //animatie voor de bars
     const sheet = window.document.styleSheets[0];
-    sheet.insertRule(`@keyframes bar${i} { 0% { background: var(--barlaag); width: 0%; } 50% { background: var(--barmid); width: calc(var(--barwidth${i}) / 2); } 100% { background: var(--barcolor${i}); width: var(--barwidth${i}); } }`, sheet.cssRules.length);
+    sheet.insertRule(`@keyframes bar${i} { 0% { background: var(--barlow); width: 0%; } 50% { background: var(--barmid); width: calc(var(--barwidth${i}) / 2); } 100% { background: var(--barcolor${i}); width: var(--barwidth${i}); } }`, sheet.cssRules.length);
 
     // laat animatie spelen als de bars in beeld komen
     sheet.insertRule(`app-visualisation main aside.rawdatacontainer:not(.hidden) ul li:nth-of-type(${i+1})>div>div {animation-name: bar${i};animation-delay: ${i * 0.5 + 0.5}s;background: var(--barcolor${i});}`, sheet.cssRules.length);

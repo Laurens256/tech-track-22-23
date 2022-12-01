@@ -26,27 +26,17 @@
       xmlns="http://www.w3.org/2000/svg">
       <style>
         #instrumentalBg .low path {
-          fill: url(#fill-color) var(--spotify-green);
+          fill: var(--barlow);
         }
 
         #instrumentalBg .mid path {
-          fill: red;
+          fill: var(--barmid);
         }
 
         #instrumentalBg .high path {
-          fill: blue;
+          fill: var(--barhigh);
         }
       </style>
-      <defs>
-        <linearGradient id="fill-color" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:var(--note-color-1)" />
-          <stop offset="100%" style="stop-color:var(-note-color-2)" />
-        </linearGradient>
-        <radialGradient id="fill-color2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-          <stop offset="0%" style="stop-color:var(--note-color-1);" />
-          <stop offset="100%" style="stop-color:var(--note-color-2);" />
-        </radialGradient>
-      </defs>
       <g class="low">
         <g transform="translate(417.85 158.91) rotate(166.6) scale(1.05)">
           <path
