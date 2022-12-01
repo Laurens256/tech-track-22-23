@@ -48,22 +48,8 @@ header section.info div p {
 
 header section.info img {
   width: 9em;
-}
-
-header section.buttonsection {
-  width: 100%;
-  position: absolute;
-  bottom: .5em;
-  /* background: blue; */
-  display: flex;
-  justify-content: center;
-  height: 3em;
-}
-
-header section.buttonsection button {
-  height: 100%;
-  width: 8em;
-  transition: all .1s ease-in-out;
+  height: 9em;
+  object-fit: cover;
 }
 
 header button:hover,
@@ -101,6 +87,60 @@ header button.back {
 header button.back.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+
+/*----------------------------------------
+buttons (playback en open visualisatie)
+----------------------------------------*/
+header section.buttonsection {
+  width: 100%;
+  position: absolute;
+  bottom: .5em;
+  display: flex;
+  gap: .5em;
+  justify-content: center;
+  height: 3em;
+
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: calc((var(--playlist-song-width) + 11.6em) * 2);
+}
+
+header section.buttonsection button {
+  height: 100%;
+  width: 8em;
+  transition: all .1s ease-in-out;
+}
+
+
+
+/*----------------------------------------
+playback buttons
+----------------------------------------*/
+header section.buttonsection div {
+  display: flex;
+  gap: inherit;
+  margin-left: auto;
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
+header section.buttonsection div button {
+  padding: .7em;
+  width: 2.5em;
+  text-align: center;
+}
+
+header section.buttonsection div button svg {
+  /* width: 100%; */
+  height: 100%;
+}
+
+header section.buttonsection div button svg path {
+  fill: black;
 }
 
 
@@ -278,13 +318,24 @@ main ul li div.loadAnimation span:nth-child(7) {
 }
 
 
-/* maakt de visualisation kleiner voor mobiel scherm */
 @media screen and (max-width:600px) {
+  /* maakt de visualisation kleiner voor mobiel scherm */
   header.visualisationopen {
-    /* iets kleiner voor mobile*/
     height: calc(50vh + 3em + 15em);
   }
   section.visualisation.open {
     height: 50vh;
+  }
+
+  /* plaatst music player buttons onder visualize knop */
+  header section.buttonsection div {
+    right: 50%;
+    transform: translateX(50%);
+    top: calc(100% + .5em);
+  }
+
+  /* meer ruimte voor knopjes */
+  main {
+    margin-top: 4em;
   }
 }

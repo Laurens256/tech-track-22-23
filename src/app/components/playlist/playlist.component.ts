@@ -32,6 +32,9 @@ export class PlaylistComponent implements OnInit {
   playlistTotal: number = 0;
   playlistDuration: number = 0;
 
+  randomSong = '';
+  isPlaying: boolean = false;
+
   average: Averages = {
     valence: 0,
     danceability: 0,
@@ -103,11 +106,15 @@ export class PlaylistComponent implements OnInit {
     const data = await this.userDataService.getPlaylistTracks(id, this.hasPlaylist);
     //als hasplaylist false wordt meegegeven, wordt in data .playlist extra meegegeven
     if (data.playlist != null) this.playlist = data.playlist;
-    this.playlistTracks = data.alltracks;
+    this.playlistTracks = data.allTracks;
     this.playlistTrackIds = data.allTrackIds;
-    data.alltracks.forEach(item => {
+    data.allTracks.forEach(item => {
       this.playlistDuration += item.duration_ms;
-    })
+      if (item.preview_url) this.randomSongs.push(item.preview_url);
+    });
+
+    this.chooseRandomTrack();
+
     this.loading = false;
     this.getPlaylistColor(this.playlist.images[0].url);
   }
@@ -181,6 +188,43 @@ export class PlaylistComponent implements OnInit {
       })
     });
   };
+
+  randomSongs: string[] = [];
+
+  chooseRandomTrack(prev?: boolean) {
+    const audio: HTMLAudioElement = document.querySelector('audio')!;
+    if(this.randomSongs.length === 0) {
+      audio.pause();
+
+      this.playlistTracks.forEach(item => {
+        if (item.preview_url) this.randomSongs.push(item.preview_url);
+      });
+
+      audio.load();
+      audio.play()
+      this.isPlaying = !audio.paused;
+      return;
+    };
+    //kies een random nummer uit de playlist om af te spelen
+    const random = Math.floor(Math.random() * (this.randomSongs.length));
+
+    this.randomSong = this.randomSongs[random];
+    this.randomSongs.splice(random, 1);
+
+    //als er een nummer net af is gelopen, speel meteen een nieuwe af
+    if (prev) {
+      audio.load();
+      audio.play()
+      this.isPlaying = !audio.paused;
+    }
+  }
+
+  toggleAudioPlayer() {
+    if(this.randomSongs.length === 0) this.chooseRandomTrack();
+    const audio: HTMLAudioElement = document.querySelector('audio')!;
+    audio.paused ? audio.play() : audio.pause();
+    this.isPlaying = !audio.paused;
+  }
 
   backPage() {
     this.router.navigate(['home']);

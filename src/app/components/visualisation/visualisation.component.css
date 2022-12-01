@@ -47,8 +47,10 @@ app-visualisation main.open app-disco.visible {
 }
 
 app-visualisation main.discohidden #room,
-app-visualisation main.discohidden .dancecontainer {
+app-visualisation main.discohidden .dancecontainer,
+app-visualisation main.discohidden .dancecontainer img {
   opacity: 0;
+  pointer-events: none;
 }
 
 

@@ -53,9 +53,9 @@ export class UserDataService {
 
     //als playlist opnieuw was opgehaald, return die. Anders return die niet
     if(playlist != null) {
-      return { playlist: playlist, alltracks: allTracks, allTrackIds: allTrackIds };
+      return { playlist: playlist, allTracks: allTracks, allTrackIds: allTrackIds };
     } else {
-      return { alltracks: allTracks, allTrackIds: allTrackIds };
+      return { allTracks: allTracks, allTrackIds: allTrackIds };
     }
   }
 

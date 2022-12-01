@@ -50,8 +50,8 @@ export class VisualisationComponent implements OnInit, OnChanges, AfterViewInit 
           setTimeout(() => {
             document.querySelector('app-disco')?.remove()
             mainElement.classList.remove('discohidden');
-          }, 5000);
-        }, 400);
+          }, 4000);
+        }, 600);
       }
 
       if (this.hasVisData) {

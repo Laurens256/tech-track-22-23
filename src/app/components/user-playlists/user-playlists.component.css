@@ -95,6 +95,8 @@ main ul li button:focus-visible {
 
 main ul li button img {
   height: 100%;
+  object-fit: cover;
+  width: 80px;
 }
 
 main ul li button div {

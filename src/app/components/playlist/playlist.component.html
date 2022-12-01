@@ -416,9 +416,27 @@
 
   <section class="buttonsection">
     <button (click)="this.toggleVisualisation()" aria-label="toggle visualisation" [disabled]="loading">
-      <ng-container *ngIf="!visualisationOpen">Visualize</ng-container>
-      <ng-container *ngIf="visualisationOpen">Close</ng-container>
+      {{visualisationOpen ? 'Close' : 'Visualize'}}
     </button>
+    <div>
+      <button (click)="this.toggleAudioPlayer()" aria-label="toggle music play state">
+        <ng-container *ngIf="isPlaying"><svg aria-hidden="true" viewBox="0 0 16 16">
+            <path
+              d="M2.7 1a.7.7 0 00-.7.7v12.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7H2.7zm8 0a.7.7 0 00-.7.7v12.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-2.6z" />
+          </svg></ng-container>
+
+        <ng-container *ngIf="!isPlaying"><svg aria-hidden="true" viewBox="0 0 16 16">
+            <path d="M3 1.713a.7.7 0 011.05-.607l10.89 6.288a.7.7 0 010 1.212L4.05 14.894A.7.7 0 013 14.288V1.713z" />
+          </svg></ng-container>
+
+      </button>
+      <button (click)="this.chooseRandomTrack(true)" aria-label="skip current track">
+        <svg aria-hidden="true" viewBox="0 0 16 16">
+          <path
+            d="M12.7 1a.7.7 0 00-.7.7v5.15L2.05 1.107A.7.7 0 001 1.712v12.575a.7.7 0 001.05.607L12 9.149V14.3a.7.7 0 00.7.7h1.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-1.6z"/>
+        </svg>
+      </button>
+    </div>
   </section>
 
 </header>
@@ -441,6 +459,10 @@
     </li>
   </ul>
 </main>
+
+<audio #audio (ended)="chooseRandomTrack(true)" preload="auto">
+  <source *ngIf="randomSong !== ''" src="{{randomSong}}" type="audio/mp3">
+</audio>
 
 
 <!-- loading animation -->
