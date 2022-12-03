@@ -139,7 +139,7 @@ main ul li {
 main ul li button {
   display: flex;
   /* background: linear-gradient(#323232, #2f2f2f); */
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--playlist-bg);
   width: 100%;
   height: 6em;
   gap: 1.3em;
@@ -151,7 +151,7 @@ main ul li button {
 
 main ul li button:hover,
 main ul li button:focus-visible {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--playlist-bg-hover);
 }
 
 main ul li button:focus-visible {

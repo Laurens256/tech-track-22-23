@@ -79,15 +79,23 @@ main img.bg-image {
   main img.bg-image {
     animation: none;
   }
+
+  main section:first-of-type a:hover,
+  main section:first-of-type a:focus-visible {
+    transform: scale(1);
+    text-decoration: underline;
+  }
 }
 
 @keyframes rotate {
   0% {
     transform: rotate(0deg) scale(1);
   }
+
   50% {
     transform: rotate(360deg) scale(5);
   }
+
   100% {
     transform: rotate(720deg) scale(1);
   }
