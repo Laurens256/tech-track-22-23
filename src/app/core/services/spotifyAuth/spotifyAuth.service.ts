@@ -14,7 +14,7 @@ export class SpotifyAuthService {
     client_id: environment.client_id,
     response_type: 'code',
     redirect_uri: environment.apiUrl,
-    scope: 'user-read-private user-top-read'
+    scope: ''
   };
 
 
