@@ -31,6 +31,7 @@ export class TokenService {
   public clearToken(): void {
     this.token.access = '';
     this.token.ttl = 0;
+    sessionStorage.removeItem('access_ttl')
   }
 
   public get getAuthHeader(): { [Authorization: string]: string } {

@@ -49,7 +49,7 @@ header section.info div p {
 header section.info img {
   width: 9em;
   height: 9em;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 header button:hover,
@@ -250,6 +250,7 @@ main ul li {
   overflow: hidden;
   background: var(--bg-color);
   border-bottom: solid .1px var(--primary-text-color);
+  position: relative;
 }
 
 main ul li div:first-of-type {
@@ -274,6 +275,23 @@ main ul li div small {
 main ul li div:last-of-type {
   margin: 0 .5em;
   width: fit-content;
+}
+
+main ul li a {
+  position: absolute;
+  bottom: 0em;
+  right: .8em;
+  height: 1.5em;
+  width: 1.5em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* background: red; */
+}
+
+main ul li a svg {
+  width: .6em;
+  margin: 0 .2em .2em 0;
 }
 
 

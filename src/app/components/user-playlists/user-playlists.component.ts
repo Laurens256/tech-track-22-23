@@ -85,4 +85,9 @@ export class UserPlaylistsComponent implements OnInit {
     this.prefSvc.setPreference(pref.id as allPrefs, pref.checked)
   }
 
+  logout() {
+    this.tokenService.clearToken();
+    this.router.navigateByUrl('/');
+  }
+
 }

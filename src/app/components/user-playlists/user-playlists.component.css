@@ -106,6 +106,7 @@ main header div aside.prefpanel div {
   flex-direction: column;
   width: 100%;
   height: fit-content;
+  margin-bottom: 1.3em;
 }
 
 main header div aside.prefpanel div label {
@@ -113,6 +114,13 @@ main header div aside.prefpanel div label {
   flex-direction: row-reverse;
   place-self: start;
   gap: .5em;
+}
+
+main header div aside.prefpanel a {
+  color: var(--spotify-green);
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 
@@ -134,6 +142,7 @@ main ul li {
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
   justify-self: center;
+  position: relative;
 }
 
 main ul li button {
@@ -160,7 +169,7 @@ main ul li button:focus-visible {
 
 main ul li button img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 80px;
 }
 
@@ -184,6 +193,22 @@ main ul li button div p {
   white-space: nowrap;
   text-align: start;
   color: var(--secondary-text-color);
+}
+
+main ul li a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.5em;
+  height: 1.5em;
+  /* background: red; */
+  padding: .3em;
+  z-index: -1;
+}
+
+main ul li a:hover svg path, main ul li a:hover svg rect,
+main ul li a:focus-visible svg > path, main ul li a:hover svg rect {
+  fill: var(--spotify-green);
 }
 
 
