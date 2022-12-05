@@ -165,9 +165,11 @@ export class PlaylistComponent implements OnInit {
     type avgKey = keyof typeof this.average;
     //loop over alle audio features en alle keys die we willen en tel ze bij elkaar op
     arr.forEach(item => {
-      Object.keys(this.average).forEach(key => {
-        this.average[key as avgKey] += item[key as avgKey]
-      })
+      if(item != null) {
+        Object.keys(this.average).forEach(key => {
+          this.average[key as avgKey] += item[key as avgKey]
+        })
+      }
     })
 
     //maak een gemiddelde van alle audio features en doe het keer 100 zodat het 0-100 is ipv 0-1

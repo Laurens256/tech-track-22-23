@@ -14,6 +14,25 @@ header.visualisationopen {
   height: calc(100vh + 3em + 14em);
 }
 
+header .poweredby {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  height: 3.5em;
+  font-weight: bold;
+}
+
+header .poweredby picture {
+  height: 65%;
+}
+
+header .poweredby picture img {
+  height: 100%;
+}
+
 header section.info {
   width: 90vw;
   /* zelfde max width als nummers eronder */
@@ -108,6 +127,20 @@ header section.buttonsection {
   max-width: calc((var(--playlist-song-width) + 11.6em) * 2);
 }
 
+header section.buttonsection div:first-of-type {
+  display: flex;
+  margin-right: auto;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  align-items: center;
+  gap: inherit;
+}
+
+header section.buttonsection div:first-of-type svg {
+  height: 65%;
+}
+
 header section.buttonsection button {
   height: 100%;
   width: 8em;
@@ -144,7 +177,7 @@ header section.buttonsection button:disabled:before {
 /*----------------------------------------
 playback buttons
 ----------------------------------------*/
-header section.buttonsection div {
+header section.buttonsection div:last-of-type {
   display: flex;
   gap: inherit;
   margin-left: auto;
@@ -153,18 +186,18 @@ header section.buttonsection div {
   height: 100%;
 }
 
-header section.buttonsection div button {
+header section.buttonsection div:last-of-type button {
   padding: .7em;
   width: 2.5em;
   text-align: center;
 }
 
-header section.buttonsection div button svg {
+header section.buttonsection div:last-of-type button svg {
   /* width: 100%; */
   height: 100%;
 }
 
-header section.buttonsection div button svg path {
+header section.buttonsection div:last-of-type button svg path {
   fill: black;
 }
 
@@ -381,7 +414,7 @@ main ul li div.loadAnimation span:nth-child(7) {
   }
 
   /* plaatst music player buttons onder visualize knop */
-  header section.buttonsection div {
+  header section.buttonsection div:last-of-type {
     right: 50%;
     transform: translateX(50%);
     top: calc(100% + .5em);

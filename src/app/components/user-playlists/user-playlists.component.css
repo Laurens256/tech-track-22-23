@@ -3,10 +3,12 @@ main {
   width: 100%;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 7em;
 }
 
 main header {
   position: relative;
+  z-index: 2;
   width: 100%;
   height: fit-content;
   display: flex;
@@ -93,6 +95,7 @@ main header div aside.prefpanel {
   border-radius: 8px;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
   padding: 1em;
+  z-index: 2;
 }
 
 main header div aside.prefpanel h2 {
@@ -135,6 +138,8 @@ main ul {
   /* calc 90vw - padding .8em beide kanten */
   max-width: calc(90vw - 1.6em);
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 main ul li {
@@ -143,6 +148,7 @@ main ul li {
   max-width: calc(90vw - 1.6em);
   justify-self: center;
   position: relative;
+  /* z-index: 1; */
 }
 
 main ul li button {
@@ -151,7 +157,6 @@ main ul li button {
   background: var(--playlist-bg);
   width: 100%;
   height: 6em;
-  gap: 1.3em;
   align-items: center;
   overflow: hidden;
   border-radius: 4px;
@@ -177,6 +182,7 @@ main ul li button div {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  margin-left: 1.1em;
 }
 
 main ul li button div h2 {
@@ -201,9 +207,7 @@ main ul li a {
   right: 0;
   width: 1.5em;
   height: 1.5em;
-  /* background: red; */
   padding: .3em;
-  z-index: -1;
 }
 
 main ul li a:hover svg path, main ul li a:hover svg rect,

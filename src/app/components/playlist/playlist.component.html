@@ -1,5 +1,13 @@
 <header [ngClass]="{'visualisationopen' : visualisationOpen}">
   <button (click)="this.backPage()" class="back" aria-label="back to playlists">Back</button>
+  <div class="poweredby">
+    Powered by
+    <picture>
+      <source srcset="assets/img/spotify-full.svg" media="(min-width: 601px)">
+      <source srcset="assets/img/spotify-logo.svg" media="(max-width: 600px)">
+      <img src="" alt="Spotify logo">
+    </picture>
+  </div>
   <section class="info">
     <img #playlistImg *ngIf="playlist != undefined" src="{{playlist.images[0].url}}" alt="playlist icon"
       crossorigin="anonymous">

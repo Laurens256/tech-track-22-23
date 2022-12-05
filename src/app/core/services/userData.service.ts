@@ -24,7 +24,7 @@ export class UserDataService {
 
   getPlaylists() {
     // get user playlists
-    return this.http.get<{ items: Playlist[] }>(this.userPlaylistsUri)
+    return this.http.get<{ items: Playlist[] }>(`${this.userPlaylistsUri}?limit=50`);
   }
 
   async getPlaylistTracks(button_id: string, hasPlaylist?: boolean) {
@@ -73,7 +73,7 @@ export class UserDataService {
 
       songs.audio_features.forEach((song) => allAudioFeatures.push(song));
     }
-    return allAudioFeatures;
+    return allAudioFeatures.filter(features => features != null);
   }
 
 }
