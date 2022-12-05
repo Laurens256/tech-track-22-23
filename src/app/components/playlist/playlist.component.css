@@ -127,20 +127,6 @@ header section.buttonsection {
   max-width: calc((var(--playlist-song-width) + 11.6em) * 2);
 }
 
-header section.buttonsection div:first-of-type {
-  display: flex;
-  margin-right: auto;
-  position: absolute;
-  left: 0;
-  height: 100%;
-  align-items: center;
-  gap: inherit;
-}
-
-header section.buttonsection div:first-of-type svg {
-  height: 65%;
-}
-
 header section.buttonsection button {
   height: 100%;
   width: 8em;
